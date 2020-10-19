@@ -38,7 +38,7 @@ https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
 ### Decide what error meta data to store
 
 
-## Dummy app with button throwin an error
+## Dummy app with button throwing an error
 ```
 <!DOCTYPE html>
 <html lang="en">
