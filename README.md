@@ -1,6 +1,9 @@
 # bugbash
 A bugbashing tool
 
+## Resources
+https://www.valentinog.com/blog/error/
+
 ## JavaScript client, capable of sending errors to the server
 ``` 
 class Logger {
