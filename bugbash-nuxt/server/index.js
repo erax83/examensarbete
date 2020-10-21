@@ -6,9 +6,9 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-const errors = require('./routes/errors')
+const testErrors = require('./routes/testErrors')
 
-app.use(errors)
+app.use(testErrors)
 
 module.exports = {
   path: '/server',
