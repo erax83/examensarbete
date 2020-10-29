@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <p id="demo"></p>
+    <p id="demoTwo"></p>
+
+    <p id="demoThree"></p>
+    <p id="demoFour"></p>
+    <p id="sizemessaure"></p> -->
+    <button id="btnTest">Test</button>
+
+    <script>
+      const button = document.getElementById("btnTest");
+
+      button.addEventListener("click", () => {
+        fel();
+      });
+    </script>
+
+    <!-- <script type="module" src="../bugbash-nuxt/static/ErrorMonitor.js"></script> -->
+    <script type="module">
+      import ErrorMonitor from "../bugbash-nuxt/static/ErrorMonitor.js";
+      const monitor = (window.monitor = new ErrorMonitor({
+        autoStart: true,
+      }));
+    </script>
+  </body>
+</html>

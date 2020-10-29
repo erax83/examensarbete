@@ -4,7 +4,7 @@ const validator = require('express-validator')
 
 
 // Create
-module.exports.register = [
+module.exports.create = [
     
     validator.body('someError', 'Please enter an error').isLength({ min: 1 }),
     

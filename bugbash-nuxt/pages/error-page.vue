@@ -25,13 +25,13 @@
           <label for="">Some Error</label>
           <input
             type="text"
-            class="form-control"
             :class="{ 'is-invalid': errors && errors.title }"
             v-model="someError"
           />
           <div class="invalid-feedback" v-if="errors && errors.title">
             {{ errors.someError.msg }}
           </div>
+          <p>{{ someError }}</p>
         </div>
         <input type="submit" value="Submit" />
       </form>
@@ -50,54 +50,67 @@ export default {
       errors: null,
       someError: null
     };
-  },
+  },/*
+  beforeMount() {
+    const refScript = document.getElementsByTagName("script")[0];
+    const rcScript = document.createElement("script");
 
+    rcScript.async = true;
+    rcScript.crossOrigin = "anonymous";
+    rcScript.src = "/assets/errorMonitor.js/";
+
+
+
+    //rcScript.addEventListener("load", onRC);
+    refScript.parentNode.insertBefore(rcScript, refScript);
+  },
+  */
   methods: {
     errorMethod() {
-      try {
-        if (this.x == "") throw "empty";
+      
+        if (this.x == "") throw new Error('empty');
         if (isNaN(this.x)) throw "not a number";
         this.x = Number(this.x);
         if (this.x < 5) throw "too low";
         if (this.x > 10) throw "too high";
-      } catch (err) {
-        this.msg = "Input is " + err;
-      }
     },
     nameAndMessage() {
-      try {
+      
         let nr = 5;
-        console.log(5 + notAnything);
-      } catch (err) {
+        console.log(5 + notAnything());
+        
         this.name = err.name;
         this.message = err.message;
-      }
+      
     },
     submitForm() {
       console.log('inside submitForm');
-      this.$axios
-        .post("/server/testErrors/register", {
+      console.log(this.someError);
+      this.$axios.post("/server/testErrors", {
           someError: this.someError
         })
         .then(response => {
           console.log('inside response');
           console.log(response);
           
-          //if (response.data._id) {
-          //  this.$router.push({
-            //  name: "testErrors",
-             // params: { created: "yes" }
-          //  });
-          //} 
+          if (response.data._id) {
+           this.$router.push({
+             name: "testErrors",
+             params: { created: "yes" }
+           });
+          } 
+
+
         })
         .catch(error => {
           console.log('not working');
+          console.log(this.someError);
           console.log(error);
-          /*
-          if (error.response.data.errors) {
-            this.errors = error.response.data.errors;
-          }
-          */
+          
+          // if (error.response.data.errors) {
+          //   this.errors = error.response.data.errors;
+          // }
+          
         });
     }
   }
