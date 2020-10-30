@@ -13,21 +13,31 @@
     <p id="demoFour"></p>
     <p id="sizemessaure"></p> -->
     <button id="btnTest">Test</button>
+    <button id="btnPath">Pathlog</button>
 
     <script>
       const button = document.getElementById("btnTest");
+      const buttonPath = document.getElementById("btnPath");
 
       button.addEventListener("click", () => {
         fel();
+      });
+
+      buttonPath.addEventListener("click", () => {
+        var url = window.location.pathname;
+        console.log(url);
       });
     </script>
 
     <!-- <script type="module" src="../bugbash-nuxt/static/ErrorMonitor.js"></script> -->
     <script type="module">
       import ErrorMonitor from "../bugbash-nuxt/static/ErrorMonitor.js";
+
+      var fileOrigin = window.location.pathname; 
+      
       const monitor = (window.monitor = new ErrorMonitor({
         autoStart: true,
-      }));
+      }, fileOrigin));
     </script>
   </body>
 </html>
