@@ -1,14 +1,14 @@
+
 /**
  * Monitor for errors and add data to database.
  * 
  * @module ErrorMonitor
  */
 export default class ErrorMonitor {
-    constructor(config, errorFile) {
+    constructor(config) {
         super.constructor(...arguments);
         Object.assign(this, config);
         this.onError = this.onError.bind(this);
-        this.errorFile = errorFile;
         if(this.autoStart) {
             this.start();
         }
@@ -17,6 +17,7 @@ export default class ErrorMonitor {
      * Start the window monitor for errors.
      */
     start() {
+        this.startDate = new Date();
         window.addEventListener('error', this.onError, true);        
     }
 
@@ -24,17 +25,19 @@ export default class ErrorMonitor {
      * Stop the wondow monitor for errors.
      */
     stop() {
+
         window.removeEventListener('error', this.onError, true);        
     }
 
     /**
      * 
-     * @param {errorEvent} errorEvent 
+     * @param {ErrorEvent} errorEvent 
      */
     onError(errorEvent) { 
-        const errorTimeStamp = new Date();
+        
         this.logError(errorEvent.error, errorTimeStamp);
         this.addError(errorEvent.error);
+        this.stop();
     }
 
     /**
@@ -51,28 +54,25 @@ export default class ErrorMonitor {
     /**
      * Add error to database.
      * 
-     * @param {error} error 
+     * @param {Error} error 
      */
     addError(error) {
-        console.log('inside addError');
-        errorName = error.name;
-        this.$axios.post( '/server/monitorRoute', {
-            name: errorName
-          })
-          .then((response) => {
-            console.log('inside addError');
-            console.log(response);
-            if(response.data._id){
-              this.$router.push({ name:'monitorRoute', params:{ created:'yes' } })
+        const errorName = error.name;
+        console.log('inside addError, errorName: ' + errorName);
+        const errorData = {
+            message: error.message,
+            stack: error.stack,
+            timeStamp: Date.now(),
+            fileName: error.fileName,
+            session: {
+              startDate: this.startDate,
+              duration: Date.now() - this.startDate,
+              url: location.href
             }
-          })
-          .catch( (error) => {
-            console.log(error)
-            if(error.response.data.errors){
-              this.errors = error.response.data.errors
-            }
-          });
+          }
+
     }
+    
 };
 
 

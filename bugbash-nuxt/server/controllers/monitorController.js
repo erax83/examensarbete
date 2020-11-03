@@ -7,6 +7,7 @@ module.exports.add = [
     validator.body('title', 'Please enter Error Name').isLength({ min: 1 }),
   
     function(req, res) {
+        console.log('inside controller');
       // throw validation errors
       const errors = validator.validationResult(req);
       if (!errors.isEmpty()) {

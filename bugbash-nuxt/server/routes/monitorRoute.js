@@ -7,6 +7,6 @@ const router = Router()
 const monitorController = require('../controllers/monitorController')
 
 // Add new error
-router.post('/add', monitorController.add)
+router.post('/monitorRoute', monitorController.add)
 
 module.exports = router

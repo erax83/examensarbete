@@ -7,10 +7,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const testErrors = require('./routes/testErrors');
-const ErrorMonitor = require('../static/ErrorMonitor');
+// const ErrorMonitor = require('../static/ErrorMonitor');
 
 app.use(testErrors);
-app.use(ErrorMonitor);
+// app.use(ErrorMonitor);
 
 module.exports = {
   path: '/server',
