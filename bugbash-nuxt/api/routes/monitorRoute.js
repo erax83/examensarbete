@@ -1,7 +1,7 @@
 // const config = require('../config')
-const { Router } = require('express')
+const express = require('express')
 
-const router = Router()
+const router = express.Router()
 
 // Initialize Controller
 const monitorController = require('../controllers/monitorController')
@@ -10,3 +10,4 @@ const monitorController = require('../controllers/monitorController')
 router.post('/monitorRoute', monitorController.add)
 
 module.exports = router
+

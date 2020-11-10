@@ -6,16 +6,10 @@
     <title>Document</title>
   </head>
   <body>
-    <!-- <p id="demo"></p>
-    <p id="demoTwo"></p>
-
-    <p id="demoThree"></p>
-    <p id="demoFour"></p>
-    <p id="sizemessaure"></p> -->
     <button id="btnTest">Test</button>
     <button id="btnPath">Pathlog</button>
 
-    <script>
+    <script type="module">
       const button = document.getElementById("btnTest");
       const buttonPath = document.getElementById("btnPath");
 
@@ -24,20 +18,34 @@
       });
 
       buttonPath.addEventListener("click", () => {
-        var url = window.location.pathname;
-        console.log(url);
+        const currentUrl = window.location.pathname;
+        console.log(currentUrl);
       });
     </script>
 
     <!-- <script type="module" src="../bugbash-nuxt/static/ErrorMonitor.js"></script> -->
-    <script type="module">
+    <!-- <script type="module">
       import ErrorMonitor from "../bugbash-nuxt/static/ErrorMonitor.js";
 
-     
-      
       const monitor = (window.monitor = new ErrorMonitor({
         autoStart: true,
-      }, fileOrigin));
+      }));
+    </script> -->
+
+    <script type="module">
+      import ErrorMonitor from "../api/ErrorMonitor.js";
+      console.log('inside script');
+      const monitor = (window.monitor = new ErrorMonitor({
+        autoStart: true,
+      }));
     </script>
+
+    <!-- <script>
+      window.addEventListener("error", function (event) {
+        console.log("Some error: " + event.message + " !");
+      });
+    </script> -->
+    <script type="module" src="sandScript.js"></script>
+    <!-- <script type="module" src="errorScript.js"></script> -->
   </body>
 </html>

@@ -6,13 +6,13 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const testErrors = require('./routes/testErrors');
-// const ErrorMonitor = require('../static/ErrorMonitor');
+// const testErrors = require('./routes/testErrors');
+const monitorRoute = require('./routes/monitorRoute');
 
-app.use(testErrors);
-// app.use(ErrorMonitor);
+// app.use(testErrors);
+app.use(monitorRoute);
 
 module.exports = {
-  path: '/server',
+  path: '/api',
   handler: app
 }

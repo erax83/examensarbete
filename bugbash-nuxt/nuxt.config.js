@@ -24,10 +24,17 @@ export default {
   buildModules: [],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: ["@nuxtjs/axios"],
+  modules: ["@nuxtjs/axios",
+            '@nuxtjs/proxy'],
 
+  proxy: {
+    '/server': { target: 'SERVER_URL',
+                    pathRewrite: {
+                    '^/server' : '/'
+                    } }
+  },
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
 
-  serverMiddleware: ["~/server/index.js"]
+  serverMiddleware: ["~/api/index.js"]
 };

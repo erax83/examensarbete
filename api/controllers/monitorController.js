@@ -4,7 +4,7 @@ const validator = require('express-validator');
 // Add
 module.exports.add = [
     // validations rules
-    validator.body('title', 'Please enter Error Name').isLength({ min: 1 }),
+    validator.body('message').isLength({ min: 1 }),
   
     function(req, res) {
         console.log('inside controller');
@@ -16,7 +16,7 @@ module.exports.add = [
   
       // initialize record
       var monitorModel = new MonitorModel({
-          name : req.body.name
+          message : req.body.message
       })
   
       // save record

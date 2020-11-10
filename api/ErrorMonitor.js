@@ -1,6 +1,5 @@
 
 
-// import axios from 'axios';
 /**
  * Monitor for errors and add data to database.
  * 
@@ -9,9 +8,10 @@
 export default class ErrorMonitor {   
     constructor(config) {
         super.constructor(...arguments);
-        this.url = 'http://localhost:3000/routes/monitorRoute';
+        this.url = 'http://localhost:3000/api/server/quotes';
         Object.assign(this, config);
         this.onError = this.onError.bind(this);
+        // require('server.js');
 
         if(this.autoStart) {
             this.start();
@@ -21,6 +21,7 @@ export default class ErrorMonitor {
      * Start the window monitor for errors.
      */
     start() {
+        console.log('inside start');
         this.startDate = new Date();
         window.addEventListener('error', this.onError, true);        
     }
@@ -37,7 +38,7 @@ export default class ErrorMonitor {
      * @param {ErrorEvent} errorEvent 
      */
     onError(errorEvent) { 
-        
+        console.log('inside onError');
         this.logError(errorEvent.error);
         this.addError(errorEvent.error);
         this.stop();
@@ -50,7 +51,7 @@ export default class ErrorMonitor {
      * @param {Date} errorTimeStamp 
      */
     logError(error) {
-        console.log("Error name: " + error.name + ", Error message: " + error.message);
+        console.log("inside logError - Error name: " + error.name + ", Error message: " + error.message);
     }
 
     /**
@@ -58,13 +59,12 @@ export default class ErrorMonitor {
      * 
      * @param {Error} error 
      */
-    addError(error) {
-
+    async addError(error) {
         const errorMessage = error.message;
-        console.log('inside addError, errorName: ' + errorMessage);
-        
+        console.log('inside addError, message: ' + errorMessage);
+
         const errorData = {
-            message: error.message,
+            message: errorMessage,
             // stack: error.stack,
             // timeStamp: Date.now(),
             // fileName: error.fileName,
@@ -75,71 +75,29 @@ export default class ErrorMonitor {
             // }
           };
 
-          console.log(errorData);
-        //   const fetch = require('node-fetch');
-        //   const fetch = require('isomorphic-fetch');
-
           const options = {
             method: 'POST',
             headers: {
               'Content-Type': 'application/JSON'
             },
-            credentials: 'include',
+            credentials: 'omit',
+            mode: 'cors',
             body: JSON.stringify(errorData)
           };
-          try {
+          
+            const response = await fetch('http://localhost:3000/quotes', options);
+            const responseText = await response.text();
+            const result = JSON.parse(responseText);
             
-            fetch(this.url, options)
-            .then((res) => {
-                console.log('inside then');
-                console.log(res.json());
-                return res.json();
-                
-            })
-            .then((json) => {
-                console.log('inside then 2');
-                console.log('Success: ' + json);
-             })
-             ;
-            console.log('try success');
-          }
-          catch(err) {
-              console.log('inside catch');
-              console.log(err);
-          }
-          
-        //   console.log('after fetch');
-
-
-
-
-        //   axios.post( '/server/monitorRoute', {
-        //     message: errorMessage
-        //   })
-        //   .then((response) => {
-        //     console.log(response)
-        //     if(response.data._id){
-        //       this.$router.push({ name:'articles', params:{ created:'yes' } })
-        //     }
-        //   })
-        //   .catch( (error) => {
-        //     console.log(error)
-        //     if(error.response.data.errors){
-        //       this.errors = error.response.data.errors
-        //     }
-        //   });
-
-          
-        
+            if(result.success) {
+                console.log('Error logged');
+            }
+            else {
+                console.error('Error logging failed');
+            }
 
     }
     
 };
-
-
-
-
-
-
 
 
