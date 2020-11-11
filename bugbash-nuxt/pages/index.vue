@@ -5,8 +5,9 @@
       <h1 class="title">
         bugbash-nuxt
       </h1>
-     <nuxt-link to="/error-page">Errortesting</nuxt-link>
-        
+      <nuxt-link to="/errorLog">Error Log</nuxt-link>
+
+      
       
     </div>
   </div>

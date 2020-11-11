@@ -85,7 +85,10 @@ export default class ErrorMonitor {
             body: JSON.stringify(errorData)
           };
           
-            const response = await fetch('http://localhost:3000/quotes', options);
+            // const response = await fetch('http://localhost:3000/quotes', options);
+
+            const response = await fetch('http://localhost:3000/monitorRoute', options);
+
             const responseText = await response.text();
             const result = JSON.parse(responseText);
             

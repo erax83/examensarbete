@@ -1,36 +1,25 @@
-const MonitorModel = require('../models/MonitorModel');
-const validator = require('express-validator');
+const mongoose = require('mongoose');
+const MonitorModel = require('/models/MonitorModel');
 
-// Add
-module.exports.add = [
-    // validations rules
-    validator.body('message').isLength({ min: 1 }),
-  
-    function(req, res) {
-        console.log('inside controller');
-      // throw validation errors
-      const errors = validator.validationResult(req);
-      if (!errors.isEmpty()) {
-        return res.status(422).json({ errors: errors.mapped() });
-      }
-  
-      // initialize record
-      var monitorModel = new MonitorModel({
-          message : req.body.message
+
+// create new cause
+export function add(req, res) {
+    const dbPost = new MonitorModelSchema({
+      message: req.body.message
+    });  
+    return dbPost
+      .save()
+      .then((newCause) => {
+        return res.status(201).json({
+          success: true,
+          message: 'New post created successfully',
+        });
       })
-  
-      // save record
-      monitorModel.save(function(err, monitorModel){
-          if(err) {
-              return res.status(500).json({
-                  message: 'Error saving record',
-                  error: err
-              });
-          }
-          return res.json({
-              message: 'saved',
-              _id: monitorModel._id
-          });
-      })
-    }
-  ];
+      .catch((error) => {
+        res.status(500).json({
+          success: false,
+          message: 'Server error. Please try again.',
+          error: error.message,
+        });
+      });
+  }  

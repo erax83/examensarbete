@@ -31,6 +31,8 @@ const quotesCollection = db.collection('quotes');
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+
   app.get('/', (req, res) => {
     db.collection('quotes').find().toArray()
     .then(results => {
@@ -39,17 +41,34 @@ app.use(bodyParser.urlencoded({ extended: true }));
       res.sendFile(__dirname + '/index.html');
     })
     .catch(error => console.error(error))
-  })
+  });
 
-//   app.post('/quotes', (req, res) => {
-//     console.log(req.body);
-//   })
+//   app.get('/', async (req, res) => {
+//     await db.collection('quotes').find().toArray()
+//     await function (results) => {
+//       console.log(results);
+//     //   res.render('/views/index.ejs', { quotes: results });
+//       res.sendFile(__dirname + '/index.html');
+//     }     
+//   });
 
   app.post('/quotes', cors(corsOptions), async (req, res) => {
+    await quotesCollection.insertOne(req.body);
+    res.send(JSON.stringify({success:true}));
+  });
+
+//   var routes = require('api/routes/');
+//   app.use(routes);
+//   app.use('/monitorRoute', monitorRoute);
+//   const x = require('/routes/monitorRoute');
+//  app.use("/monitorRoute", routes);
+//   app.use(monitorRoute);
+
+app.post('/monitorRoute', cors(corsOptions), async (req, res) => {
     await quotesCollection.insertOne(req.body)
     res.send(JSON.stringify({success:true}));
-  })
-
+  });
+  
   app.listen(3000, function() {
     console.log('listening on 3000');
   })
