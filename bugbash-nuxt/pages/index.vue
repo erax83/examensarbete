@@ -1,22 +1,16 @@
 <template>
   <div class="container">
     <div>
-      
       <h1 class="title">
         bugbash-nuxt
       </h1>
       <nuxt-link to="/errorLog">Error Log</nuxt-link>
-
-      
-      
     </div>
   </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style>
@@ -30,16 +24,8 @@ export default {
 }
 
 .title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 100px;

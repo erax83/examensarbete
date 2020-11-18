@@ -22,7 +22,8 @@
     "mongodb": "^3.6.2",
     "mongoose": "^5.10.9",
     "node-fetch": "^2.6.1",
-    "nuxt": "^2.14.6"
+    "nuxt": "^2.14.6",
+    "vue-good-table": "^2.21.1"
   },
   "devDependencies": {}
 }

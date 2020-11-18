@@ -1,25 +1,19 @@
-const mongoose = require('mongoose');
-const MonitorModel = require('/models/MonitorModel');
+const Monitor = require("../models/monitorModel");
 
+const monitorErrorIndex = async (req, res) => {
+  const result = await Monitor.find();
+  console.log(result);
+  res.send(result);
+  res.redirect("/");
+};
 
-// create new cause
-export function add(req, res) {
-    const dbPost = new MonitorModelSchema({
-      message: req.body.message
-    });  
-    return dbPost
-      .save()
-      .then((newCause) => {
-        return res.status(201).json({
-          success: true,
-          message: 'New post created successfully',
-        });
-      })
-      .catch((error) => {
-        res.status(500).json({
-          success: false,
-          message: 'Server error. Please try again.',
-          error: error.message,
-        });
-      });
-  }  
+const monitorErrorPost = async (req, res) => {
+  const quote = new Monitor(req.body);
+  const result = await quote.save();
+  res.redirect("/");
+};
+
+module.exports = {
+  monitorErrorIndex,
+  monitorErrorPost,
+};

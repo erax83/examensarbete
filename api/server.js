@@ -1,74 +1,48 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const bodyParser= require('body-parser');
-const mongoose = require('mongoose');
-require('dotenv').config();
-var cors = require('cors');
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+require("dotenv").config();
+var cors = require("cors");
+const quoteRoutes = require("./routes/quoteRoutes");
+const monitorRoutes = require("./routes/monitorRoutes");
 
 var corsOptions = {
-    origin: '*',
-  };
+  origin: "*",
+};
 app.use(cors(corsOptions));
 
-
-// require('errorScript.js');
-// res.render(view, locals);
-
-mongoose.connect(process.env.DATABASE_URL, {
+// Mongo database
+mongoose
+  .connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
-    useCreateIndex: true
-  });
+    useCreateIndex: true,
+  })
+  .then((result) => app.listen(4000))
+  .catch((err) => console.log(err));
+
 var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function callback () {
-console.log("MongoDB Connected...");
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", function callback() {
+  console.log("MongoDB Connected...");
+  console.log("Listening on port 4000");
 });
 
-const quotesCollection = db.collection('quotes');
+// const quotesCollection = db.collection("quotes");
+// const errorCollection = db.collection("errorPosts");
 
-app.use(bodyParser.json()); 
+app.use(bodyParser.json());
+// ?
+app.use(express.static("public"));
+// Accept form data
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/index.html");
+});
 
-
-  app.get('/', (req, res) => {
-    db.collection('quotes').find().toArray()
-    .then(results => {
-      console.log(results);
-    //   res.render('/views/index.ejs', { quotes: results });
-      res.sendFile(__dirname + '/index.html');
-    })
-    .catch(error => console.error(error))
-  });
-
-//   app.get('/', async (req, res) => {
-//     await db.collection('quotes').find().toArray()
-//     await function (results) => {
-//       console.log(results);
-//     //   res.render('/views/index.ejs', { quotes: results });
-//       res.sendFile(__dirname + '/index.html');
-//     }     
-//   });
-
-  app.post('/quotes', cors(corsOptions), async (req, res) => {
-    await quotesCollection.insertOne(req.body);
-    res.send(JSON.stringify({success:true}));
-  });
-
-//   var routes = require('api/routes/');
-//   app.use(routes);
-//   app.use('/monitorRoute', monitorRoute);
-//   const x = require('/routes/monitorRoute');
-//  app.use("/monitorRoute", routes);
-//   app.use(monitorRoute);
-
-app.post('/monitorRoute', cors(corsOptions), async (req, res) => {
-    await quotesCollection.insertOne(req.body)
-    res.send(JSON.stringify({success:true}));
-  });
-  
-  app.listen(3000, function() {
-    console.log('listening on 3000');
-  })
+// // Quotes
+app.use(quoteRoutes);
+app.use(monitorRoutes);
