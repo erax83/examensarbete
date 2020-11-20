@@ -64,10 +64,16 @@ export default class ErrorMonitor {
    */
   async addError(error) {
     const errorMessage = error.message;
-    console.log("inside addError, message: " + errorMessage);
+    console.log(
+      "inside addError, message: " +
+        errorMessage +
+        " Start Date: " +
+        +this.startDate +
+        " "
+    );
 
     const errorData = {
-      message: errorMessage,
+      message: error.message,
       stack: error.stack,
       timeStamp: Date.now(),
       fileName: error.fileName,

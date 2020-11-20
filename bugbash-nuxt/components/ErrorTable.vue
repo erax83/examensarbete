@@ -35,7 +35,7 @@ export default {
   //     type: Object,
   //     default: () => {}
   //   }
-  // }
+  // },
   data() {
     return {
       errorPosts: []
@@ -43,7 +43,7 @@ export default {
   },
   async fetch() {
     this.errorPosts = await fetch(
-      "http://localhost:4000/getErrorPosts"
+      "http://localhost:4000/getMonitorError"
     ).then(res => res.json());
   }
 };
