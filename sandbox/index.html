@@ -33,7 +33,7 @@
     </script> -->
 
     <script type="module">
-      import ErrorMonitor from "../api/ErrorMonitor.js";
+      import ErrorMonitor from "../bugbash-vue/server/ErrorMonitorVue.js";
       console.log('inside script');
       const monitor = (window.monitor = new ErrorMonitor({
         autoStart: true,
@@ -45,7 +45,7 @@
         console.log("Some error: " + event.message + " !");
       });
     </script> -->
-    <script type="module" src="sandScript.js"></script>
+    <!-- <script type="module" src="sandScript.js"></script> -->
     <!-- <script type="module" src="errorScript.js"></script> -->
   </body>
 </html>
