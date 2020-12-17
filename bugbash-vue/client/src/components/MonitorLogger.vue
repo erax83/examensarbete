@@ -9,7 +9,7 @@
         <th v-if="$store.state.urlState == true">Url</th>
       </tr>
       <tr v-for="(error, index) in $store.getters.errors" v-bind:key="index">
-        <td v-if="$store.state.dateState == true">{{ error.timeStamp }}</td>
+        <td v-if="$store.state.dateState == true">{{ new Date(error.timeStamp * 1000)  }}</td>
         <td v-if="$store.state.messageState == true">{{ error.message }}</td>
         <td v-if="$store.state.urlState == true">{{ error.session.url }}</td>
       </tr>
@@ -19,7 +19,12 @@
 
 <script>
 export default {
-  name: "MonitorLogger",
+  name: "MonitorLogger"
+  //  data: function() {
+  //   return {
+  //     urlLink: error.session.url,
+  //   };
+  // },
   // props: {
   //   errors: Array,
   // },

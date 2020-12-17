@@ -20,8 +20,9 @@ export const store = new Vuex.Store({
       state.allErrors = errors;
       state.errors = errors;
     },
+    
     onFilterChange(state, searchWord) {
-      debugger;
+      // debugger;
       if (!searchWord) {
         state.errors = state.allErrors;
       } else {
