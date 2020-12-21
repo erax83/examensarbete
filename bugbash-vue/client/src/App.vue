@@ -12,6 +12,7 @@
         <h1 style="display:inline; padding: 5px;">
           Bugbash
         </h1>
+       
       </div>
 
       <button v-on:click="dateToggleFunction">
@@ -45,18 +46,12 @@
 
 <script>
 import MonitorLogger from "./components/MonitorLogger.vue";
-// import Form from "./components/Form.vue";
-// import Display from "./components/Display.vue";
-// import MonitorLatest from "./components/MonitorLatest.vue";
 import axios from "axios";
 
 export default {
   name: "App",
   components: {
     MonitorLogger,
-    // Form,
-    // Display,
-    // MonitorLatest,
   },
   data: function() {
     return {

@@ -4,30 +4,55 @@
 
     <table style="width:100%">
       <tr>
+        <th>Index</th>
         <th v-if="$store.state.dateState == true">Date</th>
         <th v-if="$store.state.messageState == true">Message</th>
         <th v-if="$store.state.urlState == true">Url</th>
       </tr>
-      <tr v-for="(error, index) in $store.getters.errors" v-bind:key="index">
-        <td v-if="$store.state.dateState == true">{{ new Date(error.timeStamp * 1000)  }}</td>
+      <tr
+        v-for="(error, index) in $store.getters.errors"
+        v-bind:key="index"
+        :class="{ active: index === activeItem }"
+      >
+        <td>
+          <button @click="selectItem(index)">
+            Show more info
+          </button>
+        </td>
+        <td v-if="$store.state.dateState == true">
+          {{ new Date(error.timeStamp * 1000) }}
+        </td>
         <td v-if="$store.state.messageState == true">{{ error.message }}</td>
         <td v-if="$store.state.urlState == true">{{ error.session.url }}</td>
+        <td v-if="activeItem == index">
+          <MonitorMoreInfo v-bind:error="error" />
+        </td>
       </tr>
     </table>
   </div>
 </template>
 
 <script>
+import MonitorMoreInfo from "./MonitorMoreInfo.vue";
 export default {
-  name: "MonitorLogger"
-  //  data: function() {
-  //   return {
-  //     urlLink: error.session.url,
-  //   };
-  // },
-  // props: {
-  //   errors: Array,
-  // },
+  components: {
+    MonitorMoreInfo,
+  },
+  name: "MonitorLogger",
+  data: function() {
+    return {
+      activeItem: null,
+    };
+  },
+  methods: {
+    selectItem(index) {
+      if (this.activeItem == null || this.activeItem != index) {
+        this.activeItem = index;
+      } else {
+        this.activeItem = null;
+      }
+    },
+  },
 };
 </script>
 
