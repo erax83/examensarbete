@@ -19,8 +19,8 @@
             Show more info
           </button>
         </td>
-        <td v-if="$store.state.dateState == true" @click="moreInfo(error)">
-          {{ new Date(error.timeStamp) }}
+        <td v-if="$store.state.dateState == true" >
+          {{ new Date(error.timeStamp).toLocaleString() }}
         </td>
         <td v-if="$store.state.messageState == true">{{ error.message }}</td>
         <!-- <td v-if="$store.state.urlState == true">{{ error.session.url }}</td> -->
