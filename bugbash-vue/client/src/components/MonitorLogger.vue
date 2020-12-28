@@ -26,10 +26,8 @@
           {{ new Date(error.timeStamp) }}
         </td>
         <td v-if="$store.state.messageState == true">{{ error.message }}</td>
-        <td v-if="$store.state.urlState == true">{{ error.session.url }}</td>
-        <td v-if="activeItem == index">
-          <MonitorMoreInfo v-bind:error="error" />
-        </td>
+        <!-- <td v-if="$store.state.urlState == true">{{ error.session.url }}</td> -->
+        <td v-if="$store.state.urlState == true"> <a :href="error.session.url" target="_blank">{{ error.session.url }}</a> </td>
       </tr>
     </table>
   </div>
