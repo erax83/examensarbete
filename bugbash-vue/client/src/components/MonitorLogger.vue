@@ -4,7 +4,7 @@
 
     <table style="width:100%">
       <tr>
-        <th>Index</th>
+        <th>ID</th>
         <th v-if="$store.state.dateState == true">Date</th>
         <th v-if="$store.state.messageState == true">Message</th>
         <th v-if="$store.state.urlState == true">Url</th>
@@ -15,12 +15,15 @@
         :class="{ active: index === activeItem }"
       >
         <td>
-          <button @click="selectItem(index)">
+          <!-- <button @click="selectItem(index)">
+            Show more info
+          </button> -->
+           <button @click="moreInfo(error)">
             Show more info
           </button>
         </td>
         <td v-if="$store.state.dateState == true">
-          {{ new Date(error.timeStamp * 1000) }}
+          {{ new Date(error.timeStamp) }}
         </td>
         <td v-if="$store.state.messageState == true">{{ error.message }}</td>
         <td v-if="$store.state.urlState == true">{{ error.session.url }}</td>
@@ -33,12 +36,12 @@
 </template>
 
 <script>
-import MonitorMoreInfo from "./MonitorMoreInfo.vue";
+// import MonitorInfo from "./MonitorInfo.vue";
 export default {
-  components: {
-    MonitorMoreInfo,
-  },
   name: "MonitorLogger",
+  // components: {
+  //   'monitor-info': MonitorInfo
+  // },
   data: function() {
     return {
       activeItem: null,
@@ -52,6 +55,9 @@ export default {
         this.activeItem = null;
       }
     },
+    moreInfo(errorInfo) {
+      this.$emit('emitFromLogger', errorInfo);
+    }
   },
 };
 </script>

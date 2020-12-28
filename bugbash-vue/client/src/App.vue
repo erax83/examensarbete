@@ -12,7 +12,6 @@
         <h1 style="display:inline; padding: 5px;">
           Bugbash
         </h1>
-       
       </div>
 
       <button v-on:click="dateToggleFunction">
@@ -33,31 +32,40 @@
       </button> -->
     </nav>
 
-    <MonitorLogger v-show="toggle === 'monitor-logger'" />
+    <MonitorLogger
+      v-show="toggle === 'monitor-logger'"
+      v-on:emitFromLogger="messageFromLogger($event)"
+    />
+    <MonitorInfo
+      v-show="toggle === 'monitor-info'"
+      v-bind:error="this.moreErrorInfo"
+      v-on:emitFromInfo="messageFromInfo($event)"
+    />
     <!-- <MonitorLatest
       v-show="toggle === 'monitor-latest'"
       :monitorErrors="errors"
     /> -->
-
-    <!-- <Form />
-    <Display /> -->
   </div>
 </template>
 
 <script>
 import MonitorLogger from "./components/MonitorLogger.vue";
+import MonitorInfo from "./components/MonitorInfo.vue";
+
 import axios from "axios";
 
 export default {
   name: "App",
   components: {
     MonitorLogger,
+    MonitorInfo,
   },
   data: function() {
     return {
       toggle: "monitor-logger",
       searchInput: null,
       // errors: null,
+      moreErrorInfo: Object,
     };
   },
   methods: {
@@ -95,6 +103,13 @@ export default {
         trueOrFalse = true;
       }
       this.$store.commit("changeUrlToggle", trueOrFalse);
+    },
+    messageFromLogger(errorInfo) {
+      this.moreErrorInfo = errorInfo;
+      this.toggle = "monitor-info";
+    },
+    messageFromInfo() {
+      this.toggle = "monitor-logger";
     },
   },
   mounted: function() {
