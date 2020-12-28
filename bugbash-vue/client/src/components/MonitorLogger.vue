@@ -15,19 +15,16 @@
         :class="{ active: index === activeItem }"
       >
         <td>
-          <!-- <button @click="selectItem(index)">
-            Show more info
-          </button> -->
            <button @click="moreInfo(error)">
             Show more info
           </button>
         </td>
-        <td v-if="$store.state.dateState == true">
+        <td v-if="$store.state.dateState == true" @click="moreInfo(error)">
           {{ new Date(error.timeStamp) }}
         </td>
         <td v-if="$store.state.messageState == true">{{ error.message }}</td>
         <!-- <td v-if="$store.state.urlState == true">{{ error.session.url }}</td> -->
-        <td v-if="$store.state.urlState == true"> <a :href="error.session.url" target="_blank">{{ error.session.url }}</a> </td>
+        <td v-if="$store.state.urlState == true"> <a :href="error.session.url" target="_blank">{{ error.session.url.substring(7) }}</a> </td>
       </tr>
     </table>
   </div>
