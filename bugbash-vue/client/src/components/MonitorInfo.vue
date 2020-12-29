@@ -2,9 +2,8 @@
   <div>
     <h1>More info</h1>
     <button @click="backToLogger()">Tillbaka</button>
-    <p>{{ new Date(error.timeStamp * 1000) }}</p>
-    <p>{{ error.message }}</p>
-    <p>{{ error.session.url }}</p>
+    <h2>Stacktrace</h2>
+    <p>{{ error.stack }}</p>
   </div>
 </template>
 

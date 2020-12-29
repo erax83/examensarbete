@@ -20,11 +20,11 @@
             Show more info
           </button>
         </td>
-        <td v-if="$store.state.idState == true">{{ error._id }}</td>
-        <td v-if="$store.state.dateState == true">
+        <td @click="moreInfo(error)" v-if="$store.state.idState == true">{{ error._id }}</td>
+        <td @click="moreInfo(error)" v-if="$store.state.dateState == true">
           {{ new Date(error.timeStamp).toLocaleString() }}
         </td>
-        <td v-if="$store.state.messageState == true">{{ error.message }}</td>
+        <td @click="moreInfo(error)" v-if="$store.state.messageState == true">{{ error.message }}</td>
         <td v-if="$store.state.urlState == true">
           <a :href="error.session.url" target="_blank">{{
             error.session.url.substring(7)
