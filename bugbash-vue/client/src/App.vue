@@ -14,6 +14,9 @@
         </h1>
       </div>
 
+      <button v-on:click="idToggleFunction">
+        ID Toggle
+      </button>
       <button v-on:click="dateToggleFunction">
         Date Toggle
       </button>
@@ -76,6 +79,15 @@ export default {
       axios
         .get("http://localhost:3000/errorRouter")
         .then((response) => this.$store.commit("changeErrors", response.data));
+    },
+    idToggleFunction: function() {
+      var trueOrFalse = this.$store.getters.idState;
+      if (trueOrFalse == true) {
+        trueOrFalse = false;
+      } else {
+        trueOrFalse = true;
+      }
+      this.$store.commit("changeIdToggle", trueOrFalse);
     },
     dateToggleFunction: function() {
       var trueOrFalse = this.$store.getters.dateState;
