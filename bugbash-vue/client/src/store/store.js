@@ -12,6 +12,7 @@ export const store = new Vuex.Store({
            dateState: true,
            messageState: true,
            urlState: true,
+           componentToggleState: "monitor-logger",
          },
          mutations: {
            changeErrors(state, errors) {
@@ -41,6 +42,9 @@ export const store = new Vuex.Store({
            changeUrlToggle(state, urlToggle) {
              state.urlState = urlToggle;
            },
+           changeComponentToggle(state, componentToggle) {
+             state.componentToggleState = componentToggle;
+           }
          },
          getters: {
            errors: (state) => state.errors,
@@ -48,5 +52,6 @@ export const store = new Vuex.Store({
            dateState: (state) => state.dateState,
            messageState: (state) => state.messageState,
            urlState: (state) => state.urlState,
+           componentToggleState: (state) => state.componentToggleState,
          },
        });

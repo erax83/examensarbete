@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>More info</h1>
+    <h1>{{ error.message }}</h1>
     <button @click="backToLogger()">Tillbaka</button>
     <h2>Stacktrace</h2>
     <p>{{ error.stack }}</p>

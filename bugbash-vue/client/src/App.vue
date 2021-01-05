@@ -1,53 +1,20 @@
 <template>
   <div id="app">
-    <nav>
-      <div>
-        <img
-          src="./assets/bugbashlogo.jpeg"
-          alt="bugbash-logo"
-          width="18"
-          height="18"
-          style="display:inline;"
-        />
-        <h1 style="display:inline; padding: 5px;">
-          Bugbash
-        </h1>
+    <header class="main-header">
+      <a class="logo">Bugbash</a>
+      <div class="global-buttons">
+        <button><i class="fa fa-menu"></i></button>
       </div>
-
-      <button v-on:click="idToggleFunction">
-        ID Toggle
-      </button>
-      <button v-on:click="dateToggleFunction">
-        Date Toggle
-      </button>
-      <button v-on:click="messageToggleFunction">
-        Message Toggle
-      </button>
-      <button v-on:click="urlToggleFunction">
-        Url Toggle
-      </button>
-      <button v-on:click="toggle = 'monitor-logger'">
-        View all monitor errors
-      </button>
-      <input type="text" v-model="searchInput" v-on:input="search" />
-      <!-- <button v-on:click="toggle = 'monitor-latest'">
-        View latest errors
-      </button> -->
-    </nav>
-
+    </header>
     <MonitorLogger
-      v-show="toggle === 'monitor-logger'"
+      v-show="this.$store.getters.componentToggleState === 'monitor-logger'"
       v-on:emitFromLogger="messageFromLogger($event)"
     />
     <MonitorInfo
-      v-show="toggle === 'monitor-info'"
+      v-show="this.$store.getters.componentToggleState === 'monitor-info'"
       v-bind:error="this.moreErrorInfo"
       v-on:emitFromInfo="messageFromInfo($event)"
     />
-    <!-- <MonitorLatest
-      v-show="toggle === 'monitor-latest'"
-      :monitorErrors="errors"
-    /> -->
   </div>
 </template>
 
@@ -65,63 +32,21 @@ export default {
   },
   data: function() {
     return {
-      toggle: "monitor-logger",
-      searchInput: null,
-      // errors: null,
       moreErrorInfo: Object,
     };
   },
   methods: {
-    search: function() {
-      this.$store.commit("onFilterChange", this.searchInput);
-    },
     getMonitorErrors: async function() {
       axios
         .get("http://localhost:3000/errorRouter")
         .then((response) => this.$store.commit("changeErrors", response.data));
     },
-    idToggleFunction: function() {
-      var trueOrFalse = this.$store.getters.idState;
-      if (trueOrFalse == true) {
-        trueOrFalse = false;
-      } else {
-        trueOrFalse = true;
-      }
-      this.$store.commit("changeIdToggle", trueOrFalse);
-    },
-    dateToggleFunction: function() {
-      var trueOrFalse = this.$store.getters.dateState;
-      if (trueOrFalse == true) {
-        trueOrFalse = false;
-      } else {
-        trueOrFalse = true;
-      }
-      this.$store.commit("changeDateToggle", trueOrFalse);
-    },
-    messageToggleFunction: function() {
-      var trueOrFalse = this.$store.getters.messageState;
-      if (trueOrFalse == true) {
-        trueOrFalse = false;
-      } else {
-        trueOrFalse = true;
-      }
-      this.$store.commit("changeMessageToggle", trueOrFalse);
-    },
-    urlToggleFunction: function() {
-      var trueOrFalse = this.$store.getters.urlState;
-      if (trueOrFalse == true) {
-        trueOrFalse = false;
-      } else {
-        trueOrFalse = true;
-      }
-      this.$store.commit("changeUrlToggle", trueOrFalse);
-    },
     messageFromLogger(errorInfo) {
       this.moreErrorInfo = errorInfo;
-      this.toggle = "monitor-info";
+      this.$store.commit("changeComponentToggle", "monitor-info");
     },
     messageFromInfo() {
-      this.toggle = "monitor-logger";
+      this.$store.commit("changeComponentToggle", "monitor-logger");
     },
   },
   mounted: function() {
@@ -133,17 +58,31 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap");
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: hsl(210, 29%, 24%);
 }
 
-h1 {
-  font-family: "Black Ops One";
+header.main-header {
+  display: flex;
+  align-items: center;
+  background: #388af6;
+  color: #fff;
+  padding: 0.5em 1em;
+}
+
+a.logo {
+  display: flex;
+  flex: 1;
+  font-size: 1.4em;
 }
 
 nav {
@@ -166,6 +105,7 @@ button {
 button:hover {
   background-color: steelblue;
   color: white;
+  cursor: pointer;
 }
 
 img {

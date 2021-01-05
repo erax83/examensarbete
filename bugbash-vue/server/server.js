@@ -3,7 +3,6 @@ const express = require("express");
 const server = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const characterRouter = require("./routes/characters");
 const errorRouter = require("./routes/errorRouter");
 
 var corsOptions = {
@@ -36,5 +35,4 @@ server.use(bodyParser.urlencoded({ extended: true }));
 server.use(express.json());
 server.use(cors());
 
-server.use("/characters", characterRouter);
 server.use("/errorRouter", errorRouter);
