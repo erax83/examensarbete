@@ -39,6 +39,9 @@ export default class ErrorMonitor {
     console.log("inside onError Vue");
     this.logError(errorEvent.error);
     this.addError(errorEvent.error);
+    console.log('navigator: ')
+    console.log(window.navigator.language);
+    console.log('navigator end');
     this.stop();
   }
 
@@ -65,15 +68,7 @@ export default class ErrorMonitor {
   async addError(error) {
     const errorMessage = error.message;
     console.log(
-      "inside addError, message: " +
-        errorMessage +
-        " Start Date: " +
-        +this.startDate +
-        " Filename: " +
-        error.fileName +
-        " Url: " +
-        location.href +
-        "!!!"
+      "inside addError "
     );
 
     const errorData = {
@@ -86,6 +81,8 @@ export default class ErrorMonitor {
         duration: Date.now() - this.startDate,
         url: location.href,
       },
+      language: window.navigator.language,
+      language: window.navigator.plugins,
     };
 
     const options = {

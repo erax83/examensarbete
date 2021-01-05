@@ -11,6 +11,8 @@ const monitorModelSchema = new Schema({
     duration: { type: String },
     url: { type: String },
   },
+  language: { type: String },
+  plugins: { type: Array },
 });
 
 const Monitor = mongoose.model("monitorerrors", monitorModelSchema);
