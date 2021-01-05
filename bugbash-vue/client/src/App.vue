@@ -4,6 +4,7 @@
       <a class="logo">Bugbash</a>
       <div class="global-buttons">
         <button><i class="fa fa-menu"></i></button>
+        <font-awesome-icon icon="user-secret" />
       </div>
     </header>
     <MonitorLogger
