@@ -82,7 +82,7 @@ export default class ErrorMonitor {
         url: location.href,
       },
       language: window.navigator.language,
-      language: window.navigator.plugins,
+      plugins: window.navigator.plugins,
     };
 
     const options = {

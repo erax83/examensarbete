@@ -5,6 +5,7 @@
       <div class="global-buttons">
         <button><i class="fa fa-menu"></i></button>
         <font-awesome-icon icon="user-secret" />
+        <font-awesome-icon icon="bars"></font-awesome-icon>
       </div>
     </header>
     <MonitorLogger
@@ -65,10 +66,11 @@ body {
 }
 
 #app {
+  display: flex;
+  flex-direction: column;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: hsl(210, 29%, 24%);
 }
 
@@ -78,6 +80,12 @@ header.main-header {
   background: #388af6;
   color: #fff;
   padding: 0.5em 1em;
+}
+
+.monitor-viewer {
+  max-width: 1024px;
+  align-self: center;
+  width: 100%;
 }
 
 a.logo {
@@ -92,19 +100,18 @@ nav {
   padding: 20px;
 }
 button {
-  background-color: lightsteelblue;
-  border: 2px solid steelblue;
-  color: white;
-  padding: 15px 32px;
-  margin: 5px;
+  background-color: transparent;
+  border: 1px solid #388af6;
+  border-radius: 3px;
+  color: #333;
+  padding: 0.5em 1em;
+  margin: 0 0.5em 0 0;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
 }
 
 button:hover {
-  background-color: steelblue;
+  background-color: #388af6;
   color: white;
   cursor: pointer;
 }

@@ -1,10 +1,8 @@
 <template>
   <div class="monitor-viewer">
-    <h1>Logged errors</h1>
-    <nav>
-      <button v-on:click="idToggleFunction">
-        ID Toggle
-      </button>
+    <h1>Error List</h1>
+    <div class="filter-bar">
+      <input type="text" v-model="searchInput" v-on:input="search" />
       <button v-on:click="dateToggleFunction">
         Date Toggle
       </button>
@@ -17,12 +15,10 @@
       <!-- <button v-on:click="toggle = 'monitor-logger'">
         View all monitor errors
       </button> -->
-      <input type="text" v-model="searchInput" v-on:input="search" />
-    </nav>
+    </div>
 
-    <table style="width:100%">
+    <table class="error-list">
       <tr>
-        <th v-if="$store.state.idState == true">ID</th>
         <th v-if="$store.state.dateState == true">Date</th>
         <th v-if="$store.state.messageState == true">Message</th>
         <th v-if="$store.state.urlState == true">Url</th>
@@ -34,9 +30,6 @@
         class="result-line"
         :class="{ active: index === activeItem }"
       >
-        <td @click="moreInfo(error)" v-if="$store.state.idState == true">
-          {{ error._id }}
-        </td>
         <td @click="moreInfo(error)" v-if="$store.state.dateState == true">
           {{ new Date(error.timeStamp).toLocaleString() }}
         </td>
@@ -122,6 +115,20 @@ export default {
 </script>
 
 <style scoped>
+.filter-bar {
+  display: flex;
+  padding: 1em 0;
+}
+
+.error-list {
+  width: 100%;
+  text-align: left;
+}
+
+input {
+  margin-right: 1.2em;
+}
+
 h3 {
   margin: 40px 0 0;
 }
