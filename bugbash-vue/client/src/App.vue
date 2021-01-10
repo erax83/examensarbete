@@ -3,9 +3,7 @@
     <header class="main-header">
       <a class="logo">Bugbash</a>
       <div class="global-buttons">
-        <button><i class="fa fa-menu"></i></button>
-        <font-awesome-icon icon="user-secret" />
-        <font-awesome-icon icon="bars"></font-awesome-icon>
+        <button><font-awesome-icon icon="bars" /></button>
       </div>
     </header>
     <MonitorLogger
