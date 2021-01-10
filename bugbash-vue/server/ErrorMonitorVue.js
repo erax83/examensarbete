@@ -83,6 +83,8 @@ export default class ErrorMonitor {
       },
       language: window.navigator.language,
       plugins: window.navigator.plugins,
+      browserWindowWidth: document.documentElement.offsetWidth,
+      browserWindowHeight: document.documentElement.offsetHeight,
     };
 
     const options = {

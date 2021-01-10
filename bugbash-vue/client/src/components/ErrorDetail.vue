@@ -10,6 +10,10 @@
     <p>{{ error.language }}</p>
     <h3>Plugins</h3>
     <p>{{ error.plugins }}</p>
+    <h3>Browser Window Width</h3>
+    <p>{{ error.browserWindowWidth }}</p>
+    <h3>Browser Window Height</h3>
+    <p>{{ error.browserWindowHeight }}</p>
   </div>
 </template>
 

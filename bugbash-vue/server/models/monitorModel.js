@@ -13,6 +13,8 @@ const monitorModelSchema = new Schema({
   },
   language: { type: String },
   plugins: { type: Array },
+  browserWindowWidth: { type: String },
+  browserWindowHeight: { type: String }
 });
 
 const Monitor = mongoose.model("monitorerrors", monitorModelSchema);
