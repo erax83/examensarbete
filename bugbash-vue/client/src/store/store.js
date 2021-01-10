@@ -12,7 +12,7 @@ export const store = new Vuex.Store({
            dateState: true,
            messageState: true,
            urlState: true,
-           componentToggleState: "monitor-logger",
+           componentToggleState: "error-list",
          },
          mutations: {
            changeErrors(state, errors) {

@@ -6,29 +6,29 @@
         <button><font-awesome-icon icon="bars" /></button>
       </div>
     </header>
-    <MonitorLogger
-      v-show="this.$store.getters.componentToggleState === 'monitor-logger'"
-      v-on:emitFromLogger="messageFromLogger($event)"
+    <ErrorList
+      v-show="this.$store.getters.componentToggleState === 'error-list'"
+      v-on:emitFromErrorList="messageFromErrorList($event)"
     />
-    <MonitorInfo
-      v-show="this.$store.getters.componentToggleState === 'monitor-info'"
+    <ErrorDetail
+      v-show="this.$store.getters.componentToggleState === 'error-detail'"
       v-bind:error="this.moreErrorInfo"
-      v-on:emitFromInfo="messageFromInfo($event)"
+      v-on:emitFromErrorDetail="messageFromErrorDetail($event)"
     />
   </div>
 </template>
 
 <script>
-import MonitorLogger from "./components/MonitorLogger.vue";
-import MonitorInfo from "./components/MonitorInfo.vue";
+import ErrorList from "./components/ErrorList.vue";
+import ErrorDetail from "./components/ErrorDetail.vue";
 
 import axios from "axios";
 
 export default {
   name: "App",
   components: {
-    MonitorLogger,
-    MonitorInfo,
+    ErrorList,
+    ErrorDetail,
   },
   data: function() {
     return {
@@ -36,21 +36,21 @@ export default {
     };
   },
   methods: {
-    getMonitorErrors: async function() {
+    getErrorList: async function() {
       axios
         .get("http://localhost:3000/errorRouter")
         .then((response) => this.$store.commit("changeErrors", response.data));
     },
-    messageFromLogger(errorInfo) {
+    messageFromErrorList(errorInfo) {
       this.moreErrorInfo = errorInfo;
-      this.$store.commit("changeComponentToggle", "monitor-info");
+      this.$store.commit("changeComponentToggle", "error-detail");
     },
-    messageFromInfo() {
-      this.$store.commit("changeComponentToggle", "monitor-logger");
+    messageFromErrorDetail() {
+      this.$store.commit("changeComponentToggle", "error-list");
     },
   },
   mounted: function() {
-    this.getMonitorErrors();
+    this.getErrorList();
   },
 };
 </script>

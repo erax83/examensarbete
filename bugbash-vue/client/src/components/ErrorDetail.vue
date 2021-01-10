@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ error.message }}</h1>
-    <button @click="backToLogger()">Tillbaka</button>
+    <button @click="backToErrorList()">Tillbaka</button>
     <h3>ID</h3>
     <p>{{ error._id }}</p>
     <h3>Stacktrace</h3>
@@ -15,13 +15,13 @@
 
 <script>
 export default {
-  name: "MonitorInfo",
+  name: "ErrorDetail",
   props: {
     error: Object,
   },
   methods: {
-    backToLogger() {
-      this.$emit("emitFromInfo");
+    backToErrorList() {
+      this.$emit("emitFromErrorDetail");
     },
   },
 };

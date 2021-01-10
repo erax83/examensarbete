@@ -12,7 +12,7 @@
       <button v-on:click="urlToggleFunction">
         Url Toggle
       </button>
-      <!-- <button v-on:click="toggle = 'monitor-logger'">
+      <!-- <button v-on:click="toggle = 'error-list'">
         View all monitor errors
       </button> -->
     </div>
@@ -22,7 +22,6 @@
         <th v-if="$store.state.dateState == true">Date</th>
         <th v-if="$store.state.messageState == true">Message</th>
         <th v-if="$store.state.urlState == true">Url</th>
-        <!-- <th>More info</th> -->
       </tr>
       <tr
         v-for="(error, index) in $store.getters.errors"
@@ -30,10 +29,10 @@
         class="result-line"
         :class="{ active: index === activeItem }"
       >
-        <td @click="moreInfo(error)" v-if="$store.state.dateState == true">
+        <td @click="moreErrorDetails(error)" v-if="$store.state.dateState == true">
           {{ new Date(error.timeStamp).toLocaleString() }}
         </td>
-        <td @click="moreInfo(error)" v-if="$store.state.messageState == true">
+        <td @click="moreErrorDetails(error)" v-if="$store.state.messageState == true">
           {{ error.message }}
         </td>
         <td v-if="$store.state.urlState == true">
@@ -41,11 +40,6 @@
             error.session.url.substring(7)
           }}</a>
         </td>
-        <!-- <td>
-          <button @click="moreInfo(error)">
-            Show more info
-          </button>
-        </td> -->
       </tr>
     </table>
   </div>
@@ -53,7 +47,7 @@
 
 <script>
 export default {
-  name: "MonitorLogger",
+  name: "ErrorList",
   data: function() {
     return {
       activeItem: null,
@@ -68,20 +62,11 @@ export default {
         this.activeItem = null;
       }
     },
-    moreInfo(errorInfo) {
-      this.$emit("emitFromLogger", errorInfo);
+    moreErrorDetails(errorInfo) {
+      this.$emit("emitFromErrorList", errorInfo);
     },
     search: function() {
       this.$store.commit("onFilterChange", this.searchInput);
-    },
-    idToggleFunction: function() {
-      var trueOrFalse = this.$store.getters.idState;
-      if (trueOrFalse == true) {
-        trueOrFalse = false;
-      } else {
-        trueOrFalse = true;
-      }
-      this.$store.commit("changeIdToggle", trueOrFalse);
     },
     dateToggleFunction: function() {
       var trueOrFalse = this.$store.getters.dateState;
