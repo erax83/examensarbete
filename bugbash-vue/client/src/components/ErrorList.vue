@@ -22,6 +22,7 @@
         <th v-if="$store.state.dateState == true">Date</th>
         <th v-if="$store.state.messageState == true">Message</th>
         <th v-if="$store.state.urlState == true">Url</th>
+        <th>Delete Row</th>
       </tr>
       <tr
         v-for="(error, index) in $store.getters.errors"
@@ -29,10 +30,16 @@
         class="result-line"
         :class="{ active: index === activeItem }"
       >
-        <td @click="moreErrorDetails(error)" v-if="$store.state.dateState == true">
+        <td
+          @click="moreErrorDetails(error)"
+          v-if="$store.state.dateState == true"
+        >
           {{ new Date(error.timeStamp).toLocaleString() }}
         </td>
-        <td @click="moreErrorDetails(error)" v-if="$store.state.messageState == true">
+        <td
+          @click="moreErrorDetails(error)"
+          v-if="$store.state.messageState == true"
+        >
           {{ error.message }}
         </td>
         <td v-if="$store.state.urlState == true">
@@ -40,12 +47,14 @@
             error.session.url.substring(7)
           }}</a>
         </td>
+        <td><button @click="deleteRow(error._id)">Delete</button></td>
       </tr>
     </table>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "ErrorList",
   data: function() {
@@ -67,6 +76,20 @@ export default {
     },
     search: function() {
       this.$store.commit("onFilterChange", this.searchInput);
+    },
+    deleteRow(index) {
+      if (confirm("Are you sure?") === true) {
+        axios
+          .delete("http://localhost:3000/errorRouter/" + index)
+          .then((response) => {
+            console.log("Delete response: " + response.data._id);
+            alert("Row deleted.");
+            window.location.reload(true);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     },
     dateToggleFunction: function() {
       var trueOrFalse = this.$store.getters.dateState;

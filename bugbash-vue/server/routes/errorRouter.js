@@ -12,4 +12,6 @@ router.get("/", cors(corsOptions), monitorController.getMonitorError);
 
 router.post("/", cors(corsOptions), monitorController.postMonitorError);
 
+router.delete("/:id", cors(corsOptions), monitorController.deleteMonitorError);
+
 module.exports = router;
