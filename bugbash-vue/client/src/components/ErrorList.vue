@@ -22,7 +22,7 @@
         <th v-if="$store.state.dateState == true">Date</th>
         <th v-if="$store.state.messageState == true">Message</th>
         <th v-if="$store.state.urlState == true">Url</th>
-        <th>Delete Row</th>
+        <th></th>
       </tr>
       <tr
         v-for="(error, index) in $store.getters.errors"
@@ -47,7 +47,10 @@
             error.session.url.substring(7)
           }}</a>
         </td>
-        <td><button @click="deleteRow(error._id)">Delete</button></td>
+        <td>
+          <font-awesome-icon @click="deleteRow(error._id)" icon="trash-alt"></font-awesome-icon>
+          <!-- <button @click="deleteRow(error._id)"><font-awesome-icon @click="deleteRow(error._id)" icon="trash-alt"></font-awesome-icon></button> -->
+          </td>
       </tr>
     </table>
   </div>
@@ -78,7 +81,7 @@ export default {
       this.$store.commit("onFilterChange", this.searchInput);
     },
     deleteRow(index) {
-      if (confirm("Are you sure?") === true) {
+      if (confirm("Are you sure you want to delete row?") === true) {
         axios
           .delete("http://localhost:3000/errorRouter/" + index)
           .then((response) => {
@@ -133,6 +136,14 @@ export default {
   text-align: left;
 }
 
+.result-line:hover {
+  background-color: rgb(229, 233, 240);
+}
+
+.result-line td:last-child {
+  text-align: right;
+}
+
 input {
   margin-right: 1.2em;
 }
@@ -154,7 +165,5 @@ li {
 a {
   color: #42b983;
 }
-.result-line:hover {
-  background-color: rgb(229, 233, 240);
-}
+
 </style>

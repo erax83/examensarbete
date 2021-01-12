@@ -80,6 +80,10 @@ header.main-header {
   padding: 0.5em 1em;
 }
 
+header button {
+  color: #fff;
+}
+
 .monitor-viewer {
   max-width: 1024px;
   align-self: center;

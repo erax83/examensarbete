@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="detail-view">
     <h1>{{ error.message }}</h1>
     <button @click="backToErrorList()">Tillbaka</button>
     <h3>ID</h3>
@@ -31,4 +31,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.detail-view {
+  max-width: 1024px;
+  align-self: center;
+  width: 100%;
+}
+</style>
