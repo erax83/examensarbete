@@ -9,7 +9,7 @@
     <h3>Language</h3>
     <p>{{ error.language }}</p>
     <h3>Plugins</h3>
-    <p>{{ error.plugins }}</p>
+    <p v-if="error.plugins == true">{{ error.plugins }}</p>
     <h3>Browser Window Width</h3>
     <p>{{ error.browserWindowWidth }}</p>
     <h3>Browser Window Height</h3>

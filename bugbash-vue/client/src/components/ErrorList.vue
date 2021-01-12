@@ -48,9 +48,11 @@
           }}</a>
         </td>
         <td>
-          <font-awesome-icon @click="deleteRow(error._id)" icon="trash-alt"></font-awesome-icon>
-          <!-- <button @click="deleteRow(error._id)"><font-awesome-icon @click="deleteRow(error._id)" icon="trash-alt"></font-awesome-icon></button> -->
-          </td>
+          <font-awesome-icon
+            @click="deleteRow(error._id)"
+            icon="trash-alt"
+          ></font-awesome-icon>
+        </td>
       </tr>
     </table>
   </div>
@@ -144,6 +146,12 @@ export default {
   text-align: right;
 }
 
+table {
+  border-collapse: collapse;
+}
+
+table tr td, table tr th { padding: 0; }
+
 input {
   margin-right: 1.2em;
 }
@@ -151,17 +159,21 @@ input {
 h3 {
   margin: 40px 0 0;
 }
+
 td {
   cursor: pointer;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
 }
+
 li {
   display: inline-block;
   margin: 0 10px;
 }
+
 a {
   color: #42b983;
 }

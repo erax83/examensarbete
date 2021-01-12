@@ -82,6 +82,8 @@ header.main-header {
 
 header button {
   color: #fff;
+  margin: 0;
+  padding: 0;
 }
 
 .monitor-viewer {
@@ -101,6 +103,7 @@ nav {
   height: 100px;
   padding: 20px;
 }
+
 button {
   background-color: transparent;
   border: 1px solid #388af6;
