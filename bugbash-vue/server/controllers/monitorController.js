@@ -1,4 +1,6 @@
 const Monitor = require("../models/monitorModel");
+const HashModel = require("../models/hashModel");
+const crypto = require("crypto");
 
 const getMonitorError = async (req, res) => {
   try {
@@ -11,6 +13,15 @@ const getMonitorError = async (req, res) => {
 
 const postMonitorError = async (req, res) => {
   const monitor = new Monitor(req.body);
+  const result = await monitor.save();
+};
+
+const postErrorHash = async (req, res) => {
+  const newMessage = await req.body.message;
+  const newHashNumber = await crypto.createHash("md5").update(newMessage).digest("hex");
+  let newBody = await req.body;
+  newBody.hashNumber = await newHashNumber;
+  const monitor = await new HashModel(newBody);
   const result = await monitor.save();
 };
 
@@ -29,5 +40,6 @@ const deleteMonitorError = async (req, res) => {
 module.exports = {
   getMonitorError,
   postMonitorError,
+  postErrorHash,
   deleteMonitorError,
 };

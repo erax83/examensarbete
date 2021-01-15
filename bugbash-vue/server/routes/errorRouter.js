@@ -12,6 +12,9 @@ router.get("/", cors(corsOptions), monitorController.getMonitorError);
 
 router.post("/", cors(corsOptions), monitorController.postMonitorError);
 
+// Hash
+router.post("/hash", cors(corsOptions), monitorController.postErrorHash);
+
 router.delete("/:id", cors(corsOptions), monitorController.deleteMonitorError);
 
 module.exports = router;

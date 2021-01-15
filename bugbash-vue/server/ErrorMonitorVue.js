@@ -39,9 +39,10 @@ export default class ErrorMonitor {
     console.log("inside onError Vue");
     this.logError(errorEvent.error);
     this.addError(errorEvent.error);
-    console.log('navigator: ')
+    this.addErrorHash(errorEvent.error);
+    console.log("navigator: ");
     console.log(window.navigator.language);
-    console.log('navigator end');
+    console.log("navigator end");
     this.stop();
   }
 
@@ -67,9 +68,7 @@ export default class ErrorMonitor {
    */
   async addError(error) {
     const errorMessage = error.message;
-    console.log(
-      "inside addError "
-    );
+    console.log("inside addError ");
 
     const errorData = {
       message: error.message,
@@ -95,6 +94,41 @@ export default class ErrorMonitor {
       body: JSON.stringify(errorData),
     };
     fetch("http://localhost:3000/errorRouter", options).then((response) =>
+      response.json()
+    );
+
+    const responseText = await response.text();
+    const result = await JSON.parse(responseText);
+
+    if (result.success) {
+      console.log("Error logged");
+    } else {
+      console.error("Error logging failed");
+    }
+  }
+
+  /**
+   * Add error to database.
+   *
+   * @param {Error} error
+   */
+  async addErrorHash(error) {
+    const errorMessage = await error.message;
+    console.log("inside addErrorHash ");
+   
+    const errorData = {
+      message: error.message,
+      // hashNumber : null,
+    };
+
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "omit",
+      mode: "cors",
+      body: JSON.stringify(errorData),
+    };
+    fetch("http://localhost:3000/errorRouter/hash", options).then((response) =>
       response.json()
     );
 
