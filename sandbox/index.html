@@ -6,7 +6,7 @@
     <title>Document</title>
   </head>
   <body>
-    <button id="btnTest">Test</button>
+    <button id="btnTest">test</button>
     <button id="btnPath">Pathlog</button>
 
     <script type="module">
@@ -14,7 +14,7 @@
       const buttonPath = document.getElementById("btnPath");
 
       button.addEventListener("click", () => {
-        fell();
+        fel();
       });
 
       buttonPath.addEventListener("click", () => {
@@ -22,15 +22,6 @@
         console.log(currentUrl);
       });
     </script>
-
-    <!-- <script type="module" src="../bugbash-nuxt/static/ErrorMonitor.js"></script> -->
-    <!-- <script type="module">
-      import ErrorMonitor from "../bugbash-nuxt/static/ErrorMonitor.js";
-
-      const monitor = (window.monitor = new ErrorMonitor({
-        autoStart: true,
-      }));
-    </script> -->
 
     <script type="module">
       import ErrorMonitor from "../bugbash-vue/server/ErrorMonitorVue.js";

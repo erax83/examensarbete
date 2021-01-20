@@ -115,10 +115,11 @@ export default class ErrorMonitor {
   async addErrorHash(error) {
     const errorMessage = await error.message;
     console.log("inside addErrorHash ");
-   
+
     const errorData = {
       message: error.message,
-      // hashNumber : null,
+      hashNumber: null,
+      occurences: null,
     };
 
     const options = {
