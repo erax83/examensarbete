@@ -1,19 +1,19 @@
 <template>
   <div class="detail-view">
-    <h1>{{ error.message }}</h1>
+    <h1>{{ error.inventory[0].message }}</h1>
     <button @click="backToErrorList()">Tillbaka</button>
     <h3>ID</h3>
-    <p>{{ error._id }}</p>
+    <p>{{ error.inventory[0]._id }}</p>
     <h3>Stacktrace</h3>
-    <p>{{ error.stack }}</p>
+    <p>{{ error.inventory[0].stack }}</p>
     <h3>Language</h3>
-    <p>{{ error.language }}</p>
+    <p>{{ error.inventory[0].language }}</p>
     <h3>Plugins</h3>
-    <p v-if="error.plugins == true">{{ error.plugins }}</p>
+    <p v-if="error.plugins == true">{{ error.inventory[0].plugins }}</p>
     <h3>Browser Window Width</h3>
-    <p>{{ error.browserWindowWidth }}</p>
+    <p>{{ error.inventory[0].browserWindowWidth }}</p>
     <h3>Browser Window Height</h3>
-    <p>{{ error.browserWindowHeight }}</p>
+    <p>{{ error.inventory[0].browserWindowHeight }}</p>
   </div>
 </template>
 

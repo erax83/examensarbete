@@ -10,6 +10,16 @@ router.use(cors(corsOptions));
 
 router.get("/", cors(corsOptions), monitorController.getMonitorError);
 
+router.get("/hashCount", cors(corsOptions), monitorController.getHashCount);
+
+router.get("/list", cors(corsOptions), monitorController.getList);
+
+// router.get(
+//   "/hashOccurrencesCount",
+//   cors(corsOptions),
+//   monitorController.getOccurrencesCount
+// );
+
 router.post("/", cors(corsOptions), monitorController.postMonitorError);
 
 // Hash

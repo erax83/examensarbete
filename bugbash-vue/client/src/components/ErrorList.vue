@@ -21,11 +21,12 @@
       <tr>
         <th v-if="$store.state.dateState == true">Date</th>
         <th v-if="$store.state.messageState == true">Message</th>
+        <th>Quantity</th>
         <th v-if="$store.state.urlState == true">Url</th>
         <th></th>
       </tr>
       <tr
-        v-for="(error, index) in $store.getters.errors"
+        v-for="(error, index) in errorsRemoveDuplicates()"
         v-bind:key="index"
         class="result-line"
         :class="{ active: index === activeItem }"
@@ -34,7 +35,7 @@
           @click="moreErrorDetails(error)"
           v-if="$store.state.dateState == true"
         >
-          {{ new Date(error.timeStamp).toLocaleString() }}
+          {{ new Date(error.inventory[0].timeStamp).toLocaleString() }}
         </td>
         <td
           @click="moreErrorDetails(error)"
@@ -42,9 +43,12 @@
         >
           {{ error.message }}
         </td>
+        <td @click="moreErrorDetails(error)">
+          {{ error.occurrencesCount }}
+        </td>
         <td v-if="$store.state.urlState == true">
-          <a :href="error.session.url" target="_blank">{{
-            error.session.url.substring(7)
+          <a :href="error.inventory[0].session.url" target="_blank">{{
+            error.inventory[0].session.url.substring(7)
           }}</a>
         </td>
         <td>
@@ -69,6 +73,10 @@ export default {
     };
   },
   methods: {
+    errorsRemoveDuplicates() {
+      let arr = this.$store.getters.dataList.reverse();
+      return arr;
+    },
     selectItem(index) {
       if (this.activeItem == null || this.activeItem != index) {
         this.activeItem = index;
@@ -150,7 +158,10 @@ table {
   border-collapse: collapse;
 }
 
-table tr td, table tr th { padding: 0; }
+table tr td,
+table tr th {
+  padding: 0;
+}
 
 input {
   margin-right: 1.2em;
@@ -177,5 +188,4 @@ li {
 a {
   color: #42b983;
 }
-
 </style>

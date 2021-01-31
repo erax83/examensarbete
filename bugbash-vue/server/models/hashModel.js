@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 const monitorModelSchema = new Schema({
     message: { type: String },
     hashNumber: { type: String },
-    occurences: { type: Number },
+    occurrencesCount: { type: Number },
 });
 
-const HashModel = mongoose.model("monitorhashes", monitorModelSchema);
+const HashModel = mongoose.model("errors", monitorModelSchema);
 
 module.exports = HashModel;

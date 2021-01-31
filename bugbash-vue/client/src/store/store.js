@@ -8,6 +8,10 @@ export const store = new Vuex.Store({
            flavor: "",
            errors: Array,
            allErrors: Array,
+           hashCount: Array,
+           allHashCount: Array,
+           dataList: Array,
+           allDataList: Array,
            idState: true,
            dateState: true,
            messageState: true,
@@ -19,7 +23,14 @@ export const store = new Vuex.Store({
              state.allErrors = errors;
              state.errors = errors;
            },
-
+           changeHashCount(state, hashCount) {
+             state.allHashCount = hashCount;
+             state.hashCount = hashCount;
+           },
+           changeDataList(state, dataList) {
+             state.allDataList = dataList;
+             state.dataList = dataList;
+           },
            onFilterChange(state, searchWord) {
              // debugger;
              if (!searchWord) {
@@ -44,10 +55,12 @@ export const store = new Vuex.Store({
            },
            changeComponentToggle(state, componentToggle) {
              state.componentToggleState = componentToggle;
-           }
+           },
          },
          getters: {
            errors: (state) => state.errors,
+           hashCount: (state) => state.hashCount,
+           dataList: (state) => state.dataList,
            idState: (state) => state.idState,
            dateState: (state) => state.dateState,
            messageState: (state) => state.messageState,

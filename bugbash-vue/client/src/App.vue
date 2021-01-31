@@ -41,6 +41,20 @@ export default {
         .get("http://localhost:3000/errorRouter")
         .then((response) => this.$store.commit("changeErrors", response.data));
     },
+    getHashCount: async function() {
+      axios
+        .get("http://localhost:3000/errorRouter/hashCount")
+        .then((response) =>
+          this.$store.commit("changeHashCount", response.data)
+        );
+    },
+    getList: async function() {
+      axios
+        .get("http://localhost:3000/errorRouter/list")
+        .then((response) =>
+          this.$store.commit("changeDataList", response.data)
+        );
+    },
     messageFromErrorList(errorInfo) {
       this.moreErrorInfo = errorInfo;
       this.$store.commit("changeComponentToggle", "error-detail");
@@ -51,6 +65,8 @@ export default {
   },
   mounted: function() {
     this.getErrorList();
+    this.getHashCount();
+    this.getList();
   },
 };
 </script>

@@ -119,7 +119,7 @@ export default class ErrorMonitor {
     const errorData = {
       message: error.message,
       hashNumber: null,
-      occurences: null,
+      occurrencesCount: null,
     };
 
     const options = {
