@@ -36,18 +36,18 @@ export default {
     };
   },
   methods: {
-    getErrorList: async function() {
-      axios
-        .get("http://localhost:3000/errorRouter")
-        .then((response) => this.$store.commit("changeErrors", response.data));
-    },
-    getHashCount: async function() {
-      axios
-        .get("http://localhost:3000/errorRouter/hashCount")
-        .then((response) =>
-          this.$store.commit("changeHashCount", response.data)
-        );
-    },
+    // getErrorList: async function() {
+    //   axios
+    //     .get("http://localhost:3000/errorRouter")
+    //     .then((response) => this.$store.commit("changeErrors", response.data));
+    // },
+    // getHashCount: async function() {
+    //   axios
+    //     .get("http://localhost:3000/errorRouter/hashCount")
+    //     .then((response) =>
+    //       this.$store.commit("changeHashCount", response.data)
+    //     );
+    // },
     getList: async function() {
       axios
         .get("http://localhost:3000/errorRouter/list")
@@ -64,8 +64,8 @@ export default {
     },
   },
   mounted: function() {
-    this.getErrorList();
-    this.getHashCount();
+    // this.getErrorList();
+    // this.getHashCount();
     this.getList();
   },
 };

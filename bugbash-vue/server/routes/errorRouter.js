@@ -10,15 +10,13 @@ router.use(cors(corsOptions));
 
 router.get("/", cors(corsOptions), monitorController.getMonitorError);
 
+router.get("/message", cors(corsOptions), monitorController.getMonitorMessage);
+
 router.get("/hashCount", cors(corsOptions), monitorController.getHashCount);
 
 router.get("/list", cors(corsOptions), monitorController.getList);
 
-// router.get(
-//   "/hashOccurrencesCount",
-//   cors(corsOptions),
-//   monitorController.getOccurrencesCount
-// );
+// router.get("/messages/:id", cors(corsOptions), monitorController.getMessages);
 
 router.post("/", cors(corsOptions), monitorController.postMonitorError);
 

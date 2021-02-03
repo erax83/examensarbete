@@ -4,8 +4,22 @@ const HashModel = require("../models/hashModel");
 const crypto = require("crypto");
 
 const getMonitorError = async (req, res) => {
+  // const dbId = await req.params.id;
+  // console.log(dbId);
   try {
     const result = await Monitor.find();
+    res.send(result);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+const getMonitorMessage = async (req, res) => {
+  console.log('inside controller: ' + req.query.answer);
+  try {
+    const result = await await Monitor.find({
+      message: "errorOne is not defined",
+    });
     res.send(result);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -24,24 +38,6 @@ const getHashCount = async (req, res) => {
 const getList = async (req, res) => {
   // console.log("inside getList");
 
-  //2 Works
-  // Monitor.aggregate([{ $match: { message: "errorOne is not defined" } }])
-  //   .then((orders) => {
-  //     orders.forEach((order) => {
-  //       console.log(order);
-  //     });
-  //   })
-  //   .catch((err) => {
-  //     throw err;
-  //   });
-
-  //2.2 Works
-  // const test = await Monitor.aggregate([{ $match: { message: "errorOne is not defined" } }]);
-
-  // for await (const doc of test) {
-  //   console.log(doc);
-  // }
-
   // 3 works
   // const test = await HashModel.aggregate([
   //   {
@@ -53,26 +49,6 @@ const getList = async (req, res) => {
   //     },
   //   },
   //   { $limit: 1 },
-  // ]);
-
-  // for await (const doc of test) {
-  //   console.log(doc);
-  // }
-
-  // 3.2 Works best
-  // const test = await HashModel.aggregate([
-  //   {
-  //     $lookup: {
-  //       from: "occurrences",
-  //       let: { hashNumber: "$hashNumber" },
-  //       pipeline: [
-  //         { $match: { $expr: { $eq: ["$$hashNumber", "$hashNumber"] } } },
-  //         { $sort: { _id: -1 } },
-  //         { $limit: 1 },
-  //       ],
-  //       as: "inventory",
-  //     },
-  //   },
   // ]);
 
   // for await (const doc of test) {
@@ -101,15 +77,11 @@ const getList = async (req, res) => {
   }
 };
 
-// const getOccurrencesCount = async (req, res) => {
-//   console.log("inside controller! ");
-//   try {
-//     const currentDocument = await HashModel.find();
-//     res.send(currentDocument);
-//   } catch (err) {
-//     res.status(500).json({ message: err.message });
-//   }
+// const getMessages = async (req, res) => {
+//   console.log("inside getMessages");
 // };
+
+
 
 const postMonitorError = async (req, res) => {
   const newMessage = await req.body.message;
@@ -188,6 +160,7 @@ const deleteMonitorError = async (req, res) => {
 
 module.exports = {
   getMonitorError,
+  getMonitorMessage,
   getHashCount,
   getList,
   postMonitorError,
