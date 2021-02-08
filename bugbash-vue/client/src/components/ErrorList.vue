@@ -85,6 +85,9 @@ export default {
       }
     },
     moreErrorDetails(errorInfo) {
+      const errorMessage = errorInfo.message;
+      console.log('errorInfo: ' + errorMessage);
+      this.$store.commit("changeCurrentMessage", errorMessage);
       this.$emit("emitFromErrorList", errorInfo);
     },
     search: function() {

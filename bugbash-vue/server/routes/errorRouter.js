@@ -12,6 +12,8 @@ router.get("/", cors(corsOptions), monitorController.getMonitorError);
 
 router.get("/message", cors(corsOptions), monitorController.getMonitorMessage);
 
+router.get("/time", cors(corsOptions), monitorController.getMonitorTime);
+
 router.get("/hashCount", cors(corsOptions), monitorController.getHashCount);
 
 router.get("/list", cors(corsOptions), monitorController.getList);

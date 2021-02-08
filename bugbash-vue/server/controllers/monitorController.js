@@ -15,10 +15,22 @@ const getMonitorError = async (req, res) => {
 };
 
 const getMonitorMessage = async (req, res) => {
-  console.log('inside controller: ' + req.query.answer);
+  console.log("inside controller: " + req.query.queryData);
   try {
     const result = await await Monitor.find({
-      message: "errorOne is not defined",
+      message: req.query.queryData,
+    });
+    res.send(result);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+const getMonitorTime = async (req, res) => {
+  console.log("inside controller time: " + req.query.queryData);
+  try {
+    const result = await await Monitor.find({
+      _id: req.query.queryData,
     });
     res.send(result);
   } catch (err) {
@@ -80,8 +92,6 @@ const getList = async (req, res) => {
 // const getMessages = async (req, res) => {
 //   console.log("inside getMessages");
 // };
-
-
 
 const postMonitorError = async (req, res) => {
   const newMessage = await req.body.message;
@@ -161,6 +171,7 @@ const deleteMonitorError = async (req, res) => {
 module.exports = {
   getMonitorError,
   getMonitorMessage,
+  getMonitorTime,
   getHashCount,
   getList,
   postMonitorError,

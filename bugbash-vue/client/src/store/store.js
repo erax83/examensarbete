@@ -5,13 +5,14 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
          state: {
-           flavor: "",
            errors: Array,
            allErrors: Array,
            hashCount: Array,
            allHashCount: Array,
            dataList: Array,
            allDataList: Array,
+           currentMessage: String,
+           currentOccurrence: Array,
            idState: true,
            dateState: true,
            messageState: true,
@@ -30,6 +31,12 @@ export const store = new Vuex.Store({
            changeDataList(state, dataList) {
              state.allDataList = dataList;
              state.dataList = dataList;
+           },
+           changeCurrentMessage(state, message) {
+             state.currentMessage = message;
+           },
+           changeCurrentOccurrence(state, occurrence) {
+             state.currentOccurrence = occurrence;
            },
            onFilterChange(state, searchWord) {
              // debugger;
@@ -61,6 +68,8 @@ export const store = new Vuex.Store({
            errors: (state) => state.errors,
            hashCount: (state) => state.hashCount,
            dataList: (state) => state.dataList,
+           currentMessage: (state) => state.currentMessage,
+           currentOccurrence: (state) => state.currentOccurrence,
            idState: (state) => state.idState,
            dateState: (state) => state.dateState,
            messageState: (state) => state.messageState,
