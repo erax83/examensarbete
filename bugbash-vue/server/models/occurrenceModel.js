@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const monitorModelSchema = new Schema({
+const occurrenceModelSchema = new Schema({
   message: { type: String },
   hashNumber: { type: String },
   stack: { type: String },
@@ -18,6 +18,6 @@ const monitorModelSchema = new Schema({
   browserWindowHeight: { type: Number }
 });
 
-const Monitor = mongoose.model("occurrences", monitorModelSchema);
+const OccurrenceModel = mongoose.model("occurrences", occurrenceModelSchema);
 
-module.exports = Monitor;
+module.exports = OccurrenceModel;

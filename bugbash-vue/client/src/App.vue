@@ -48,11 +48,11 @@ export default {
     //       this.$store.commit("changeHashCount", response.data)
     //     );
     // },
-    getList: async function() {
+    getErrorsList: async function() {
       axios
-        .get("http://localhost:3000/errorRouter/list")
+        .get("http://localhost:3000/errorRouter/errorList")
         .then((response) =>
-          this.$store.commit("changeDataList", response.data)
+          this.$store.commit("changeErrorsList", response.data)
         );
     },
     messageFromErrorList(errorInfo) {
@@ -64,9 +64,7 @@ export default {
     },
   },
   mounted: function() {
-    // this.getErrorList();
-    // this.getHashCount();
-    this.getList();
+    this.getErrorsList();
   },
 };
 </script>
@@ -102,7 +100,7 @@ header button {
   padding: 0;
 }
 
-.monitor-viewer {
+.error-viewer {
   max-width: 1024px;
   align-self: center;
   width: 100%;

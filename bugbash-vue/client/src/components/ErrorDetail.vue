@@ -2,8 +2,8 @@
   <div class="detail-view">
     <h1>{{ error.message }}</h1>
     <button @click="backToErrorList()">Tillbaka</button>
-    <button @click="getErrorList()">Updatera</button>
-    <select v-model="selected" @change="onChange()">
+    <button @click="getOccurrencesDates()">Updatera</button>
+    <select v-model="selected" @change="onSelectChange()">
       <option
         v-for="(option, index) in this.$store.getters.errors"
         v-bind:key="index"
@@ -12,7 +12,7 @@
         {{ new Date(option.timeStamp).toLocaleString() }}
       </option>
     </select>
-    <div v-if="this.newError == null">
+    <div v-if="this.newOccurrence == null">
       <h3>Date</h3>
       <p>{{ new Date(error.inventory[0].timeStamp).toLocaleString() }}</p>
       <h3>ID</h3>
@@ -28,21 +28,21 @@
       <h3>Browser Window Height</h3>
       <p>{{ error.inventory[0].browserWindowHeight }}</p>
     </div>
-    <div v-if="this.newError !== null">
+    <div v-if="this.newOccurrence !== null">
       <h3>Date</h3>
-      <p>{{ new Date(newError[0].timeStamp).toLocaleString() }}</p>
+      <p>{{ new Date(newOccurrence[0].timeStamp).toLocaleString() }}</p>
       <h3>ID</h3>
-      <p>{{ newError[0]._id }}</p>
+      <p>{{ newOccurrence[0]._id }}</p>
       <h3>Stacktrace</h3>
-      <p>{{ newError[0].stack }}</p>
+      <p>{{ newOccurrence[0].stack }}</p>
       <h3>Language</h3>
-      <p>{{ newError[0].language }}</p>
+      <p>{{ newOccurrence[0].language }}</p>
       <!-- <h3>Plugins</h3>
-      <p v-if="error[0].plugins == true">{{ newError[0].plugins[0] }}</p> -->
+      <p v-if="error[0].plugins == true">{{ newOccurrence[0].plugins[0] }}</p> -->
       <h3>Browser Window Width</h3>
-      <p>{{ newError[0].browserWindowWidth }}</p>
+      <p>{{ newOccurrence[0].browserWindowWidth }}</p>
       <h3>Browser Window Height</h3>
-      <p>{{ newError[0].browserWindowHeight }}</p>
+      <p>{{ newOccurrence[0].browserWindowHeight }}</p>
     </div>
   </div>
 </template>
@@ -55,69 +55,54 @@ export default {
   props: ["error"],
   data: function() {
     return {
-      somevar: this.error,
+      errorValue: this.error,
       selected: Object,
-      testId: "",
-      newError: null,
-      // option: String,
-      // allOccurrences: Array
+      // testId: "",
+      newOccurrence: null,
     };
   },
   watch: {
     error: function(newVal) {
-      this.somevar = newVal;
-      console.log(JSON.stringify("inside error: " + this.somevar));
+      this.errorValue = newVal;
+      console.log(JSON.stringify("inside error: " + this.errorValue));
     },
   },
   methods: {
-    onChange: async function() {
+    onSelectChange: async function() {
       var occurrenceId = await this.selected;
       console.log("Something is working: " + this.selected);
       axios
-        .get("http://localhost:3000/errorRouter/time", {
+        .get("http://localhost:3000/errorRouter/occurrencesById", {
           params: { queryData: occurrenceId },
         })
         .then((response) =>
           this.$store.commit("changeCurrentOccurrence", response.data)
         )
         .then(() => {
-          // this.somevar = response.data;
-          this.newError = this.$store.getters.currentOccurrence;
-          console.log(JSON.stringify(this.newError[0].stack));
-          // const x = JSON.stringify(response.data);
-          // console.log(response.data.message);
+          this.newOccurrence = this.$store.getters.currentOccurrence;
           // console.log(JSON.stringify(response.data));
         });
     },
-    // newSomeVar: async function(newVal) {
-    //   this.somevar = await newVal;
-    //   console.log(JSON.stringify('somevar: ' + this.somevar.data));
-    // },
     backToErrorList() {
       this.$emit("emitFromErrorDetail");
     },
-    getErrorList: async function() {
-      var x = await String;
-      x = await this.somevar.message;
-      console.log("inside getErrorList: " + x);
+    getOccurrencesDates: async function() {
+      var errorHashNumber = await this.errorValue.hashNumber;
+      console.log("inside getErrorList: " + errorHashNumber);
       axios
-        .get("http://localhost:3000/errorRouter/message", {
-          params: { queryData: x },
+        .get("http://localhost:3000/errorRouter/occurrencesByHash", {
+          params: { queryData: errorHashNumber },
         })
         .then((response) => this.$store.commit("changeErrors", response.data));
-      // .then((response) => this.allOccurences = response);
-      // .then(function(response) {
-      //   return response.data;
-      // });
     },
     // getErrorMessages: async function() {
-    //   console.log("inside detail: " + this.somevar.message);
+    //   console.log("inside detail: " + this.errorValue.message);
     //   let arr = await this.allOccurrences;
     //   return arr;
     // },
   },
   // updated: function() {
-  //   this.getErrorList();
+  //   this.getOccurrencesDates();
   // },
 };
 </script>

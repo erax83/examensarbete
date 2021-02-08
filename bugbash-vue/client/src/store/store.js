@@ -6,11 +6,11 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
          state: {
            errors: Array,
-           allErrors: Array,
-           hashCount: Array,
-           allHashCount: Array,
-           dataList: Array,
-           allDataList: Array,
+          //  allErrors: Array,
+          //  hashCount: Array,
+          //  allHashCount: Array,
+           errorsList: Array,
+          //  allErrorsList: Array,
            currentMessage: String,
            currentOccurrence: Array,
            idState: true,
@@ -24,13 +24,13 @@ export const store = new Vuex.Store({
              state.allErrors = errors;
              state.errors = errors;
            },
-           changeHashCount(state, hashCount) {
-             state.allHashCount = hashCount;
-             state.hashCount = hashCount;
-           },
-           changeDataList(state, dataList) {
-             state.allDataList = dataList;
-             state.dataList = dataList;
+          //  changeHashCount(state, hashCount) {
+          //    state.allHashCount = hashCount;
+          //    state.hashCount = hashCount;
+          //  },
+           changeErrorsList(state, errorsList) {
+             state.allErrorsList = errorsList;
+             state.errorsList = errorsList;
            },
            changeCurrentMessage(state, message) {
              state.currentMessage = message;
@@ -67,7 +67,7 @@ export const store = new Vuex.Store({
          getters: {
            errors: (state) => state.errors,
            hashCount: (state) => state.hashCount,
-           dataList: (state) => state.dataList,
+           errorsList: (state) => state.errorsList,
            currentMessage: (state) => state.currentMessage,
            currentOccurrence: (state) => state.currentOccurrence,
            idState: (state) => state.idState,

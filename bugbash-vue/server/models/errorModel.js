@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const monitorModelSchema = new Schema({
+const errorModelSchema = new Schema({
     message: { type: String },
     hashNumber: { type: String },
     occurrencesCount: { type: Number },
 });
 
-const HashModel = mongoose.model("errors", monitorModelSchema);
+const ErrorModel = mongoose.model("errors", errorModelSchema);
 
-module.exports = HashModel;
+module.exports = ErrorModel;

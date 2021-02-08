@@ -1,5 +1,5 @@
 <template>
-  <div class="monitor-viewer">
+  <div class="error-viewer">
     <h1>Error List</h1>
     <div class="filter-bar">
       <input type="text" v-model="searchInput" v-on:input="search" />
@@ -26,7 +26,7 @@
         <th></th>
       </tr>
       <tr
-        v-for="(error, index) in errorsRemoveDuplicates()"
+        v-for="(error, index) in getErrorsList()"
         v-bind:key="index"
         class="result-line"
         :class="{ active: index === activeItem }"
@@ -73,8 +73,8 @@ export default {
     };
   },
   methods: {
-    errorsRemoveDuplicates() {
-      let arr = this.$store.getters.dataList.reverse();
+    getErrorsList() {
+      let arr = this.$store.getters.errorsList.reverse();
       return arr;
     },
     selectItem(index) {

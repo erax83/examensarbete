@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const monitorController = require("../controllers/monitorController");
+const errorController = require("../controllers/errorController");
 
 var cors = require("cors");
 var corsOptions = {
@@ -8,23 +8,30 @@ var corsOptions = {
 };
 router.use(cors(corsOptions));
 
-router.get("/", cors(corsOptions), monitorController.getMonitorError);
+router.get("/", cors(corsOptions), errorController.getMonitorError);
 
-router.get("/message", cors(corsOptions), monitorController.getMonitorMessage);
+router.get(
+  "/occurrencesByHash",
+  cors(corsOptions),
+  errorController.getOccurrencesByHash
+);
 
-router.get("/time", cors(corsOptions), monitorController.getMonitorTime);
+router.get(
+  "/occurrencesById",
+  cors(corsOptions),
+  errorController.getOccurrencesById);
 
-router.get("/hashCount", cors(corsOptions), monitorController.getHashCount);
+// router.get("/hashCount", cors(corsOptions), errorController.getHashCount);
 
-router.get("/list", cors(corsOptions), monitorController.getList);
+router.get("/errorList", cors(corsOptions), errorController.getErrorList);
 
-// router.get("/messages/:id", cors(corsOptions), monitorController.getMessages);
+// router.get("/messages/:id", cors(corsOptions), errorController.getMessages);
 
-router.post("/", cors(corsOptions), monitorController.postMonitorError);
+router.post("/", cors(corsOptions), errorController.postMonitorError);
 
 // Hash
-router.post("/hash", cors(corsOptions), monitorController.postErrorHash);
+router.post("/hash", cors(corsOptions), errorController.postErrorHash);
 
-router.delete("/:id", cors(corsOptions), monitorController.deleteMonitorError);
+router.delete("/:id", cors(corsOptions), errorController.deleteMonitorError);
 
 module.exports = router;

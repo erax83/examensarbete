@@ -1,5 +1,5 @@
-const Monitor = require("../models/monitorModel");
-const HashModel = require("../models/hashModel");
+const OccurrenceModel = require("../models/occurrenceModel");
+const ErrorModel = require("../models/errorModel");
 
 const crypto = require("crypto");
 
@@ -7,18 +7,18 @@ const getMonitorError = async (req, res) => {
   // const dbId = await req.params.id;
   // console.log(dbId);
   try {
-    const result = await Monitor.find();
+    const result = await OccurrenceModel.find();
     res.send(result);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
 
-const getMonitorMessage = async (req, res) => {
+const getOccurrencesByHash = async (req, res) => {
   console.log("inside controller: " + req.query.queryData);
   try {
-    const result = await await Monitor.find({
-      message: req.query.queryData,
+    const result = await await OccurrenceModel.find({
+      hashNumber: req.query.queryData,
     });
     res.send(result);
   } catch (err) {
@@ -26,10 +26,10 @@ const getMonitorMessage = async (req, res) => {
   }
 };
 
-const getMonitorTime = async (req, res) => {
+const getOccurrencesById = async (req, res) => {
   console.log("inside controller time: " + req.query.queryData);
   try {
-    const result = await await Monitor.find({
+    const result = await await OccurrenceModel.find({
       _id: req.query.queryData,
     });
     res.send(result);
@@ -40,18 +40,18 @@ const getMonitorTime = async (req, res) => {
 
 const getHashCount = async (req, res) => {
   try {
-    const result = await HashModel.find();
+    const result = await ErrorModel.find();
     res.send(result);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
 
-const getList = async (req, res) => {
+const getErrorList = async (req, res) => {
   // console.log("inside getList");
 
   // 3 works
-  // const test = await HashModel.aggregate([
+  // const test = await ErrorModel.aggregate([
   //   {
   //     $lookup: {
   //       from: "occurrences",
@@ -69,7 +69,7 @@ const getList = async (req, res) => {
 
   // 3.2 Works best with res
   try {
-    const test = await HashModel.aggregate([
+    const test = await ErrorModel.aggregate([
       {
         $lookup: {
           from: "occurrences",
@@ -103,7 +103,7 @@ const postMonitorError = async (req, res) => {
   newBody.hashNumber = await newHashNumber;
 
   const monitor = new Monitor(newBody);
-  const result = await monitor.save();
+  const result = await OccurrenceModel.save();
 };
 
 const postErrorHash = async (req, res) => {
@@ -115,8 +115,8 @@ const postErrorHash = async (req, res) => {
   const newBody = await req.body;
   newBody.hashNumber = await newHashNumber;
   newBody.occurrencesCount = await 1;
-  const newDbDocument = await new HashModel(newBody);
-  const existingDbDocument = await HashModel.find({
+  const newDbDocument = await new ErrorModel(newBody);
+  const existingDbDocument = await ErrorModel.find({
     hashNumber: newHashNumber,
   }).exec();
   if (existingDbDocument[0]) {
@@ -130,14 +130,17 @@ const postErrorHash = async (req, res) => {
 
 const deleteMonitorError = async (req, res) => {
   const dbId = await req.params.id;
-  const indexResult = await Monitor.findById(dbId, function (err, docs) {
-    if (err) {
-      return err;
-    } else {
-      return docs;
+  const indexResult = await OccurrenceModel.findById(
+    dbId,
+    function (err, docs) {
+      if (err) {
+        return err;
+      } else {
+        return docs;
+      }
     }
-  });
-  const hashDbDocument = await HashModel.find({
+  );
+  const hashDbDocument = await ErrorModel.find({
     message: indexResult.message,
   }).exec();
   if (hashDbDocument[0]) {
@@ -147,7 +150,7 @@ const deleteMonitorError = async (req, res) => {
       await hashDbDocument[0].save();
     } else {
       const hashId = await hashDbDocument[0]._id;
-      HashModel.findByIdAndRemove(hashId, function (err, error) {
+      ErrorModel.findByIdAndRemove(hashId, function (err, error) {
         if (err) {
           return res.status(500).json({
             message: "Error getting record.",
@@ -158,7 +161,7 @@ const deleteMonitorError = async (req, res) => {
     }
   }
   const monitorErrorId = await req.params.id;
-  Monitor.findByIdAndRemove(monitorErrorId, function (err, error) {
+  OccurrenceModel.findByIdAndRemove(monitorErrorId, function (err, error) {
     if (err) {
       return res.status(500).json({
         message: "Error getting record.",
@@ -170,10 +173,10 @@ const deleteMonitorError = async (req, res) => {
 
 module.exports = {
   getMonitorError,
-  getMonitorMessage,
-  getMonitorTime,
+  getOccurrencesByHash,
+  getOccurrencesById,
   getHashCount,
-  getList,
+  getErrorList,
   postMonitorError,
   postErrorHash,
   deleteMonitorError,
