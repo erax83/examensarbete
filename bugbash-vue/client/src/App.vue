@@ -4,6 +4,7 @@
       <a class="logo">Bugbash</a>
       <div class="global-buttons">
         <button><font-awesome-icon icon="bars" /></button>
+        <!-- <button v-on:click="paramrouting">Paramsrouter</button> -->
       </div>
     </header>
     <ErrorList
@@ -62,6 +63,10 @@ export default {
     messageFromErrorDetail() {
       this.$store.commit("changeComponentToggle", "error-list");
     },
+    // paramrouting() {
+    //   axios
+    //     .get("http://localhost:3000/errorRouter/" + 123);
+    // }
   },
   mounted: function() {
     this.getErrorsList();

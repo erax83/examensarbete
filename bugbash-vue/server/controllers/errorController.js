@@ -91,6 +91,7 @@ const getErrorList = async (req, res) => {
 
 // const getParamsPage = async (req, res) => {
 //   console.log("inside controller time: " + req.query.id);
+//   res.render("/" + req.params.id);
 // };
 
 
