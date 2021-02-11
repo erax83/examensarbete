@@ -1,8 +1,10 @@
 <template>
   <div class="detail-view">
     <h1>{{ error.message }}</h1>
-    <button @click="backToErrorList()">Tillbaka</button>
-    <button @click="getOccurrencesDates()">Updatera</button>
+    <button @click="backToErrorList()">Back</button>
+    <!-- <button @click="getOccurrencesDates()">Uppdatera</button> -->
+    <br>
+    <h3>Earlier occurrences</h3>
     <select v-model="selected" @change="onSelectChange()">
       <option
         v-for="(option, index) in this.$store.getters.errors"
@@ -101,9 +103,11 @@ export default {
     //   return arr;
     // },
   },
-  // updated: function() {
-  //   this.getOccurrencesDates();
-  // },
+  
+  updated: function() {
+    debugger
+    this.getOccurrencesDates();
+  },
 };
 </script>
 

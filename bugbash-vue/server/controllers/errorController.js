@@ -89,9 +89,11 @@ const getErrorList = async (req, res) => {
   }
 };
 
-// const getMessages = async (req, res) => {
-//   console.log("inside getMessages");
+// const getParamsPage = async (req, res) => {
+//   console.log("inside controller time: " + req.query.id);
 // };
+
+
 
 const postMonitorError = async (req, res) => {
   const newMessage = await req.body.message;
@@ -177,6 +179,7 @@ module.exports = {
   getOccurrencesById,
   getHashCount,
   getErrorList,
+  // getParamsPage,
   postMonitorError,
   postErrorHash,
   deleteMonitorError,

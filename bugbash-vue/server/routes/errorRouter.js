@@ -27,6 +27,8 @@ router.get("/errorList", cors(corsOptions), errorController.getErrorList);
 
 // router.get("/messages/:id", cors(corsOptions), errorController.getMessages);
 
+// router.get("/:id", cors(corsOptions), errorController.getParamsPage);
+
 router.post("/", cors(corsOptions), errorController.postMonitorError);
 
 // Hash
