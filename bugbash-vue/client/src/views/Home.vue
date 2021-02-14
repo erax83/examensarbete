@@ -1,11 +1,12 @@
 <template>
-  <div>
+  <div id="home">
     <header class="main-header">
       <a class="logo">Bugbash</a>
       <div class="global-buttons">
         <button><font-awesome-icon icon="bars" /></button>
       </div>
     </header>
+    <router-link to="/errorstest">Errors test</router-link>
     <ErrorList
       v-show="this.$store.getters.componentToggleState === 'error-list'"
       v-on:emitFromErrorList="messageFromErrorList($event)"
@@ -58,13 +59,12 @@ export default {
 </script>
 
 <style>
-
 body {
   margin: 0;
   padding: 0;
 }
 
-#app {
+#home {
   display: flex;
   flex-direction: column;
   font-family: Avenir, Helvetica, Arial, sans-serif;

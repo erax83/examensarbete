@@ -67,7 +67,12 @@ export const store = new Vuex.Store({
          getters: {
            errors: (state) => state.errors,
            hashCount: (state) => state.hashCount,
+
            errorsList: (state) => state.errorsList,
+           error: (state) => id => {
+             return state.errorsList.find(err => err._id == id)
+           },
+
            currentMessage: (state) => state.currentMessage,
            currentOccurrence: (state) => state.currentOccurrence,
            idState: (state) => state.idState,
