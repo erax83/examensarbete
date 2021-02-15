@@ -6,6 +6,7 @@
     <br>
     <h3>Earlier occurrences</h3>
     <select v-model="selected" @change="onSelectChange()">
+      <!-- <option value="" disabled>Tours</option> -->
       <option
         v-for="(option, index) in this.$store.getters.errors"
         v-bind:key="index"
@@ -16,19 +17,19 @@
     </select>
     <div v-if="this.newOccurrence == null">
       <h3>Date</h3>
-      <p>{{ new Date(error.inventory[0].timeStamp).toLocaleString() }}</p>
+      <p>{{ new Date(error.occurrenceDetails[0].timeStamp).toLocaleString() }}</p>
       <h3>ID</h3>
-      <p>{{ error.inventory[0]._id }}</p>
+      <p>{{ error.occurrenceDetails[0]._id }}</p>
       <h3>Stacktrace</h3>
-      <p>{{ error.inventory[0].stack }}</p>
+      <p>{{ error.occurrenceDetails[0].stack }}</p>
       <h3>Language</h3>
-      <p>{{ error.inventory[0].language }}</p>
+      <p>{{ error.occurrenceDetails[0].language }}</p>
       <h3>Plugins</h3>
-      <p v-if="error.plugins == true">{{ error.inventory[0].plugins }}</p>
+      <p v-if="error.plugins == true">{{ error.occurrenceDetails[0].plugins }}</p>
       <h3>Browser Window Width</h3>
-      <p>{{ error.inventory[0].browserWindowWidth }}</p>
+      <p>{{ error.occurrenceDetails[0].browserWindowWidth }}</p>
       <h3>Browser Window Height</h3>
-      <p>{{ error.inventory[0].browserWindowHeight }}</p>
+      <p>{{ error.occurrenceDetails[0].browserWindowHeight }}</p>
     </div>
     <div v-if="this.newOccurrence !== null">
       <h3>Date</h3>

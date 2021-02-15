@@ -35,7 +35,7 @@
           @click="moreErrorDetails(error)"
           v-if="$store.state.dateState == true"
         >
-          {{ new Date(error.inventory[0].timeStamp).toLocaleString() }}
+          {{ new Date(error.occurrenceDetails[0].timeStamp).toLocaleString() }}
         </td>
         <td
           @click="moreErrorDetails(error)"
@@ -47,8 +47,8 @@
           {{ error.occurrencesCount }}
         </td>
         <td v-if="$store.state.urlState == true">
-          <a :href="error.inventory[0].session.url" target="_blank">{{
-            error.inventory[0].session.url.substring(7)
+          <a :href="error.occurrenceDetails[0].session.url" target="_blank">{{
+            error.occurrenceDetails[0].session.url.substring(7)
           }}</a>
         </td>
         <td>
