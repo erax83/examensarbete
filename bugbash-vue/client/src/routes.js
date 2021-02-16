@@ -9,12 +9,12 @@ import Errortest from "./views/Errortest";
 Vue.use(VueRouter);
 
 export const router = new VueRouter({
-  mode: "history",
-  routes: [
-    { path: "/", component: Home },
-    { path: "/about", component: About },
-    { path: "/errorstest", component: Errorstest },
-    //  { path: "/errortest/:id", component: Errortest },
-    { path: "/errortest/:id", name: "err", component: Errortest },
-  ],
-});
+         mode: "history",
+         routes: [
+           { path: "/", component: Home },
+           { path: "/about", component: About },
+           { path: "/errorstest", component: Errorstest },
+           //  { path: "/errortest/:id", component: Errortest },
+           { path: "/errortest/:id", name: "err", component: Errortest },
+         ],
+       });

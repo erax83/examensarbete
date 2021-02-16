@@ -1,11 +1,11 @@
 <template>
   <div id="home">
-    <header class="main-header">
+    <!-- <header class="main-header">
       <a class="logo">Bugbash</a>
       <div class="global-buttons">
         <button><font-awesome-icon icon="bars" /></button>
       </div>
-    </header>
+    </header> -->
     <router-link to="/errorstest">Errors test</router-link>
     <ErrorList
       v-show="this.$store.getters.componentToggleState === 'error-list'"

@@ -1,13 +1,14 @@
 <template>
   <div id="app">
-    <router-view></router-view>
-    <!-- <header class="main-header">
+    <header class="main-header">
       <a class="logo">Bugbash</a>
       <div class="global-buttons">
         <button><font-awesome-icon icon="bars" /></button>
       </div>
     </header>
-    <ErrorList
+    <router-view></router-view>
+
+    <!-- <ErrorList
       v-show="this.$store.getters.componentToggleState === 'error-list'"
       v-on:emitFromErrorList="messageFromErrorList($event)"
     />
@@ -26,7 +27,7 @@
 // import axios from "axios";
 
 export default {
-  name: "App"
+  name: "App",
   // components: {
   //   ErrorList,
   //   ErrorDetail,
@@ -59,7 +60,6 @@ export default {
 </script>
 
 <style>
-
 body {
   margin: 0;
   padding: 0;

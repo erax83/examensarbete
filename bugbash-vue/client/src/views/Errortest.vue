@@ -2,7 +2,6 @@
   <div id="errortest">
     <router-link to="/errorstest">Back to list</router-link>
     <div v-if="err">
-      <hr />
       <p>ID</p>
       <p>{{ err._id }}</p>
       <p>Hashnumber</p>

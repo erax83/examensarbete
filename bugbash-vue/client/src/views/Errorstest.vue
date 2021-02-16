@@ -1,6 +1,7 @@
 <template>
   <div id="errorstest">
     <h1>Errorstest</h1>
+    <router-link to="/">Back to list</router-link>
     <table>
       <tr v-for="(err, index) in errorList" :key="index">
         <td>{{ err.hashNumber }}</td>
