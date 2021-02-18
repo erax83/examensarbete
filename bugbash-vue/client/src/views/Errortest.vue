@@ -16,7 +16,7 @@
 export default {
   computed: {
     err() {
-      return this.$store.getters.error(this.$route.params.id);
+      return this.$store.getters.errorTest(this.$route.params.id);
     },
   },
 };

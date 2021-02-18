@@ -48,26 +48,6 @@ const getHashCount = async (req, res) => {
 };
 
 const getErrorList = async (req, res) => {
-  // console.log("inside getList");
-
-  // 3 works
-  // const test = await ErrorModel.aggregate([
-  //   {
-  //     $lookup: {
-  //       from: "occurrences",
-  //       localField: "hashNumber",
-  //       foreignField: "hashNumber",
-  //       as: "inventory",
-  //     },
-  //   },
-  //   { $limit: 1 },
-  // ]);
-
-  // for await (const doc of test) {
-  //   console.log(doc);
-  // }
-
-  // 3.2 Works best with res
   try {
     const test = await ErrorModel.aggregate([
       {

@@ -1,11 +1,5 @@
 <template>
   <div id="home">
-    <!-- <header class="main-header">
-      <a class="logo">Bugbash</a>
-      <div class="global-buttons">
-        <button><font-awesome-icon icon="bars" /></button>
-      </div>
-    </header> -->
     <router-link to="/errorstest">Errors test</router-link>
     <ErrorList
       v-show="this.$store.getters.componentToggleState === 'error-list'"
@@ -59,7 +53,7 @@ export default {
 </script>
 
 <style>
-body {
+/* body {
   margin: 0;
   padding: 0;
 }
@@ -125,5 +119,5 @@ button:hover {
 img {
   border: 3px solid black;
   border-radius: 25px;
-}
+} */
 </style>
