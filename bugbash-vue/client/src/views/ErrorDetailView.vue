@@ -7,7 +7,6 @@
     <!-- <button @click="getOccurrencesDates()">Uppdatera</button> -->
     <h3>Earlier occurrences</h3>
     <select v-model="selected" @change="onSelectChange()">
-      <option value="" disabled selected>Choose...</option>
       <option
         v-for="(option, index) in this.$store.getters.errors.slice().reverse()"
         v-bind:key="index"
@@ -48,6 +47,7 @@ export default {
     return {
       id: this.$route.params.id,
       errOccurrence: [],
+      // selected: { value: this.$store.getters.errors[0].message }
     };
   },
   computed: {

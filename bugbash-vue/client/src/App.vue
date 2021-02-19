@@ -7,55 +7,12 @@
       </div>
     </header>
     <router-view></router-view>
-
-    <!-- <ErrorList
-      v-show="this.$store.getters.componentToggleState === 'error-list'"
-      v-on:emitFromErrorList="messageFromErrorList($event)"
-    />
-    <ErrorDetail
-      v-show="this.$store.getters.componentToggleState === 'error-detail'"
-      v-bind:error="this.moreErrorInfo"
-      v-on:emitFromErrorDetail="messageFromErrorDetail($event)"
-    /> -->
   </div>
 </template>
 
 <script>
-// import ErrorList from "./components/ErrorList.vue";
-// import ErrorDetail from "./components/ErrorDetail.vue";
-
-// import axios from "axios";
-
 export default {
   name: "App",
-  // components: {
-  //   ErrorList,
-  //   ErrorDetail,
-  // },
-  // data: function() {
-  //   return {
-  //     moreErrorInfo: Object,
-  //   };
-  // },
-  // methods: {
-  //   getErrorsList: async function() {
-  //     axios
-  //       .get("http://localhost:3000/errorRouter/errorList")
-  //       .then((response) =>
-  //         this.$store.commit("changeErrorsList", response.data)
-  //       );
-  //   },
-  //   messageFromErrorList(errorInfo) {
-  //     this.moreErrorInfo = errorInfo;
-  //     this.$store.commit("changeComponentToggle", "error-detail");
-  //   },
-  //   messageFromErrorDetail() {
-  //     this.$store.commit("changeComponentToggle", "error-list");
-  //   },
-  // },
-  // mounted: function() {
-  //   this.getErrorsList();
-  // },
 };
 </script>
 
