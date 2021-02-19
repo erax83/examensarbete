@@ -4,11 +4,12 @@
     <button>
       <router-link to="/">Back</router-link>
     </button>
-    <button @click="getOccurrencesDates()">Uppdatera</button>
+    <!-- <button @click="getOccurrencesDates()">Uppdatera</button> -->
     <h3>Earlier occurrences</h3>
     <select v-model="selected" @change="onSelectChange()">
+      <option value="" disabled selected>Choose...</option>
       <option
-        v-for="(option, index) in this.$store.getters.errors"
+        v-for="(option, index) in this.$store.getters.errors.slice().reverse()"
         v-bind:key="index"
         :value="option._id"
       >
