@@ -4,8 +4,6 @@ const ErrorModel = require("../models/errorModel");
 const crypto = require("crypto");
 
 const getMonitorError = async (req, res) => {
-  // const dbId = await req.params.id;
-  // console.log(dbId);
   try {
     const result = await OccurrenceModel.find();
     res.send(result);
@@ -15,7 +13,6 @@ const getMonitorError = async (req, res) => {
 };
 
 const getOccurrencesByHash = async (req, res) => {
-  console.log("inside controller: " + req.query.queryData);
   try {
     const result = await await OccurrenceModel.find({
       hashNumber: req.query.queryData,
@@ -27,7 +24,6 @@ const getOccurrencesByHash = async (req, res) => {
 };
 
 const getOccurrencesById = async (req, res) => {
-  console.log("inside controller time: " + req.query.queryData);
   try {
     const result = await await OccurrenceModel.find({
       _id: req.query.queryData,
@@ -73,8 +69,6 @@ const getErrorList = async (req, res) => {
 //   console.log("inside controller time: " + req.query.id);
 //   res.render("/" + req.params.id);
 // };
-
-
 
 const postMonitorError = async (req, res) => {
   const newMessage = await req.body.message;

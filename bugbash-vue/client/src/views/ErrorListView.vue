@@ -195,7 +195,7 @@ input {
   margin-right: 1.2em;
 }
 
-/* h3 {
+h3 {
   margin: 40px 0 0;
 }
 
@@ -213,7 +213,7 @@ li {
   margin: 0 10px;
 }
 
-a {
+/* a {
   color: #42b983;
 } */
 </style>

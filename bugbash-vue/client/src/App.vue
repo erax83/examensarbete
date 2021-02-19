@@ -51,6 +51,10 @@ header button {
   width: 100%;
 }
 
+.logo {
+  color: white;
+}
+
 a.logo {
   display: flex;
   flex: 1;
@@ -98,9 +102,9 @@ li {
   margin: 0 10px;
 }
 
-a {
+/* a {
   color: #42b983;
-}
+} */
 
 /* img {
   border: 3px solid black;

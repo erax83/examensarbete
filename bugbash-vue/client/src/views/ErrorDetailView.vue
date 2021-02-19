@@ -15,7 +15,7 @@
         {{ new Date(option.timeStamp).toLocaleString() }}
       </option>
     </select>
-    <div v-if="this.newErrorOccurrence == null">
+    <div>
       <h3>Date</h3>
       <p>
         {{ new Date(this.errorOccurrence[0].timeStamp).toLocaleString() }}
@@ -46,13 +46,12 @@ export default {
   data: function() {
     return {
       id: this.$route.params.id,
-      errOccurrence: [],
-      // selected: { value: this.$store.getters.errors[0].message }
+      occurrenceDetails: [],
     };
   },
   computed: {
     errorOccurrence() {
-      return this.errOccurrence;
+      return this.occurrenceDetails;
     },
   },
   methods: {
@@ -62,7 +61,7 @@ export default {
       this.$router.replace({ name: "errorInfo", params: { id: this.id } });
     },
     getOccurrencesDates: async function() {
-      var errorHashNumber = await this.errOccurrence[0].hashNumber;
+      var errorHashNumber = await this.occurrenceDetails[0].hashNumber;
       axios
         .get("http://localhost:3000/errorRouter/occurrencesByHash", {
           params: { queryData: errorHashNumber },
@@ -76,7 +75,7 @@ export default {
             params: { queryData: id },
           })
           .then((response) => {
-            this.errOccurrence = response.data;
+            this.occurrenceDetails = response.data;
           });
       } catch (err) {
         console.log(err);
