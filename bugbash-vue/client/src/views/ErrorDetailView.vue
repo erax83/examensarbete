@@ -7,6 +7,12 @@
     <!-- <button @click="getOccurrencesDates()">Uppdatera</button> -->
     <h3>Earlier occurrences</h3>
     <select v-model="selected" @change="onSelectChange()">
+      <option value="" disabled>{{
+        new Date(
+          this.$store.getters.errors.slice().reverse()[0].timeStamp
+        ).toLocaleString()
+      }}</option>
+
       <option
         v-for="(option, index) in this.$store.getters.errors.slice().reverse()"
         v-bind:key="index"
@@ -15,6 +21,7 @@
         {{ new Date(option.timeStamp).toLocaleString() }}
       </option>
     </select>
+
     <div>
       <h3>Date</h3>
       <p>
@@ -47,6 +54,7 @@ export default {
     return {
       id: this.$route.params.id,
       occurrenceDetails: [],
+      selected: "",
     };
   },
   computed: {
