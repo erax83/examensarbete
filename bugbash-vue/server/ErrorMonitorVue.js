@@ -40,9 +40,7 @@ export default class ErrorMonitor {
     this.logError(errorEvent.error);
     this.addError(errorEvent.error);
     this.addErrorHash(errorEvent.error);
-    console.log("navigator: ");
     console.log(window.navigator.language);
-    console.log("navigator end");
     this.stop();
   }
 

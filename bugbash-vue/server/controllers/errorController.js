@@ -78,9 +78,8 @@ const postMonitorError = async (req, res) => {
     .digest("hex");
   const newBody = await req.body;
   newBody.hashNumber = await newHashNumber;
-
-  const monitor = new Monitor(newBody);
-  const result = await OccurrenceModel.save();
+  const monitor = await new OccurrenceModel(newBody);
+  await monitor.save();
 };
 
 const postErrorHash = async (req, res) => {
