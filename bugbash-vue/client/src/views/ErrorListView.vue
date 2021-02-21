@@ -12,9 +12,6 @@
       <button v-on:click="urlToggleFunction">
         Url Toggle
       </button>
-      <!-- <button v-on:click="toggle = 'error-list'">
-        View all monitor errors
-      </button> -->
     </div>
 
     <table class="error-list">
@@ -35,22 +32,38 @@
           @click="moreErrorDetails(error)"
           v-if="$store.state.dateState == true"
         >
-          <router-link to="/errordetailview">{{
-            new Date(error.occurrenceDetails[0].timeStamp).toLocaleString()
-          }}</router-link>
+          <router-link
+            :to="{
+              name: 'errorInfo',
+              params: { id: error.occurrenceDetails[0]._id },
+            }"
+            >{{
+              new Date(error.occurrenceDetails[0].timeStamp).toLocaleString()
+            }}</router-link
+          >
           <!-- {{ new Date(error.occurrenceDetails[0].timeStamp).toLocaleString() }} -->
         </td>
         <td
           @click="moreErrorDetails(error)"
           v-if="$store.state.messageState == true"
         >
-          <router-link :to="{ name: 'errorInfo', params: { id: error.occurrenceDetails[0]._id } }">{{ error.message }}</router-link>
+          <router-link
+            :to="{
+              name: 'errorInfo',
+              params: { id: error.occurrenceDetails[0]._id },
+            }"
+            >{{ error.message }}</router-link
+          >
           <!-- {{ error.message }} -->
         </td>
         <td @click="moreErrorDetails(error)">
-          <router-link to="/errordetailview">{{
-            error.occurrencesCount
-          }}</router-link>
+          <router-link
+            :to="{
+              name: 'errorInfo',
+              params: { id: error.occurrenceDetails[0]._id },
+            }"
+            >{{ error.occurrencesCount }}</router-link
+          >
           <!-- {{ error.occurrencesCount }} -->
         </td>
         <td v-if="$store.state.urlState == true">
@@ -109,11 +122,11 @@ export default {
       }
     },
     moreErrorDetails(errorInfo) {
-    //   const errorMessage = errorInfo.message;
-    //   console.log("errorInfo: " + errorMessage);
-    //   this.$store.commit("changeCurrentMessage", errorMessage);
-    //   this.$emit("emitFromErrorList", errorInfo);
-         this.$store.commit("changeCurrentOccurrence", errorInfo);
+      //   const errorMessage = errorInfo.message;
+      //   console.log("errorInfo: " + errorMessage);
+      //   this.$store.commit("changeCurrentMessage", errorMessage);
+      //   this.$emit("emitFromErrorList", errorInfo);
+      this.$store.commit("changeCurrentOccurrence", errorInfo);
     },
     search: function() {
       this.$store.commit("onFilterChange", this.searchInput);
