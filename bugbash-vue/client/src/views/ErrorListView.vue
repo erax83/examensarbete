@@ -73,7 +73,7 @@
         </td>
         <td>
           <font-awesome-icon
-            @click="deleteRow(error._id)"
+            @click="deleteRow(error.occurrenceDetails[0].hashNumber)"
             icon="trash-alt"
           ></font-awesome-icon>
         </td>
@@ -103,13 +103,6 @@ export default {
           this.$store.commit("changeErrorsList", response.data)
         );
     },
-    // messageFromErrorList(errorInfo) {
-    //   this.moreErrorInfo = errorInfo;
-    //   this.$store.commit("changeComponentToggle", "error-detail");
-    // },
-    // messageFromErrorDetail() {
-    //   this.$store.commit("changeComponentToggle", "error-list");
-    // },
     getErrorsList() {
       let arr = this.$store.getters.errorsList.reverse();
       return arr;
@@ -122,10 +115,6 @@ export default {
       }
     },
     moreErrorDetails(errorInfo) {
-      //   const errorMessage = errorInfo.message;
-      //   console.log("errorInfo: " + errorMessage);
-      //   this.$store.commit("changeCurrentMessage", errorMessage);
-      //   this.$emit("emitFromErrorList", errorInfo);
       this.$store.commit("changeCurrentOccurrence", errorInfo);
     },
     search: function() {
@@ -136,8 +125,9 @@ export default {
         axios
           .delete("http://localhost:3000/errorRouter/" + index)
           .then((response) => {
-            console.log("Delete response: " + response.data._id);
+            console.log("Delete response: " + response.data);
             alert("Row deleted.");
+            this.getErrors();
             window.location.reload(true);
           })
           .catch((error) => {

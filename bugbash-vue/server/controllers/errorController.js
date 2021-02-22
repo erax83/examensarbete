@@ -14,7 +14,7 @@ const getMonitorError = async (req, res) => {
 
 const getOccurrencesByHash = async (req, res) => {
   try {
-    const result = await await OccurrenceModel.find({
+    const result = await OccurrenceModel.find({
       hashNumber: req.query.queryData,
     });
     res.send(result);
@@ -105,46 +105,23 @@ const postErrorHash = async (req, res) => {
 };
 
 const deleteMonitorError = async (req, res) => {
-  const dbId = await req.params.id;
-  const indexResult = await OccurrenceModel.findById(
-    dbId,
-    function (err, docs) {
-      if (err) {
-        return err;
-      } else {
-        return docs;
-      }
-    }
-  );
-  const hashDbDocument = await ErrorModel.find({
-    message: indexResult.message,
-  }).exec();
-  if (hashDbDocument[0]) {
-    if (hashDbDocument[0].occurrencesCount >= 2) {
-      hashDbDocument[0].occurrencesCount =
-        (await hashDbDocument[0].occurrencesCount) - 1;
-      await hashDbDocument[0].save();
-    } else {
-      const hashId = await hashDbDocument[0]._id;
-      ErrorModel.findByIdAndRemove(hashId, function (err, error) {
-        if (err) {
-          return res.status(500).json({
-            message: "Error getting record.",
-          });
-        }
-        return res.json(error);
-      });
-    }
-  }
-  const monitorErrorId = await req.params.id;
-  OccurrenceModel.findByIdAndRemove(monitorErrorId, function (err, error) {
-    if (err) {
-      return res.status(500).json({
-        message: "Error getting record.",
-      });
-    }
-    return res.json(error);
-  });
+  console.log("inside delete, params test: " + req.params.id);
+  await OccurrenceModel.deleteMany({ hashNumber: req.params.id })
+    .then(function () {
+      console.log("Occurrence data deleted"); // Success
+    })
+    .catch(function (error) {
+      console.log(error); // Failure
+    });
+
+  await ErrorModel.deleteOne({ hashNumber: req.params.id })
+    .then(function () {
+      console.log("Error data deleted"); // Success
+    })
+    .catch(function (error) {
+      console.log(error); // Failure
+    });
+  await res.send('success');
 };
 
 module.exports = {
