@@ -5,6 +5,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { router } from "./routes";
+import GoogleSignInButton from "vue-google-signin-button-directive";
 
 library.add(fas);
 
@@ -15,5 +16,6 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   store,
+  GoogleSignInButton,
   render: (h) => h(App),
 }).$mount("#app");
