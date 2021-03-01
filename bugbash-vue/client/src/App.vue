@@ -6,44 +6,44 @@
         <button><font-awesome-icon icon="bars" /></button>
       </div>
     </header>
-    <button
-      v-google-signin-button="googleClientId"
-      class="google-signin-button"
-    >
-      Continue with Google
-    </button>
-    <!-- <a href="#" @click="signOut();">Google Sign out</a> -->
+    <GoogleLogin
+      :params="params"
+      :renderParams="renderParams"
+      :onSuccess="onSuccess"
+      :onFailure="onFailure"
+    ></GoogleLogin>
+    <GoogleLogin :params="params" :logoutButton="true">Logout</GoogleLogin>
+
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import GoogleSignInButton from "vue-google-signin-button-directive";
+import GoogleLogin from "vue-google-login";
+
 export default {
   name: "App",
-  directives: {
-    GoogleSignInButton,
+  components: {
+    GoogleLogin,
   },
   data: function() {
     return {
-      googleClientId:
-        "239286565520-4olejvir9qtbmtsbdrn82lakb1gls3qp.apps.googleusercontent.com",
+      params: {
+        client_id:
+          "239286565520-4olejvir9qtbmtsbdrn82lakb1gls3qp.apps.googleusercontent.com",
+      },
+      renderParams: {
+        width: 250,
+        height: 50,
+        longtitle: true,
+      },
     };
   },
   methods: {
-    OnGoogleAuthSuccess(idToken) {
-      console.log(idToken);
-      // Receive the idToken and make your magic with the backend
+    onSuccess(googleUser) {
+      console.log(googleUser);
+      console.log(googleUser.getBasicProfile());
     },
-    OnGoogleAuthFail(error) {
-      console.log(error);
-    },
-    // signOut() {
-    //   var auth2 = auth2.getAuthInstance();
-    //   auth2.signOut().then(function() {
-    //     console.log("User signed out.");
-    //   });
-    // },
   },
 };
 </script>
