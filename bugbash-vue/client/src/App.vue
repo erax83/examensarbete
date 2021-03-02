@@ -12,7 +12,9 @@
       :onSuccess="onSuccess"
       :onFailure="onFailure"
     ></GoogleLogin>
-    <GoogleLogin :params="params" :logoutButton="true">Logout</GoogleLogin>
+    <GoogleLogin :params="params" :logoutButton="true" :signOut="signOut"
+      >Logout</GoogleLogin
+    >
 
     <router-view></router-view>
   </div>
@@ -20,6 +22,7 @@
 
 <script>
 import GoogleLogin from "vue-google-login";
+// import { LoaderPlugin } from 'vue-google-login';
 
 export default {
   name: "App",
@@ -31,6 +34,7 @@ export default {
       params: {
         client_id:
           "239286565520-4olejvir9qtbmtsbdrn82lakb1gls3qp.apps.googleusercontent.com",
+        // client_id: process.env.GOOGLECLIENT_ID,
       },
       renderParams: {
         width: 250,
@@ -42,7 +46,9 @@ export default {
   methods: {
     onSuccess(googleUser) {
       console.log(googleUser);
-      console.log(googleUser.getBasicProfile());
+      // console.log(JSON.stringify(googleUser));
+      const data = googleUser.getBasicProfile();
+      console.log("full name: " + data.sd);
     },
   },
 };
