@@ -18,7 +18,7 @@
     <div v-if="this.userIcon !== null">
       <img :src="userIcon" alt="user icon" />
     </div>
-    <avatar username="userIcon" :size="30"></avatar>
+    <avatar :username="`${this.userInitials}`" :size="30"></avatar>
 
     <router-view></router-view>
   </div>
@@ -40,6 +40,7 @@ export default {
   data: function() {
     return {
       userIcon: null,
+      userInitials: null,
       params: {
         client_id:
           "239286565520-4olejvir9qtbmtsbdrn82lakb1gls3qp.apps.googleusercontent.com",
@@ -58,6 +59,7 @@ export default {
       // console.log(JSON.stringify(googleUser));
       const data = googleUser.getBasicProfile();
       console.log("full name: " + data.sd);
+      this.userInitials = data.sd;
       const image = googleUser.getBasicProfile().getImageUrl();
       this.userIcon = image;
     },
