@@ -15,6 +15,9 @@
     <GoogleLogin :params="params" :logoutButton="true" :signOut="signOut"
       >Logout</GoogleLogin
     >
+    <div v-if="this.userIcon !== null">
+      <img :src="userIcon" alt="user icon" />
+    </div>
 
     <router-view></router-view>
   </div>
@@ -31,6 +34,7 @@ export default {
   },
   data: function() {
     return {
+      userIcon: null,
       params: {
         client_id:
           "239286565520-4olejvir9qtbmtsbdrn82lakb1gls3qp.apps.googleusercontent.com",
@@ -49,6 +53,8 @@ export default {
       // console.log(JSON.stringify(googleUser));
       const data = googleUser.getBasicProfile();
       console.log("full name: " + data.sd);
+      const image = googleUser.getBasicProfile().getImageUrl();
+      this.userIcon = image;
     },
   },
 };
