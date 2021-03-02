@@ -18,6 +18,7 @@
     <div v-if="this.userIcon !== null">
       <img :src="userIcon" alt="user icon" />
     </div>
+    <avatar username="userIcon" :size="30"></avatar>
 
     <router-view></router-view>
   </div>
@@ -25,12 +26,16 @@
 
 <script>
 import GoogleLogin from "vue-google-login";
+// Behövs för viss funktionalitet
 // import { LoaderPlugin } from 'vue-google-login';
+
+import Avatar from "vue-avatar";
 
 export default {
   name: "App",
   components: {
     GoogleLogin,
+    Avatar,
   },
   data: function() {
     return {
