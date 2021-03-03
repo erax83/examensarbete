@@ -18,8 +18,10 @@
     <div v-if="this.userIcon !== null">
       <img :src="userIcon" alt="user icon" />
     </div>
-    <avatar :username="`${this.userInitials}`" :size="30"></avatar>
-
+    <div>
+      <avatar :username="`${this.userInitials}`" :size="30"></avatar>
+    </div>
+    <SimpleUpload/>
     <router-view></router-view>
   </div>
 </template>
@@ -30,12 +32,14 @@ import GoogleLogin from "vue-google-login";
 // import { LoaderPlugin } from 'vue-google-login';
 
 import Avatar from "vue-avatar";
+import SimpleUpload from "./components/SimpleUpload.vue";
 
 export default {
   name: "App",
   components: {
     GoogleLogin,
     Avatar,
+    SimpleUpload
   },
   data: function() {
     return {
@@ -53,6 +57,11 @@ export default {
       },
     };
   },
+  //  mounted() {
+  //     let recaptchaScript = document.createElement('script')
+  //     recaptchaScript.setAttribute('src', 'https://apis.google.com/js/platform.js')
+  //     document.head.appendChild(recaptchaScript)
+  //   },
   methods: {
     onSuccess(googleUser) {
       console.log(googleUser);
@@ -62,6 +71,10 @@ export default {
       this.userInitials = data.sd;
       const image = googleUser.getBasicProfile().getImageUrl();
       this.userIcon = image;
+      // const test = gapi.auth2.getAuthInstance().isSignedIn.get();
+      // console.log(test);
+      // console.log(auth2.isSignedIn.get());
+        
     },
   },
 };
