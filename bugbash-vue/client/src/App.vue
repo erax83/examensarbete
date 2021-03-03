@@ -21,7 +21,20 @@
     <div>
       <avatar :username="`${this.userInitials}`" :size="30"></avatar>
     </div>
-    <SimpleUpload/>
+
+    <SimpleUpload />
+
+    <button @click="print"></button>
+
+    <div>
+      <!-- SOURCE -->
+      <div ref="printMe">
+        <h1>Print me!</h1>
+      </div>
+      <!-- OUTPUT -->
+      <img :src="output" />
+    </div>
+
     <router-view></router-view>
   </div>
 </template>
@@ -39,10 +52,11 @@ export default {
   components: {
     GoogleLogin,
     Avatar,
-    SimpleUpload
+    SimpleUpload,
   },
   data: function() {
     return {
+      output: null,
       userIcon: null,
       userInitials: null,
       params: {
@@ -74,8 +88,17 @@ export default {
       // const test = gapi.auth2.getAuthInstance().isSignedIn.get();
       // console.log(test);
       // console.log(auth2.isSignedIn.get());
-        
     },
+    async print() {
+      const el = this.$refs.printMe;
+      // add option type to get the image version
+      // if not provided the promise will return
+      // the canvas.
+      const options = {
+        type: 'dataURL'
+      }
+      this.output = await this.$html2canvas(el, options);
+    }
   },
 };
 </script>
