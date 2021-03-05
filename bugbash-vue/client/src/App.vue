@@ -90,7 +90,9 @@ export default {
       // console.log(auth2.isSignedIn.get());
     },
     async print() {
-      const el = this.$refs.printMe;
+      // const el = this.$refs.printMe;
+      const el =  document.body;
+
       // add option type to get the image version
       // if not provided the promise will return
       // the canvas.
