@@ -8,6 +8,7 @@ import { router } from "./routes";
 import VueMeta from "vue-meta";
 import VueHtml2Canvas from "vue-html2canvas";
 
+
 library.add(fas);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);

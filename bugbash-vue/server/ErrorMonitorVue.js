@@ -6,7 +6,6 @@
 export default class ErrorMonitor {
   constructor(config) {
     super.constructor(...arguments);
-    // this.url = "http://localhost:3000/api/server/quotes";
     Object.assign(this, config);
     this.onError = this.onError.bind(this);
     // require('server.js');

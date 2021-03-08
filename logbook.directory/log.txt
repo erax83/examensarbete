@@ -1,0 +1,39 @@
+2020-10-20 - 2021-02-19
+Sammanfattning:
+
+Arbetet startade med planeringsmöten och genomgång av uppgiften. Enkla skisser har framtagits och diskuterats.
+
+Nuxt användes till en början som ramverk på mitt insiativ. Efter några veckor valde vi dock att börja om 
+från början i Vue. Bland annat för att det tycktes finnas mer support att finna på internet vid behov och 
+det fanns delar av Nuxt som handledaren ställde sig tveksam till. 
+
+En frontend byggdes upp i Vue. En backend skapades med Nodejs och tillhörande Express. Strukturen följer 
+MVC-modellen.  Databasen skapades med Mongodb. 
+
+Om arbetet i Vue: 
+I början användes togglefunktioner för att navigera mellan komponenter och props och emit användes för att 
+skicka data mellan componenter. Vuerouter har därefter använts för att navigera mellan componenter i Vue och
+Vuex har använts för statehantering i Vue. Det går att organisera componenter på olika sätt i Vue men jag har 
+tänkt att de componenter som ligger i viewsmappen är sidor med egna URIer och de componenter som ligger i 
+componentsmappen används för specifika ändamål. Axios används i Vue för kontakt med backenddelen.
+
+Jag har under perioden lärt mig om hur Vue fungerar. Jag har fördjupat mina färdigheter i Mongodb. Jag har 
+fördjupat mina kunskaper i diverse områden, bland annat debugging i chrome dev tools. 
+
+2021-02-20 - 2021-03-05
+Sammanfattning
+
+Under den här perioden bestämdes det att projektet skulle användas som projektarbete: Instruktionerna för
+uppgiften har gåtts igenom. Jag har skrivit och gått igenom en projektplan med handledaren. En projektplan har 
+skrivits och lämnats in till huvudläraren. En Kanban har satts upp i Trello med backlog. Den här loggboken har 
+startats. 
+
+Inloggning via Google har lagts till. Inloggningen fungerar som den ska och data om användaren finns tillgänglig 
+och kan användas i programmet. 
+
+Möjlighet till screenshots med hjälp av html2canvas har lagts till. 
+
+2021-03-08
+Handledaren har kontaktats för inbokning av möte. 
+
+

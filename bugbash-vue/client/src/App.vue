@@ -19,12 +19,28 @@
       <img :src="userIcon" alt="user icon" />
     </div>
     <div>
-      <avatar :username="`${this.userInitials}`" :size="30"></avatar>
+      <avatar :username="`${this.userInitials}`" src="require('~/assets/logo.png')" :size="40" ></avatar>
     </div>
 
-    <SimpleUpload />
+    <img v-bind:src="this.file" alt="bla">
+    <!-- <img src="./assets/logo.png"> -->
 
-    <button @click="print"></button>
+
+    <!-- <SimpleUpload /> -->
+
+    <div>
+    <h1>Upload</h1>
+    <form @submit.prevent="sendFile" enctype="multipart/form-data">
+        <label for="file" class="label">Upload File</label>
+        <input type="file" ref="file" @change="selectFile">
+        <div class="field"> 
+            <button class="button is-info">Send</button>
+        </div>
+        <img :src="this.file" alt="test">
+    </form>
+  </div>
+
+    <button @click="print">print</button>
 
     <div>
       <!-- SOURCE -->
@@ -40,25 +56,29 @@
 </template>
 
 <script>
+import html2canvas from "html2canvas";
 import GoogleLogin from "vue-google-login";
 // Behövs för viss funktionalitet
 // import { LoaderPlugin } from 'vue-google-login';
 
 import Avatar from "vue-avatar";
-import SimpleUpload from "./components/SimpleUpload.vue";
+// import SimpleUpload from "./components/SimpleUpload.vue";
 
 export default {
   name: "App",
   components: {
     GoogleLogin,
     Avatar,
-    SimpleUpload,
+    // SimpleUpload,
   },
   data: function() {
     return {
       output: null,
       userIcon: null,
       userInitials: null,
+      avatarImg: this.$store.getters.avatarImage,
+      file: "",
+      testImage: "./assets/logo.png",
       params: {
         client_id:
           "239286565520-4olejvir9qtbmtsbdrn82lakb1gls3qp.apps.googleusercontent.com",
@@ -99,8 +119,19 @@ export default {
       const options = {
         type: 'dataURL'
       }
-      this.output = await this.$html2canvas(el, options);
-    }
+      // this.output = await this.$html2canvas(el, options);
+
+       html2canvas(el, options).then(function (canvas) {
+       document.body.appendChild(canvas);
+      });
+    },
+    selectFile() {
+          this.file = this.$refs.file.files[0];
+          // this.file = "./assets/bugbashlogo.jpeg";
+
+          // this.$store.commit("changeAvatarImage", this.$refs.file.files[0]); 
+          console.log(this.file);
+      }
   },
 };
 </script>

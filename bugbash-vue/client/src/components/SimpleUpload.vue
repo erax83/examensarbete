@@ -7,6 +7,7 @@
         <div class="field"> 
             <button class="button is-info">Send</button>
         </div>
+        <img :src="this.file" alt="test">
     </form>
   </div>
 </template>
@@ -21,7 +22,10 @@ export default {
   },
   methods: {
       selectFile() {
-          this.file = this.$refs.file.files[0]
+          // this.file = this.$refs.file.files[0];
+          this.file = "./assets/bugbashlogo.jpeg";
+
+          this.$store.commit("changeAvatarImage", this.$refs.file.files[0]); 
       }
   }
 };
