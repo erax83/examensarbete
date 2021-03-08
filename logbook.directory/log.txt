@@ -36,4 +36,6 @@ Möjlighet till screenshots med hjälp av html2canvas har lagts till.
 2021-03-08
 Handledaren har kontaktats för inbokning av möte. 
 
+Add User component.
+
 
