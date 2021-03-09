@@ -45,4 +45,6 @@ Jag försöker ladda upp bild till användaravataren.
 
 Lyckas visa bild i avataren men uppladdningen fungerar inte än. 
 
+Att ladda upp bild till avatar funkar nu.
+
 

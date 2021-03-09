@@ -15,51 +15,17 @@
     <GoogleLogin :params="params" :logoutButton="true" :signOut="signOut"
       >Logout</GoogleLogin
     >
-    <div v-if="this.userIcon !== null">
+    <!-- <div v-if="this.userIcon !== null">
       <img :src="userIcon" alt="user icon" />
-    </div>
+    </div> -->
     <div>
       <avatar
+        v-if="this.signedIn == true"
         :username="`${this.userInitials}`"
-        :src="testImage"
+        :src="this.$store.getters.avatarImage"
         :size="40"
       ></avatar>
-      <avatar
-        :username="`${this.userInitials}`"
-        :src="image.dataUrl"
-        :size="40"
-      ></avatar>
-      <div v-if="hasImage == true">
-        <p>hej</p>
-        <img :src="image" alt="blabla" />
-      </div>
-      <avatar :username="`${this.userInitials}`" :size="40"></avatar>
     </div>
-
-    <img :src="file" alt="bla" />
-    <img src="./assets/logo.png" width="24" />
-    <img :src="image.dataUrl" width="24" />
-
-    <!-- <SimpleUpload /> -->
-
-    <!-- <div>
-    <h1>Upload</h1>
-    <form @submit.prevent="sendFile" enctype="multipart/form-data">
-        <label for="file" class="label">Upload File</label>
-        <input type="file" ref="file" @change="selectFile">
-        <div class="field"> 
-            <button class="button is-info">Send</button>
-        </div>
-        <img :src="file" alt="test">
-    </form>
-  </div> -->
-
-    <!-- Academind file upload -->
-    <!-- <div>
-      <input type="file" @change="onFileSelected" />
-      <button @click="onUpload">Upload</button>
-      <img :src="selectedFile.dataUrl" alt="" />
-    </div> -->
 
     <image-uploader
       :debug="1"
@@ -67,34 +33,21 @@
       :quality="0.7"
       :autoRotate="true"
       outputFormat="verbose"
-      :preview="true"
+      :preview="false"
       :className="['fileinput', { 'fileinput--loaded': hasImage }]"
       capture="environment"
-      accept="video/*,image/*"
+      accept="image/*"
       doNotResize="['gif', 'svg']"
       @input="setImage"
       @onUpload="startImageResize"
       @onComplete="endImageResize"
     >
       <label for="fileInput" slot="upload-label">
-        <figure>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            viewBox="0 0 32 32"
-          >
-            <path
-              class="path1"
-              d="M9.5 19c0 3.59 2.91 6.5 6.5 6.5s6.5-2.91 6.5-6.5-2.91-6.5-6.5-6.5-6.5 2.91-6.5 6.5zM30 8h-7c-0.5-2-1-4-3-4h-8c-2 0-2.5 2-3 4h-7c-1.1 0-2 0.9-2 2v18c0 1.1 0.9 2 2 2h28c1.1 0 2-0.9 2-2v-18c0-1.1-0.9-2-2-2zM16 27.875c-4.902 0-8.875-3.973-8.875-8.875s3.973-8.875 8.875-8.875c4.902 0 8.875 3.973 8.875 8.875s-3.973 8.875-8.875 8.875zM30 14h-4v-2h4v2z"
-            ></path>
-          </svg>
-        </figure>
         <span class="upload-caption">{{
           hasImage ? "Replace" : "Upload"
         }}</span>
-      </label></image-uploader
-    >
+      </label>
+    </image-uploader>
 
     <!-- <div>
       <button @click="print">print</button>
@@ -130,11 +83,11 @@ export default {
       output: null,
       userIcon: null,
       userInitials: null,
-      avatarImg: this.$store.getters.avatarImage,
+      signedIn: false,
       file: "",
-      avatarTest: [],
+      // avatarTest: [],
       testImage: image,
-      selectedFile: null,
+      // selectedFile: null,
       image: "",
       hasImage: false,
       params: {
@@ -161,8 +114,9 @@ export default {
       const data = googleUser.getBasicProfile();
       console.log("full name: " + data.sd);
       this.userInitials = data.sd;
-      const image = googleUser.getBasicProfile().getImageUrl();
-      this.userIcon = image;
+      this.signedIn = true;
+      // const image = googleUser.getBasicProfile().getImageUrl();
+      // this.userIcon = image;
       // const test = gapi.auth2.getAuthInstance().isSignedIn.get();
       // console.log(test);
       // console.log(auth2.isSignedIn.get());
@@ -183,21 +137,10 @@ export default {
         document.body.appendChild(canvas);
       });
     },
-    selectFile() {
-      // this.file = this.$refs.file.files[0];
-      // this.file = "./assets/bugbashlogo.jpeg";
-      this.avatarTest = this.$refs.file.files[0];
-      this.$store.commit("changeAvatarImage", this.$refs.file.files[0]);
-      // console.log(this.file);
-    },
-    onFileSelected(event) {
-      console.log(event);
-      this.selectedFile = event.target.files[0];
-    },
     setImage: function(file) {
       this.hasImage = true;
       this.image = file;
-      console.log(file);
+      this.$store.commit("changeAvatarImage", file.dataUrl);
     },
   },
 };
