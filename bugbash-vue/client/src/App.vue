@@ -19,11 +19,17 @@
       <img :src="userIcon" alt="user icon" />
     </div>
     <div>
-      <avatar :username="`${this.userInitials}`" src="require('~/assets/logo.png')" :size="40" ></avatar>
+      <avatar :username="`${this.userInitials}`" :src='testImage' :size="40" ></avatar>
+      <avatar :username="`${this.userInitials}`" :size="40" ></avatar>
+
+
+
     </div>
 
-    <img v-bind:src="this.file" alt="bla">
-    <!-- <img src="./assets/logo.png"> -->
+    <img :src="file" alt="bla">
+    <img src="./assets/logo.png" width="24">
+    <img :src="testImage" width="24">
+
 
 
     <!-- <SimpleUpload /> -->
@@ -62,6 +68,7 @@ import GoogleLogin from "vue-google-login";
 // import { LoaderPlugin } from 'vue-google-login';
 
 import Avatar from "vue-avatar";
+import image from "./assets/logo.png";
 // import SimpleUpload from "./components/SimpleUpload.vue";
 
 export default {
@@ -78,7 +85,7 @@ export default {
       userInitials: null,
       avatarImg: this.$store.getters.avatarImage,
       file: "",
-      testImage: "./assets/logo.png",
+      testImage: image,
       params: {
         client_id:
           "239286565520-4olejvir9qtbmtsbdrn82lakb1gls3qp.apps.googleusercontent.com",

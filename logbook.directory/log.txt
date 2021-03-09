@@ -21,7 +21,7 @@ Jag har under perioden lärt mig om hur Vue fungerar. Jag har fördjupat mina f�
 fördjupat mina kunskaper i diverse områden, bland annat debugging i chrome dev tools. 
 
 2021-02-20 - 2021-03-05
-Sammanfattning
+Sammanfattning:
 
 Under den här perioden bestämdes det att projektet skulle användas som projektarbete: Instruktionerna för
 uppgiften har gåtts igenom. Jag har skrivit och gått igenom en projektplan med handledaren. En projektplan har 
@@ -31,11 +31,13 @@ startats.
 Inloggning via Google har lagts till. Inloggningen fungerar som den ska och data om användaren finns tillgänglig 
 och kan användas i programmet. 
 
-Möjlighet till screenshots med hjälp av html2canvas har lagts till. 
+Möjlighet att ta screenshots med hjälp av html2canvas har lagts till. 
 
 2021-03-08
 Handledaren har kontaktats för inbokning av möte. 
 
-Add User component.
+Lägger till User component.
+
+Försöker ladda upp bild till useravatar.
 
 

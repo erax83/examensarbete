@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@lossendae/vue-avatar": "^0.1.5",
     "dotenv": "^8.2.0",
     "html2canvas": "^1.0.0-rc.7",
     "jsonwebtoken": "^8.5.1",
