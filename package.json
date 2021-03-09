@@ -8,7 +8,9 @@
     "vue-google-login": "^2.0.5",
     "vue-google-signin-button-directive": "^1.0.3",
     "vue-html2canvas": "^0.0.4",
+    "vue-image-upload-resize": "^2.3.0",
     "vue-meta": "^2.4.0",
-    "vue-router": "^3.5.1"
+    "vue-router": "^3.5.1",
+    "vue-simple-uploader": "^0.7.6"
   }
 }

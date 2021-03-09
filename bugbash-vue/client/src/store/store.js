@@ -15,7 +15,7 @@ export const store = new Vuex.Store({
            dateState: true,
            messageState: true,
            urlState: true,
-           avatarImage: Array,
+           avatarImage: null,
          },
          mutations: {
            changeErrors(state, errors) {
