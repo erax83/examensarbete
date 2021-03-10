@@ -51,4 +51,7 @@ Försöka få Google logOut att fungera bättre.
 
 Läser på om ER-diagram i icke-rationella databaser.
 
+2021-03-10
+Lägger till möjlighet att ta bort användarbild.
+
 
