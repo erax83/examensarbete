@@ -41,10 +41,14 @@ Lägger till User component.
 Försöker ladda upp bild till useravatar.
 
 2021-03-09
-Jag försöker ladda upp bild till användaravataren. 
+Försöker ladda upp bild till användaravataren. 
 
 Lyckas visa bild i avataren men uppladdningen fungerar inte än. 
 
-Att ladda upp bild till avatar funkar nu.
+Att ladda upp bild till avatar funkar nu. Dock sparas det inte i databasen än. 
+
+Försöka få Google logOut att fungera bättre.
+
+Läser på om ER-diagram i icke-rationella databaser.
 
 

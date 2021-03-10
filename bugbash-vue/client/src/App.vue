@@ -20,6 +20,7 @@
     </div> -->
     <div>
       <avatar
+        :click="showImageUploader"
         v-if="this.signedIn == true"
         :username="`${this.userInitials}`"
         :src="this.$store.getters.avatarImage"
@@ -28,6 +29,7 @@
     </div>
 
     <image-uploader
+      
       :debug="1"
       :maxWidth="512"
       :quality="0.7"
@@ -48,22 +50,14 @@
         }}</span>
       </label>
     </image-uploader>
-
-    <!-- <div>
-      <button @click="print">print</button>
-      <div ref="printMe">
-        <h1>Print me!</h1>
-      </div>
-      <img :src="output" />
-    </div> -->
-
-    <!-- <router-view></router-view> -->
+    <button @click="removeUserImage">Remove userimage</button>
   </div>
 </template>
 
 <script>
 import html2canvas from "html2canvas";
 import GoogleLogin from "vue-google-login";
+// import VueGapi from "vue-gapi";
 // Behövs för viss funktionalitet
 // import { LoaderPlugin } from 'vue-google-login';
 
@@ -85,9 +79,11 @@ export default {
       userInitials: null,
       signedIn: false,
       file: "",
+      signedInUser: null,
       // avatarTest: [],
       testImage: image,
       // selectedFile: null,
+      imageUploaderDisplay: false,
       image: "",
       hasImage: false,
       params: {
@@ -113,6 +109,7 @@ export default {
       // console.log(JSON.stringify(googleUser));
       const data = googleUser.getBasicProfile();
       console.log("full name: " + data.sd);
+      this.signedInUser = googleUser;
       this.userInitials = data.sd;
       this.signedIn = true;
       // const image = googleUser.getBasicProfile().getImageUrl();
@@ -142,6 +139,15 @@ export default {
       this.image = file;
       this.$store.commit("changeAvatarImage", file.dataUrl);
     },
+    removeUserImage() {
+      this.$store.commit("changeAvatarImage", "");
+    },
+    showImageUploader() {
+      this.imageUploaderDisplay = true;
+    },
+    hideImageUploader() {
+      this.imageUploaderDisplay = false;
+    }
   },
 };
 </script>

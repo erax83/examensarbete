@@ -8,6 +8,7 @@ import { router } from "./routes";
 import VueMeta from "vue-meta";
 import VueHtml2Canvas from "vue-html2canvas";
 import ImageUploader from "vue-image-upload-resize";
+// import VueGapi from "vue-gapi";
 
 library.add(fas);
 
@@ -17,6 +18,13 @@ Vue.config.productionTip = false;
 
 Vue.use(VueHtml2Canvas);
 Vue.use(ImageUploader);
+// Vue.use(VueGapi, {
+//   apiKey: "<YOUR_API_KEY>",
+//   clientId:
+//     "239286565520-4olejvir9qtbmtsbdrn82lakb1gls3qp.apps.googleusercontent.com",
+//   discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
+//   scope: "https://www.googleapis.com/auth/spreadsheets",
+// });
 
 new Vue({
   VueMeta,
