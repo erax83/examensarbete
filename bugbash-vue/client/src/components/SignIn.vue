@@ -90,10 +90,10 @@ export default {
       onSuccess(googleUser) {
       console.log(googleUser);
       // console.log(JSON.stringify(googleUser));
-      const data = googleUser.getBasicProfile();
-      console.log("full name: " + data.sd);
+      const userData = googleUser.getBasicProfile();
+      console.log("full name: " + userData.sd);
       this.signedInUser = googleUser;
-      this.userInitials = data.sd;
+      this.userInitials = userData.sd;
       this.signedIn = true;
       // const image = googleUser.getBasicProfile().getImageUrl();
       // this.userIcon = image;

@@ -36,4 +36,10 @@ router.post("/hash", cors(corsOptions), errorController.postErrorHash);
 
 router.delete("/:id", cors(corsOptions), errorController.deleteMonitorError);
 
+router.post(
+  "/userComment",
+  cors(corsOptions),
+  errorController.postUserComment
+);
+
 module.exports = router;

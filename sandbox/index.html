@@ -15,7 +15,7 @@
       const buttonPath = document.getElementById("btnPath");
 
       button.addEventListener("click", () => {
-        errorFour();
+        errorNine();
       });
 
       buttonPath.addEventListener("click", () => {
@@ -23,24 +23,8 @@
         console.log(currentUrl);
       });
     </script>
-
     <script type="module">
-      //import html2canvas from "html2canvas";
       import ErrorMonitor from "../bugbash-vue/server/ErrorMonitorVue.js";
-
-      // const el = document.body;
-      // const options = {
-      //  type: "dataURL",
-      // };
-      // html2canvas(el, options).then(function (canvas) {
-      // document.body.appendChild(canvas);
-      // });
-
-      //window.addEventListener("error", function (event) {
-      //  html2canvas(el, options).then(function (canvas) {
-      //    document.body.appendChild(canvas);
-      //  });
-      //});
 
       console.log("inside script");
       const monitor = (window.monitor = new ErrorMonitor({

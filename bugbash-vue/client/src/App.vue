@@ -2,18 +2,22 @@
   <div id="app">
     <header class="main-header">
       <a class="logo">Bugbash</a>
+      <sign-in></sign-in>
       <div class="global-buttons">
         <button><font-awesome-icon icon="bars" /></button>
       </div>
     </header>
-  <sign-in></sign-in>
-  <router-link to="/"></router-link>
+  
+  <button @click="print">Print</button>
+  
+  <router-view></router-view>
   </div>
 </template>
 
 <script>
 import html2canvas from "html2canvas";
 import SignIn from "./components/SignIn.vue";
+
 
 export default {
   name: "App",
@@ -25,7 +29,7 @@ export default {
     };
   },
   methods: {
-    async print() {
+    print() {
       // const el = this.$refs.printMe;
       const el = document.body;
 

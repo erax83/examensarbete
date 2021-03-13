@@ -121,7 +121,35 @@ const deleteMonitorError = async (req, res) => {
     .catch(function (error) {
       console.log(error); // Failure
     });
-  await res.send('success');
+  await res.send("success");
+};
+
+const postUserComment = async (req, res) => {
+  var commentData = await req.body.params.queryData;
+  var hashData = await req.body.params.hashId;
+  console.log("inside post user comment and params: " + commentData);
+  console.log("inside post user comment and params: " + hashData);
+
+  const result = await ErrorModel.findOne({
+    hashNumber: hashData,
+  });
+
+  console.log(result.message);
+
+  // const result = await ErrorModel.update({ hashNumber: hashData }, { $push: { userComments: commentData } }, done);
+
+  // const resultError = await ErrorModel.find({
+  //   hashNumber: hashData,
+  // });
+
+  // console.log(resultError);
+
+  result.userComments.push(commentData);
+  await result.save();
+
+  // result.update({ $push: { userComments: commentData } }, done);
+
+  // const newErrorModel = await new ErrorModel();
 };
 
 module.exports = {
@@ -134,4 +162,5 @@ module.exports = {
   postMonitorError,
   postErrorHash,
   deleteMonitorError,
+  postUserComment,
 };

@@ -49,9 +49,25 @@ Att ladda upp bild till avatar funkar nu. Dock sparas det inte i databasen än.
 
 Försöka få Google logOut att fungera bättre.
 
-Läser på om ER-diagram i icke-rationella databaser.
+Läser på om ER-diagram i icke-rationella databaser som Mongodb.
 
 2021-03-10
 Lägger till möjlighet att ta bort användarbild.
+
+Flyttar Google Sign In och användaravatar till egen komponent.
+
+Försöker få html2canvas att fungera utanför Vue där error uppstår.
+
+Skissar på ER-diagram.
+
+2021-03-11
+Videomöte med handledaren.
+
+Försöker få html2canvas att fungera från ErrorMonitorView.
+
+2021-03-12
+Försöker lägga till möjighet till kommentarer.
+
+
 
 

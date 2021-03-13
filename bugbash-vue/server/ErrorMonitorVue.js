@@ -1,3 +1,4 @@
+// import html2canvas from "html2canvas";
 /**
  * Monitor for errors and add data to database.
  *
@@ -10,6 +11,11 @@ export default class ErrorMonitor {
     this.onError = this.onError.bind(this);
     // require('server.js');
 
+    // const script = document.createElement("script");
+    // script.src = "/node_modules/html2canvas/dist/html2canvas.js";
+    // script.src =
+    //   "/Library/WebServer/Documents/bugbash/node_modules/html2canvas/dist/html2canvas.js";
+    // document.head.appendChild(script);
     if (this.autoStart) {
       this.start();
     }
@@ -34,8 +40,18 @@ export default class ErrorMonitor {
    *
    * @param {ErrorEvent} errorEvent
    */
-  onError(errorEvent) {
+  async onError(errorEvent) {
     console.log("inside onError Vue");
+
+    // const options = await {
+    //   type: "dataURL",
+    // };
+
+    // html2canvas(document.body, options).then(function (canvas) {
+    //   console.log("inside canvas");
+    //   document.body.appendChild(canvas);
+    // });
+
     this.logError(errorEvent.error);
     this.addError(errorEvent.error);
     this.addErrorHash(errorEvent.error);

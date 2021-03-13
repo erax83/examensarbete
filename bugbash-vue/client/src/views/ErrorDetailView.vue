@@ -42,6 +42,20 @@
       <h3>Browser Window Height</h3>
       <p>{{ this.errorOccurrence[0].browserWindowHeight }}</p>
     </div>
+    <div>
+      <form v-on:submit="postUserComment">
+        <span>Add a comment:</span>
+        <br />
+        <textarea
+          v-model="userComment"
+          name="userCommentName"
+          placeholder="add your comment"
+        ></textarea>
+        <br />
+        <button type="submit">Add Comment</button>
+      </form>
+      <p>{{ userComment }}</p>
+    </div>
   </div>
 </template>
 
@@ -55,6 +69,7 @@ export default {
       id: this.$route.params.id,
       occurrenceDetails: [],
       selected: "",
+      userComment: "",
     };
   },
   computed: {
@@ -84,6 +99,27 @@ export default {
           })
           .then((response) => {
             this.occurrenceDetails = response.data;
+          });
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    postUserComment: async function(e) {
+      console.log(this.userComment);
+      console.log(e);
+      var errorHashNumber = await this.occurrenceDetails[0].hashNumber;
+
+      // it prevent from page reload
+      e.preventDefault(); 
+
+      try {
+        axios
+          .post("http://localhost:3000/errorRouter/userComment", {
+            params: { queryData: this.userComment,
+            hashId: errorHashNumber },
+          })
+          .then((response) => {
+            console.log(response.data);
           });
       } catch (err) {
         console.log(err);
