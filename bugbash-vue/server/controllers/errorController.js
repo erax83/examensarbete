@@ -124,32 +124,39 @@ const deleteMonitorError = async (req, res) => {
   await res.send("success");
 };
 
+const getUserComments = async (req, res) => {
+  console.log('inside get comments controller ' + req.query.queryData);
+  var hashData = await req.query.queryData;
+  // console.log('hashData: ' + hashData);
+  // const result = await ErrorModel.find({
+  //   hashNumber: hashData,
+  // });
+
+  try {
+    const result = await ErrorModel.findOne({
+      hashNumber: hashData,
+    });
+    console.log(result.userComments);
+    res.send(result.userComments);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+
+
+};
+
 const postUserComment = async (req, res) => {
   var commentData = await req.body.params.queryData;
   var hashData = await req.body.params.hashId;
   console.log("inside post user comment and params: " + commentData);
   console.log("inside post user comment and params: " + hashData);
 
-  const result = await ErrorModel.findOne({
+ const result = await ErrorModel.findOne({
     hashNumber: hashData,
-  });
-
+  }); 
   console.log(result.message);
-
-  // const result = await ErrorModel.update({ hashNumber: hashData }, { $push: { userComments: commentData } }, done);
-
-  // const resultError = await ErrorModel.find({
-  //   hashNumber: hashData,
-  // });
-
-  // console.log(resultError);
-
   result.userComments.push(commentData);
   await result.save();
-
-  // result.update({ $push: { userComments: commentData } }, done);
-
-  // const newErrorModel = await new ErrorModel();
 };
 
 module.exports = {
@@ -162,5 +169,6 @@ module.exports = {
   postMonitorError,
   postErrorHash,
   deleteMonitorError,
+  getUserComments,
   postUserComment,
 };

@@ -68,6 +68,16 @@ Försöker få html2canvas att fungera från ErrorMonitorView.
 2021-03-12
 Försöker lägga till möjighet till kommentarer.
 
+Nu möjligt att lägga till kommentarer till errors-collection i databasen.
+
+2021-03-13
+
+2021-03-14
+Försöker printa ut kommentarer i Vue från databasen.
+
+2021-03-15
+
+
 
 
 

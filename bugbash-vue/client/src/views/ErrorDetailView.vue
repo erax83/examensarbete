@@ -43,6 +43,20 @@
       <p>{{ this.errorOccurrence[0].browserWindowHeight }}</p>
     </div>
     <div>
+      <div>
+        <h3>Kommentarer</h3>
+        <ul v-for="(comment, index) in userComments" v-bind:key="index">
+          <li >
+            {{ comment }}
+          </li>
+        </ul>
+        <ul v-for="(comment, index) in this.userCommentList" v-bind:key="index">
+          <li>
+            {{ comment }}
+          </li>
+          <br>
+        </ul>
+      </div>
       <form v-on:submit="postUserComment">
         <span>Add a comment:</span>
         <br />
@@ -61,20 +75,33 @@
 
 <script>
 import axios from "axios";
+// import GoogleLogin from "vue-google-login";
 
 export default {
   name: "ErrorDetailView",
+  // components: {
+  //   GoogleLogin,
+  // },
   data: function() {
     return {
       id: this.$route.params.id,
+      // hash: this.errorOccurrence[0].hashNumber,
       occurrenceDetails: [],
       selected: "",
+      userCommentList: [],
+      // userCommentList: this.getUserComments,
       userComment: "",
+      testList: ["James", "Jane", "Kane", "Deborah"],
+      // testy: this.userComments(),
     };
   },
   computed: {
     errorOccurrence() {
       return this.occurrenceDetails;
+    },
+    userComments: function() {
+      return this.getUserComments();
+      // return this.userCommentList;
     },
   },
   methods: {
@@ -104,19 +131,50 @@ export default {
         console.log(err);
       }
     },
+    getUserComments: async function() {
+      console.log("inside get comments");
+      var hashId = await this.occurrenceDetails[0].hashNumber;
+      console.log("hash: " + hashId);
+      // const userData = googleUser.getBasicProfile();
+      // console.log('user data: ' + userData.sd);
+      // e.preventDefault();
+      try {
+       return axios
+          .get("http://localhost:3000/errorRouter/userComments", {
+            params: { queryData: hashId },
+          })
+          .then((response) => {
+            var responseArray = [];
+            responseArray = response.data;
+            console.log("response data: " + responseArray[1]);
+
+            this.userCommentList = responseArray;
+
+            return responseArray;
+
+            // return response;
+
+            // this.userCommentList = response.data;
+          });
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    // getComments(i) {
+    //   return this.userCommentList[i];
+    // },
     postUserComment: async function(e) {
       console.log(this.userComment);
       console.log(e);
       var errorHashNumber = await this.occurrenceDetails[0].hashNumber;
 
       // it prevent from page reload
-      e.preventDefault(); 
+      e.preventDefault();
 
       try {
         axios
           .post("http://localhost:3000/errorRouter/userComment", {
-            params: { queryData: this.userComment,
-            hashId: errorHashNumber },
+            params: { queryData: this.userComment, hashId: errorHashNumber },
           })
           .then((response) => {
             console.log(response.data);
@@ -129,10 +187,12 @@ export default {
 
   updated: function() {
     this.getOccurrencesDates();
+    // this.getUserComments();
   },
 
   mounted() {
     this.getOccurrencesById(this.id);
+    // this.getUserComments();
   },
 };
 </script>
