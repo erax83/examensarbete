@@ -150,6 +150,8 @@ const postUserComment = async (req, res) => {
   var hashData = await req.body.params.hashId;
   console.log("inside post user comment and params: " + commentData);
   console.log("inside post user comment and params: " + hashData);
+  
+
 
  const result = await ErrorModel.findOne({
     hashNumber: hashData,

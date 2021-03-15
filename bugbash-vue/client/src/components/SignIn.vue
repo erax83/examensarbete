@@ -91,6 +91,7 @@ export default {
       console.log(googleUser);
       // console.log(JSON.stringify(googleUser));
       const userData = googleUser.getBasicProfile();
+      this.$store.commit("changeUserInfo", userData)
       console.log("full name: " + userData.sd);
       this.signedInUser = googleUser;
       this.userInitials = userData.sd;

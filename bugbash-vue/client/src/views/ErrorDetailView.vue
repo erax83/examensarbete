@@ -46,7 +46,7 @@
       <div>
         <h3>Kommentarer</h3>
         <ul v-for="(comment, index) in userComments" v-bind:key="index">
-          <li >
+          <li>
             {{ comment }}
           </li>
         </ul>
@@ -54,7 +54,7 @@
           <li>
             {{ comment }}
           </li>
-          <br>
+          <br />
         </ul>
       </div>
       <form v-on:submit="postUserComment">
@@ -68,7 +68,6 @@
         <br />
         <button type="submit">Add Comment</button>
       </form>
-      <p>{{ userComment }}</p>
     </div>
   </div>
 </template>
@@ -91,7 +90,6 @@ export default {
       userCommentList: [],
       // userCommentList: this.getUserComments,
       userComment: "",
-      testList: ["James", "Jane", "Kane", "Deborah"],
       // testy: this.userComments(),
     };
   },
@@ -104,6 +102,11 @@ export default {
       // return this.userCommentList;
     },
   },
+  // watch: {
+  //   userCommentList: function () {
+
+  //   }
+  // },
   methods: {
     onSelectChange: async function() {
       this.id = await this.selected;
@@ -139,7 +142,7 @@ export default {
       // console.log('user data: ' + userData.sd);
       // e.preventDefault();
       try {
-       return axios
+        return axios
           .get("http://localhost:3000/errorRouter/userComments", {
             params: { queryData: hashId },
           })
@@ -150,7 +153,7 @@ export default {
 
             this.userCommentList = responseArray;
 
-            return responseArray;
+            // return responseArray;
 
             // return response;
 
@@ -167,7 +170,13 @@ export default {
       console.log(this.userComment);
       console.log(e);
       var errorHashNumber = await this.occurrenceDetails[0].hashNumber;
-
+      var userInfo = null;
+      if (this.$store.getters.userInfo !== null) {
+        userInfo = this.$store.getters.userInfo;
+      } else {
+        return alert("You must be logged in to make a comment");
+      }
+      console.log("user info: " + userInfo.sd);
       // it prevent from page reload
       e.preventDefault();
 
@@ -176,8 +185,10 @@ export default {
           .post("http://localhost:3000/errorRouter/userComment", {
             params: { queryData: this.userComment, hashId: errorHashNumber },
           })
-          .then((response) => {
-            console.log(response.data);
+          .then(async (response) => {
+            this.getUserComments();
+            const result = await response.data;
+            console.log("inside post, post data: " + result);
           });
       } catch (err) {
         console.log(err);
@@ -187,7 +198,6 @@ export default {
 
   updated: function() {
     this.getOccurrencesDates();
-    // this.getUserComments();
   },
 
   mounted() {

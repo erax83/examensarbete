@@ -76,7 +76,7 @@ Nu möjligt att lägga till kommentarer till errors-collection i databasen.
 Försöker printa ut kommentarer i Vue från databasen.
 
 2021-03-15
-
+Kommentarer kan nu ses i Vue. 
 
 
 
