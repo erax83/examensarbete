@@ -136,8 +136,10 @@ const getUserComments = async (req, res) => {
     const result = await ErrorModel.findOne({
       hashNumber: hashData,
     });
-    console.log(result.userComments);
-    res.send(result.userComments);
+    console.log(result.comments.userName);
+    console.log(result.comments.userComment);
+
+    res.send(result.comments);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -148,16 +150,22 @@ const getUserComments = async (req, res) => {
 const postUserComment = async (req, res) => {
   var commentData = await req.body.params.queryData;
   var hashData = await req.body.params.hashId;
+  var nameData = await req.body.params.userName;
+
   console.log("inside post user comment and params: " + commentData);
   console.log("inside post user comment and params: " + hashData);
+  console.log("inside post user comment and params: " + nameData);
   
-
+  const userAndComment = {
+    userName: nameData,
+    userComment: commentData
+  }
 
  const result = await ErrorModel.findOne({
     hashNumber: hashData,
   }); 
   console.log(result.message);
-  result.userComments.push(commentData);
+  result.comments.push(userAndComment);
   await result.save();
 };
 

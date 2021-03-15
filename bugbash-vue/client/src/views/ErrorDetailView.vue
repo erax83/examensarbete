@@ -52,8 +52,12 @@
         </ul>
         <ul v-for="(comment, index) in this.userCommentList" v-bind:key="index">
           <li>
-            {{ comment }}
+            <h4>
+              {{ comment.userName }}
+            </h4>
           </li>
+          <br>
+          <li>{{ comment.userComment }}</li>
           <br />
         </ul>
       </div>
@@ -149,7 +153,7 @@ export default {
           .then((response) => {
             var responseArray = [];
             responseArray = response.data;
-            console.log("response data: " + responseArray[1]);
+            // console.log("response data: " + responseArray[1]);
 
             this.userCommentList = responseArray;
 
@@ -183,7 +187,11 @@ export default {
       try {
         axios
           .post("http://localhost:3000/errorRouter/userComment", {
-            params: { queryData: this.userComment, hashId: errorHashNumber },
+            params: {
+              queryData: this.userComment,
+              hashId: errorHashNumber,
+              userName: userInfo.sd,
+            },
           })
           .then(async (response) => {
             this.getUserComments();

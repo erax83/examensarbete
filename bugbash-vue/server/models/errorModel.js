@@ -5,7 +5,12 @@ const errorModelSchema = new Schema({
   message: { type: String },
   hashNumber: { type: String },
   occurrencesCount: { type: Number },
-  userComments: [String],
+  comments: [
+    {
+      userName: { type: String },
+      userComment: { type: String },
+    },
+  ],
 });
 
 const ErrorModel = mongoose.model("errors", errorModelSchema);
