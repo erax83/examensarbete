@@ -206,11 +206,12 @@ export default {
 
   updated: function() {
     this.getOccurrencesDates();
+    // this.getUserComments();
+    this.userComments();
   },
 
   mounted() {
     this.getOccurrencesById(this.id);
-    // this.getUserComments();
   },
 };
 </script>

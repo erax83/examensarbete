@@ -30,7 +30,7 @@
             icon="trash-alt"
           ></font-awesome-icon>
           <!-- <p>|</p> -->
-          <button>Close</button>
+          <button>Accept</button>
         </div>
       </div>
     </div>
