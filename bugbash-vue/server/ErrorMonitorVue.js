@@ -56,11 +56,13 @@ export default class ErrorMonitor {
       type: "dataURL",
     };
 
-    const canvas = await html2canvas(document.body, options)
-    document.body.appendChild(canvas);
+    const canvas = await html2canvas(document.body, options);
+    const canvasUrl = canvas.toDataURL();
+    console.log('canvas: ' + canvasUrl);
+    // document.body.appendChild(canvas);
 
     this.logError(errorEvent.error);
-    this.addError(errorEvent.error);
+    this.addError(errorEvent.error, canvasUrl);
     this.addErrorHash(errorEvent.error);
     console.log(window.navigator.language);
     this.stop();
@@ -86,7 +88,7 @@ export default class ErrorMonitor {
    *
    * @param {Error} error
    */
-  async addError(error) {
+  async addError(error, canvas) {
     const errorMessage = error.message;
     console.log("inside addError ");
 
@@ -104,6 +106,7 @@ export default class ErrorMonitor {
       plugins: window.navigator.plugins,
       browserWindowWidth: document.documentElement.offsetWidth,
       browserWindowHeight: document.documentElement.offsetHeight,
+      canvas: canvas,
     };
 
     const options = {

@@ -8,7 +8,7 @@ från början i Vue. Bland annat för att det tycktes finnas mer support att fin
 det fanns delar av Nuxt som handledaren ställde sig tveksam till. 
 
 En frontend byggdes upp i Vue. En backend skapades med Nodejs och tillhörande Express. Strukturen följer 
-MVC-modellen.  Databasen skapades med Mongodb. 
+MVC-modellen. Databasen skapades med Mongodb. 
 
 Om arbetet i Vue: 
 I början användes togglefunktioner för att navigera mellan komponenter och props och emit användes för att 
@@ -17,8 +17,8 @@ Vuex har använts för statehantering i Vue. Det går att organisera componenter
 tänkt att de componenter som ligger i viewsmappen är sidor med egna URIer och de componenter som ligger i 
 componentsmappen används för specifika ändamål. Axios används i Vue för kontakt med backenddelen.
 
-Jag har under perioden lärt mig om hur Vue fungerar. Jag har fördjupat mina färdigheter i Mongodb. Jag har 
-fördjupat mina kunskaper i diverse områden, bland annat debugging i chrome dev tools. 
+Jag har fördjupat mina kunskaper i diverse områden, bland annat Mongodb, debugging i chrome dev tools, 
+hur Vue fungerar med tillhörande Vuex, Vuerouter, lifecyclemethods mm. 
 
 2021-02-20 - 2021-03-05
 Sammanfattning:
@@ -86,6 +86,9 @@ Möte är bokat med handledare.
 Google sign in har fått mer styling.
 
 Möte med handledare.
+
+html2canvas kan nu aktiveras när ett fel inträffar. 
+
 
 
 

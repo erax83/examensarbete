@@ -15,7 +15,8 @@ const occurrenceModelSchema = new Schema({
   language: { type: String },
   plugins: { type: Array },
   browserWindowWidth: { type: Number },
-  browserWindowHeight: { type: Number }
+  browserWindowHeight: { type: Number },
+  canvas: { type: String },
 });
 
 const OccurrenceModel = mongoose.model("occurrences", occurrenceModelSchema);
