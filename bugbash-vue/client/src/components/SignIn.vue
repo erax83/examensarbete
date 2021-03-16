@@ -1,5 +1,41 @@
 <template>
-  <div>
+  <div class="sign-in">
+    <div>
+      <avatar
+        class="avatar"
+        :click="showImageUploader"
+        v-if="this.signedIn == true"
+        :username="`${this.userInitials}`"
+        :src="this.$store.getters.avatarImage"
+        :size="30"
+      ></avatar>
+    </div>
+    <div>
+      <div>
+        <image-uploader
+          :debug="1"
+          :maxWidth="512"
+          :quality="0.7"
+          :autoRotate="true"
+          outputFormat="verbose"
+          :preview="false"
+          :className="['fileinput', { 'fileinput--loaded': hasImage }]"
+          capture="environment"
+          accept="image/*"
+          doNotResize="['gif', 'svg']"
+          @input="setImage"
+          @onUpload="startImageResize"
+          @onComplete="endImageResize"
+        >
+          <!-- <label for="fileInput" slot="upload-label">
+          <span class="upload-caption">{{
+            hasImage ? "Replace" : "Upload"
+          }}</span>
+        </label> -->
+        </image-uploader>
+        <button @click="removeUserImage">Remove userimage</button>
+      </div>
+    </div>
     <div>
       <GoogleLogin
         :params="params"
@@ -10,41 +46,6 @@
       <GoogleLogin :params="params" :logoutButton="true" :signOut="signOut"
         >Logout</GoogleLogin
       >
-    </div>
-
-    <div>
-      <avatar
-        :click="showImageUploader"
-        v-if="this.signedIn == true"
-        :username="`${this.userInitials}`"
-        :src="this.$store.getters.avatarImage"
-        :size="40"
-      ></avatar>
-    </div>
-
-    <div>
-      <image-uploader
-        :debug="1"
-        :maxWidth="512"
-        :quality="0.7"
-        :autoRotate="true"
-        outputFormat="verbose"
-        :preview="false"
-        :className="['fileinput', { 'fileinput--loaded': hasImage }]"
-        capture="environment"
-        accept="image/*"
-        doNotResize="['gif', 'svg']"
-        @input="setImage"
-        @onUpload="startImageResize"
-        @onComplete="endImageResize"
-      >
-        <!-- <label for="fileInput" slot="upload-label">
-          <span class="upload-caption">{{
-            hasImage ? "Replace" : "Upload"
-          }}</span>
-        </label> -->
-      </image-uploader>
-      <button @click="removeUserImage">Remove userimage</button>
     </div>
   </div>
 </template>
@@ -69,7 +70,7 @@ export default {
       file: "",
       signedInUser: null,
       // avatarTest: [],
-    //   testImage: image,
+      //   testImage: image,
       // selectedFile: null,
       imageUploaderDisplay: false,
       image: "",
@@ -80,18 +81,18 @@ export default {
         // client_id: process.env.GOOGLECLIENT_ID,
       },
       renderParams: {
-        width: 250,
-        height: 50,
+        width: 180,
+        height: 30,
         longtitle: true,
       },
     };
   },
   methods: {
-      onSuccess(googleUser) {
+    onSuccess(googleUser) {
       console.log(googleUser);
       // console.log(JSON.stringify(googleUser));
       const userData = googleUser.getBasicProfile();
-      this.$store.commit("changeUserInfo", userData)
+      this.$store.commit("changeUserInfo", userData);
       console.log("full name: " + userData.sd);
       this.signedInUser = googleUser;
       this.userInitials = userData.sd;
@@ -104,7 +105,7 @@ export default {
     },
     setImage: function(file) {
       this.hasImage = true;
-    //   this.image = file;
+      //   this.image = file;
       this.$store.commit("changeAvatarImage", file.dataUrl);
     },
     removeUserImage() {
@@ -115,9 +116,19 @@ export default {
     },
     hideImageUploader() {
       this.imageUploaderDisplay = false;
-    }
+    },
   },
 };
 </script>
 
-<style></style>
+<style>
+.sign-in {
+  display: flex;
+  align-items: center;
+  padding: 0.3em 1.9em;
+}
+
+.avatar {
+  margin: 1.2em;
+}
+</style>

@@ -78,6 +78,8 @@ Försöker printa ut kommentarer i Vue från databasen.
 2021-03-15
 Kommentarer kan nu ses i Vue. 
 
+Användarnamn har lagts till i errorcollection i databasen samt går att se på errordetail-sidan.
+
 
 
 
