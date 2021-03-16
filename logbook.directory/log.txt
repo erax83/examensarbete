@@ -80,6 +80,14 @@ Kommentarer kan nu ses i Vue.
 
 Användarnamn har lagts till i errorcollection i databasen samt går att se på errordetail-sidan.
 
+Möte är bokat med handledare.
+
+2021-03-16
+Google sign in har fått mer styling.
+
+Möte med handledare.
+
+
 
 
 

@@ -44,7 +44,7 @@
     </div>
     <div>
       <div>
-        <h3>Kommentarer</h3>
+        <h3>Comments</h3>
         <ul v-for="(comment, index) in userComments" v-bind:key="index">
           <li>
             {{ comment }}

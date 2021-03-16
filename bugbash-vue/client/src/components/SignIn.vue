@@ -1,15 +1,6 @@
 <template>
   <div class="sign-in">
-    <div>
-      <avatar
-        class="avatar"
-        :click="showImageUploader"
-        v-if="this.signedIn == true"
-        :username="`${this.userInitials}`"
-        :src="this.$store.getters.avatarImage"
-        :size="30"
-      ></avatar>
-    </div>
+    
     <div>
       <div>
         <image-uploader
@@ -35,6 +26,16 @@
         </image-uploader>
         <button @click="removeUserImage">Remove userimage</button>
       </div>
+    </div>
+    <div>
+      <avatar
+        class="avatar"
+        :click="showImageUploader"
+        v-if="this.signedIn == true"
+        :username="`${this.userInitials}`"
+        :src="this.$store.getters.avatarImage"
+        :size="38"
+      ></avatar>
     </div>
     <div>
       <GoogleLogin
@@ -126,9 +127,10 @@ export default {
   display: flex;
   align-items: center;
   padding: 0.3em 1.9em;
+  margin-right: 1.6em;
 }
 
 .avatar {
-  margin: 1.2em;
+  margin-right: 2.7em;
 }
 </style>
