@@ -1,6 +1,5 @@
 <template>
   <div class="sign-in">
-    
     <div>
       <div>
         <image-uploader
@@ -24,7 +23,15 @@
           }}</span>
         </label> -->
         </image-uploader>
-        <button @click="removeUserImage">Remove userimage</button>
+        <div>
+          <!-- <button @click="removeUserImage">Remove userimage</button> -->
+          <font-awesome-icon
+            @click="removeUserImage"
+            icon="trash-alt"
+          ></font-awesome-icon>
+          <!-- <p>|</p> -->
+          <button>Close</button>
+        </div>
       </div>
     </div>
     <div>
