@@ -38,7 +38,7 @@
       <avatar
         class="avatar"
         :click="showImageUploader"
-        v-if="this.$store.getters.signedIn == true"
+        v-if="this.signedIn == true"
         :username="this.$store.getters.userInitials"
         :src="this.$store.getters.avatarImage"
         :size="38"
@@ -51,7 +51,11 @@
         :onSuccess="onSuccess"
         :onFailure="onFailure"
       ></GoogleLogin>
-      <GoogleLogin :params="params" :logoutButton="true" :onFailure="onFailure" :signOut="signOut"
+      <GoogleLogin
+        :params="params"
+        :logoutButton="true"
+        :onFailure="onFailure"
+        :signOut="signOut"
         >Logout</GoogleLogin
       >
       <button @click="testMethod">Test</button>
@@ -75,12 +79,14 @@ export default {
       output: null,
       userIcon: null,
       userInitials: this.$store.getters.userInitials,
-      signedIn: this.$store.getters.signedIn,
-      user: null,
+      // signedIn: this.$store.getters.signedIn,
+      // signedIn: this.$store.getters.userAuth.isSignedIn(),
+
+      // user: null,
       file: "",
       signedInUser: null,
       // avatarTest: [],
-      //   testImage: image,
+      // testImage: image,
       // selectedFile: null,
       imageUploaderDisplay: false,
       image: "",
@@ -97,9 +103,18 @@ export default {
       },
     };
   },
+  computed: {
+    signedIn() {
+      var check = false;
+      if(this.$store.getters.userAuth !== null) {
+        check = this.$store.getters.userAuth.isSignedIn()
+      } 
+      return check;
+    }
+  },
   methods: {
     testMethod() {
-      console.log('testing: ' + this.user.isSignedIn());
+      console.log("testing: " + this.$store.getters.userAuth.isSignedIn());
     },
     onSuccess(googleUser) {
       console.log(googleUser);
@@ -116,8 +131,8 @@ export default {
       // const test = gapi.auth2.getAuthInstance().isSignedIn.get();
       // console.log(test);
       // console.log(auth2.isSignedIn.get());
-      this.user = googleUser;
-      console.log('testing: ' + googleUser.isSignedIn());
+      this.$store.commit("changeUserAuth", googleUser);
+      console.log("testing: " + googleUser.isSignedIn());
     },
     setImage: function(file) {
       this.hasImage = true;

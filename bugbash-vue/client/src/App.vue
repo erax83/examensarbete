@@ -14,8 +14,8 @@
       >
       <div>
         <avatar
+          v-if="this.signedIn == true"
           class="avatar"
-          v-if="this.$store.getters.signedIn == true"
           :username="this.$store.getters.userInitials"
           :src="this.$store.getters.avatarImage"
           :size="38"
@@ -41,6 +41,15 @@ export default {
     return {
       userInitials: this.$store.getters.userInitials,
     };
+  },
+  computed: {
+    signedIn() {
+      var check = false;
+      if (this.$store.getters.userAuth !== null) {
+        check = this.$store.getters.userAuth.isSignedIn();
+      }
+      return check;
+    },
   },
   methods: {},
 };
