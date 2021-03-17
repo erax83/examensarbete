@@ -41,6 +41,8 @@
       <p>{{ this.errorOccurrence[0].browserWindowWidth }}</p>
       <h3>Browser Window Height</h3>
       <p>{{ this.errorOccurrence[0].browserWindowHeight }}</p>
+      <h3>Canvas</h3>
+      <img :src="this.errorOccurrence[0].canvas" alt="canvas">
     </div>
     <div>
       <div>
@@ -95,6 +97,7 @@ export default {
       // userCommentList: this.getUserComments,
       userComment: "",
       // testy: this.userComments(),
+      // canvasUrl: this.errorOccurrence[0].browserWindowHeight,
     };
   },
   computed: {
@@ -222,4 +225,5 @@ export default {
   align-self: center;
   width: 100%;
 }
+
 </style>

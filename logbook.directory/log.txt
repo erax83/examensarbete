@@ -89,6 +89,10 @@ Möte med handledare.
 
 html2canvas kan nu aktiveras när ett fel inträffar. 
 
+Försöker printa canvas i Vue från databasen.
+
+2021-03-17
+
 
 
 
