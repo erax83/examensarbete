@@ -17,6 +17,8 @@ export const store = new Vuex.Store({
            urlState: true,
            avatarImage: null,
            userInfo: null,
+           signedIn: false,
+           userInitials: null,
          },
          mutations: {
            changeErrors(state, errors) {
@@ -61,6 +63,12 @@ export const store = new Vuex.Store({
            changeUserInfo(state, userInfo) {
              state.userInfo = userInfo;
            },
+           changeSignedIn(state, signedIn) {
+             state.signedIn = signedIn;
+           },
+           changeUserInitials(state, userInitials) {
+             state.userInitials = userInitials;
+           }
          },
          getters: {
            // Tror att detta är occurrences från occurrences collection
@@ -90,5 +98,7 @@ export const store = new Vuex.Store({
 
            avatarImage: (state) => state.avatarImage,
            userInfo: (state) => state.userInfo,
+           signedIn: (state) => state.signedIn,
+           userInitials: (state) => state.userInitials,
          },
        });

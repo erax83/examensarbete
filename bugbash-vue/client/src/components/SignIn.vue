@@ -38,8 +38,8 @@
       <avatar
         class="avatar"
         :click="showImageUploader"
-        v-if="this.signedIn == true"
-        :username="`${this.userInitials}`"
+        v-if="this.$store.getters.signedIn == true"
+        :username="this.$store.getters.userInitials"
         :src="this.$store.getters.avatarImage"
         :size="38"
       ></avatar>
@@ -73,8 +73,8 @@ export default {
     return {
       output: null,
       userIcon: null,
-      userInitials: null,
-      signedIn: false,
+      userInitials: this.$store.getters.userInitials,
+      signedIn: this.$store.getters.signedIn,
       file: "",
       signedInUser: null,
       // avatarTest: [],
@@ -103,8 +103,9 @@ export default {
       this.$store.commit("changeUserInfo", userData);
       console.log("full name: " + userData.sd);
       this.signedInUser = googleUser;
-      this.userInitials = userData.sd;
-      this.signedIn = true;
+      // this.userInitials = userData.sd;
+      this.$store.commit("changeUserInitials", userData.sd);
+      this.$store.commit("changeSignedIn", true);
       // const image = googleUser.getBasicProfile().getImageUrl();
       // this.userIcon = image;
       // const test = gapi.auth2.getAuthInstance().isSignedIn.get();
@@ -137,7 +138,7 @@ export default {
   margin-right: 1.6em;
 }
 
-.avatar {
+/* .avatar {
   margin-right: 2.7em;
-}
+} */
 </style>

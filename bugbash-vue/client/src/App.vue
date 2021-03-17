@@ -12,6 +12,15 @@
         }"
         ><p>User Login</p></router-link
       >
+      <div>
+        <avatar
+          class="avatar"
+          v-if="this.$store.getters.signedIn == true"
+          :username="this.$store.getters.userInitials"
+          :src="this.$store.getters.avatarImage"
+          :size="38"
+        ></avatar>
+      </div>
     </header>
 
     <router-view></router-view>
@@ -19,15 +28,19 @@
 </template>
 
 <script>
-// import SignIn from "./components/SignIn.vue";
+import Avatar from "vue-avatar";
+// import GoogleLogin from "vue-google-login";
 
 export default {
   name: "App",
   components: {
-    // SignIn,
+    // GoogleLogin,
+    Avatar,
   },
   data: function() {
-    return {};
+    return {
+      userInitials: this.$store.getters.userInitials,
+    };
   },
   methods: {},
 };
@@ -117,6 +130,10 @@ ul {
 li {
   display: inline-block;
   margin: 0 10px;
+}
+
+.avatar {
+  margin-right: 2.7em;
 }
 
 /* a {
