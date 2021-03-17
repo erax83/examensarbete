@@ -8,14 +8,11 @@
       </div>
     </header>
   
-  <button @click="print">Print</button>
-  
   <router-view></router-view>
   </div>
 </template>
 
 <script>
-import html2canvas from "html2canvas";
 import SignIn from "./components/SignIn.vue";
 
 
@@ -29,22 +26,7 @@ export default {
     };
   },
   methods: {
-    print() {
-      // const el = this.$refs.printMe;
-      const el = document.body;
-
-      // add option type to get the image version
-      // if not provided the promise will return
-      // the canvas.
-      const options = {
-        type: "dataURL",
-      };
-      // this.output = await this.$html2canvas(el, options);
-
-      html2canvas(el, options).then(function(canvas) {
-        document.body.appendChild(canvas);
-      });
-    },
+  
   },
 };
 </script>
