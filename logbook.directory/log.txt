@@ -96,6 +96,9 @@ Canvas kan nu visas i errordetail-sidan.
 
 Uppdatera databasen.
 
+Ändringar i google sign in. Inloggning har nu en egen sida och avataren kan ses både på loginsidan
+och i headern.
+
 
 
 

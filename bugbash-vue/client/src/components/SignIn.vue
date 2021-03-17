@@ -51,9 +51,10 @@
         :onSuccess="onSuccess"
         :onFailure="onFailure"
       ></GoogleLogin>
-      <GoogleLogin :params="params" :logoutButton="true" :signOut="signOut"
+      <GoogleLogin :params="params" :logoutButton="true" :onFailure="onFailure" :signOut="signOut"
         >Logout</GoogleLogin
       >
+      <button @click="testMethod">Test</button>
     </div>
   </div>
 </template>
@@ -75,6 +76,7 @@ export default {
       userIcon: null,
       userInitials: this.$store.getters.userInitials,
       signedIn: this.$store.getters.signedIn,
+      user: null,
       file: "",
       signedInUser: null,
       // avatarTest: [],
@@ -96,6 +98,9 @@ export default {
     };
   },
   methods: {
+    testMethod() {
+      console.log('testing: ' + this.user.isSignedIn());
+    },
     onSuccess(googleUser) {
       console.log(googleUser);
       // console.log(JSON.stringify(googleUser));
@@ -111,6 +116,8 @@ export default {
       // const test = gapi.auth2.getAuthInstance().isSignedIn.get();
       // console.log(test);
       // console.log(auth2.isSignedIn.get());
+      this.user = googleUser;
+      console.log('testing: ' + googleUser.isSignedIn());
     },
     setImage: function(file) {
       this.hasImage = true;
