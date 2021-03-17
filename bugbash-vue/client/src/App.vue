@@ -2,32 +2,34 @@
   <div id="app">
     <header class="main-header">
       <a class="logo">Bugbash</a>
-      <sign-in></sign-in>
+      <!-- <sign-in></sign-in> -->
       <div class="global-buttons">
         <button><font-awesome-icon icon="bars" /></button>
       </div>
+      <router-link
+        :to="{
+          name: 'user',
+        }"
+        ><p>User Login</p></router-link
+      >
     </header>
-  
-  <router-view></router-view>
+
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import SignIn from "./components/SignIn.vue";
-
+// import SignIn from "./components/SignIn.vue";
 
 export default {
   name: "App",
   components: {
-    SignIn,
+    // SignIn,
   },
   data: function() {
-    return {
-    };
+    return {};
   },
-  methods: {
-  
-  },
+  methods: {},
 };
 </script>
 
