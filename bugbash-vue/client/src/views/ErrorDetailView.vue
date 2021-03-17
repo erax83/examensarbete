@@ -178,11 +178,16 @@ export default {
       console.log(e);
       var errorHashNumber = await this.occurrenceDetails[0].hashNumber;
       var userInfo = null;
-      if (this.$store.getters.userInfo !== null) {
-        userInfo = this.$store.getters.userInfo;
-      } else {
-        return alert("You must be logged in to make a comment");
+      if (this.$store.getters.userAuth !== null) {
+        if (!this.$store.getters.userAuth.isSignedIn()) {
+          return alert("You must be logged in to make a comment");
+        }
+        else {
+          userInfo = this.$store.getters.userInfo;
+        }
       }
+        
+      
       console.log("user info: " + userInfo.sd);
       // it prevent from page reload
       e.preventDefault();
