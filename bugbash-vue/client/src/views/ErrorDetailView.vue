@@ -178,14 +178,12 @@ export default {
       console.log(e);
       var errorHashNumber = await this.occurrenceDetails[0].hashNumber;
       var userInfo = null;
-      if (this.$store.getters.userAuth !== null) {
-        if (!this.$store.getters.userAuth.isSignedIn()) {
+      if (this.$store.getters.userAuth == null  || this.$store.getters.userAuth == false) {
           return alert("You must be logged in to make a comment");
-        }
+      }
         else {
           userInfo = this.$store.getters.userInfo;
         }
-      }
         
       
       console.log("user info: " + userInfo.sd);
@@ -215,7 +213,7 @@ export default {
   updated: function() {
     this.getOccurrencesDates();
     // this.getUserComments();
-    this.userComments();
+    // this.userComments();
   },
 
   mounted() {
