@@ -94,10 +94,23 @@ Försöker printa canvas i Vue från databasen.
 2021-03-17
 Canvas kan nu visas i errordetail-sidan.
 
-Uppdatera databasen.
+Uppdaterar databasen.
 
 Ändringar i google sign in. Inloggning har nu en egen sida och avataren kan ses både på loginsidan
 och i headern.
+
+2021-03-18
+Försöker fixa bug som har med ut och inloggningen att göra.
+
+Försöker få .env att fungera.
+
+Försöker autouppdatera errordetail-sidan.
+
+2021-03-21
+Läser på om debugging.
+
+Påbrjar dropdownmeny.
+
 
 
 

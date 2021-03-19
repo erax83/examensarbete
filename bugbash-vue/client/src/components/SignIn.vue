@@ -92,9 +92,7 @@ export default {
       image: "",
       hasImage: false,
       params: {
-        client_id:
-          "239286565520-4olejvir9qtbmtsbdrn82lakb1gls3qp.apps.googleusercontent.com",
-        // client_id: process.env.GOOGLECLIENT_ID,
+        client_id: process.env.VUE_APP_GOOGLECLIENT_ID
       },
       renderParams: {
         width: 180,

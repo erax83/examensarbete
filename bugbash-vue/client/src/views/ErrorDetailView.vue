@@ -178,15 +178,17 @@ export default {
       console.log(e);
       var errorHashNumber = await this.occurrenceDetails[0].hashNumber;
       var userInfo = null;
-      if (this.$store.getters.userAuth == null  || this.$store.getters.userAuth == false) {
+      if (this.$store.getters.userAuth.isSignedIn() == null ) {
           return alert("You must be logged in to make a comment");
+      }
+      else if (this.$store.getters.userAuth.isSignedIn() == false) {
+        return alert("You must be logged in to make a comment");
+        
       }
         else {
           userInfo = this.$store.getters.userInfo;
-        }
-        
-      
-      console.log("user info: " + userInfo.sd);
+
+          console.log("user info: " + userInfo.sd);
       // it prevent from page reload
       e.preventDefault();
 
@@ -200,24 +202,33 @@ export default {
             },
           })
           .then(async (response) => {
-            this.getUserComments();
+            // this.getUserComments();
+
             const result = await response.data;
             console.log("inside post, post data: " + result);
+            this.userComments();
+
           });
       } catch (err) {
         console.log(err);
       }
+        }
+        
+      
+      
     },
   },
 
   updated: function() {
     this.getOccurrencesDates();
+    // this.getOccurrencesById(this.id);
     // this.getUserComments();
     // this.userComments();
   },
 
   mounted() {
     this.getOccurrencesById(this.id);
+    // this.userComments();
   },
 };
 </script>

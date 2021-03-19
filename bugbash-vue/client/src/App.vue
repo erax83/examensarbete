@@ -21,6 +21,9 @@
           :size="38"
         ></avatar>
       </div>
+      <drop-down><div class="global-buttons">
+        <button><font-awesome-icon icon="bars" /></button>
+      </div></drop-down>
     </header>
 
     <router-view></router-view>
@@ -29,6 +32,7 @@
 
 <script>
 import Avatar from "vue-avatar";
+import DropDown from './components/DropDown.vue';
 // import GoogleLogin from "vue-google-login";
 
 export default {
@@ -36,6 +40,7 @@ export default {
   components: {
     // GoogleLogin,
     Avatar,
+    DropDown
   },
   data: function() {
     return {
