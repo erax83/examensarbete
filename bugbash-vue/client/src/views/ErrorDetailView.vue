@@ -96,6 +96,7 @@ export default {
       userCommentList: [],
       // userCommentList: this.getUserComments,
       userComment: "",
+      // isLoggedIn: this.$store.getters.userAuth.isSignedIn(),
       // testy: this.userComments(),
       // canvasUrl: this.errorOccurrence[0].browserWindowHeight,
     };
@@ -108,6 +109,14 @@ export default {
       return this.getUserComments();
       // return this.userCommentList;
     },
+    isLoggedIn() {
+      if(this.$store.getters.userAuth == null || this.$store.getters.userAuth.isSignedIn() == false) {
+        return null;
+      }
+      else {
+        return true;
+      }
+    }
   },
   // watch: {
   //   userCommentList: function () {
@@ -178,13 +187,11 @@ export default {
       console.log(e);
       var errorHashNumber = await this.occurrenceDetails[0].hashNumber;
       var userInfo = null;
-      if (this.$store.getters.userAuth.isSignedIn() == null ) {
-          return alert("You must be logged in to make a comment");
-      }
-      else if (this.$store.getters.userAuth.isSignedIn() == false) {
-        return alert("You must be logged in to make a comment");
-        
-      }
+      debugger
+      if (this.isLoggedIn == null) {
+        debugger
+          return alert("Null: You must be logged in to make a comment");
+       }
         else {
           userInfo = this.$store.getters.userInfo;
 
@@ -213,8 +220,7 @@ export default {
         console.log(err);
       }
         }
-        
-      
+        debugger
       
     },
   },

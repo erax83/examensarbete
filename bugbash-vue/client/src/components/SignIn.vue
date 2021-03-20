@@ -112,8 +112,19 @@ export default {
   },
   methods: {
     testMethod() {
-      if(this.$store.getters.userAuth !== null) { 
-        if(this.$store.getters.userAuth.isSignedIn()) {
+      // if(this.$store.getters.userAuth !== null) { 
+      //   if(this.$store.getters.userAuth.isSignedIn()) {
+      //     console.log('true');
+      //   }
+      //   else {
+      //     console.log('false');
+      //   }
+      // }
+      // else {
+      //   console.log('null');
+      // }
+      if(this.$store.getters.userAuth !== null) {
+        if(this.$store.getters.userAuth.isSignedIn() == true) {
           console.log('true');
         }
         else {

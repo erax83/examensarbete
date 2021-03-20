@@ -111,6 +111,8 @@ Läser på om debugging.
 
 Påbrjar dropdownmeny.
 
+.env fungerar nu.
+
 
 
 
