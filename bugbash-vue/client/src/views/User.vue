@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="user-viewer">
     <h1>User</h1>
     <button>
       <router-link to="/">Back</router-link>
     </button>
-    <sign-in></sign-in>
+    <sign-in class="sign-in"></sign-in>
   </div>
 </template>
 
@@ -19,4 +19,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.sign-in {
+  margin: 2em;
+}
+</style>

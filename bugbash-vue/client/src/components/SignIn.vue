@@ -1,6 +1,22 @@
 <template>
   <div class="sign-in">
     <div>
+      <GoogleLogin
+        :params="params"
+        :renderParams="renderParams"
+        :onSuccess="onSuccess"
+        :onFailure="onFailure"
+      ></GoogleLogin>
+      <GoogleLogin
+        :params="params"
+        :logoutButton="true"
+        :onFailure="onFailure"
+        :signOut="signOut"
+        >Logout</GoogleLogin
+      >
+      <button @click="testMethod">Test</button>
+    </div>
+    <div>
       <div>
         <image-uploader
           :debug="1"
@@ -44,22 +60,7 @@
         :size="38"
       ></avatar>
     </div>
-    <div>
-      <GoogleLogin
-        :params="params"
-        :renderParams="renderParams"
-        :onSuccess="onSuccess"
-        :onFailure="onFailure"
-      ></GoogleLogin>
-      <GoogleLogin
-        :params="params"
-        :logoutButton="true"
-        :onFailure="onFailure"
-        :signOut="signOut"
-        >Logout</GoogleLogin
-      >
-      <button @click="testMethod">Test</button>
-    </div>
+    
   </div>
 </template>
 

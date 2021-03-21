@@ -21,9 +21,10 @@
           :size="38"
         ></avatar>
       </div>
-      <drop-down><div class="global-buttons">
-        <button><font-awesome-icon icon="bars" /></button>
-      </div></drop-down>
+      <drop-down
+        ><div class="global-buttons">
+          <button><font-awesome-icon icon="bars" /></button></div
+      ></drop-down>
     </header>
 
     <router-view></router-view>
@@ -32,7 +33,7 @@
 
 <script>
 import Avatar from "vue-avatar";
-import DropDown from './components/DropDown.vue';
+import DropDown from "./components/DropDown.vue";
 // import GoogleLogin from "vue-google-login";
 
 export default {
@@ -40,7 +41,7 @@ export default {
   components: {
     // GoogleLogin,
     Avatar,
-    DropDown
+    DropDown,
   },
   data: function() {
     return {
@@ -57,8 +58,8 @@ export default {
     },
   },
   // beforeCreate() {
-	// 	this.$store.commit('initialiseStore');
-	// },
+  // 	this.$store.commit('initialiseStore');
+  // },
   methods: {},
 };
 </script>
@@ -93,6 +94,12 @@ header button {
 }
 
 .error-viewer {
+  max-width: 1024px;
+  align-self: center;
+  width: 100%;
+}
+
+.user-viewer {
   max-width: 1024px;
   align-self: center;
   width: 100%;

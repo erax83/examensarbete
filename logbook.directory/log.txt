@@ -117,6 +117,8 @@ Läser på om cookies, local storage och session storage.
 2021-03-23
 Försöker fixa problem relaterat till pagerefresh med localstorage.
 
+Kommentarer blir nu synliga direkt efter att de laggts till. Användaren blir dock utloggad.
+
 
 
 
