@@ -56,6 +56,9 @@ export default {
       return check;
     },
   },
+  // beforeCreate() {
+	// 	this.$store.commit('initialiseStore');
+	// },
   methods: {},
 };
 </script>

@@ -9,7 +9,7 @@ import VueMeta from "vue-meta";
 import VueHtml2Canvas from "vue-html2canvas";
 import ImageUploader from "vue-image-upload-resize";
 import { LoaderPlugin } from "vue-google-login";
-// import VueGapi from "vue-gapi";
+// import VueCookies from "vue-cookies";
 
 library.add(fas);
 
@@ -20,16 +20,17 @@ Vue.config.productionTip = false;
 Vue.use(VueHtml2Canvas);
 Vue.use(ImageUploader);
 
- Vue.use(LoaderPlugin, {
-   client_id: process.env.VUE_APP_GOOGLECLIENT_ID
- });
-// Vue.use(VueGapi, {
-//   apiKey: "<YOUR_API_KEY>",
-//   clientId:
-//     "239286565520-4olejvir9qtbmtsbdrn82lakb1gls3qp.apps.googleusercontent.com",
-//   discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
-//   scope: "https://www.googleapis.com/auth/spreadsheets",
-// });
+Vue.use(LoaderPlugin, {
+  client_id: process.env.VUE_APP_GOOGLECLIENT_ID,
+});
+
+// Vue.use(VueCookies);
+// // set default config
+// Vue.$cookies.config("7d");
+// // set global cookie
+// Vue.$cookies.set("theme", "default");
+// Vue.$cookies.set("hover-time", "1s");
+
 
 new Vue({
   VueMeta,
@@ -37,3 +38,5 @@ new Vue({
   store,
   render: (h) => h(App),
 }).$mount("#app");
+
+

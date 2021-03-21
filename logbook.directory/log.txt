@@ -34,8 +34,6 @@ och kan användas i programmet.
 Möjlighet att ta screenshots med hjälp av html2canvas har lagts till. 
 
 2021-03-08
-Handledaren har kontaktats för inbokning av möte. 
-
 Lägger till User component.
 
 Försöker ladda upp bild till useravatar.
@@ -80,8 +78,6 @@ Kommentarer kan nu ses i Vue.
 
 Användarnamn har lagts till i errorcollection i databasen samt går att se på errordetail-sidan.
 
-Möte är bokat med handledare.
-
 2021-03-16
 Google sign in har fått mer styling.
 
@@ -112,6 +108,16 @@ Läser på om debugging.
 Påbrjar dropdownmeny.
 
 .env fungerar nu.
+
+2021-03-22
+Fixar bugg vid kommentarsinlägg.
+
+Läser på om cookies, local storage och session storage.
+
+2021-03-23
+Försöker fixa problem relaterat till pagerefresh med localstorage.
+
+
 
 
 

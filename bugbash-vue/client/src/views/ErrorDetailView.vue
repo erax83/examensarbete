@@ -42,7 +42,7 @@
       <h3>Browser Window Height</h3>
       <p>{{ this.errorOccurrence[0].browserWindowHeight }}</p>
       <h3>Canvas</h3>
-      <img :src="this.errorOccurrence[0].canvas" alt="canvas">
+      <img :src="this.errorOccurrence[0].canvas" alt="canvas" />
     </div>
     <div>
       <div>
@@ -58,7 +58,7 @@
               {{ comment.userName }}
             </h4>
           </li>
-          <br>
+          <br />
           <li>{{ comment.userComment }}</li>
           <br />
         </ul>
@@ -110,13 +110,15 @@ export default {
       // return this.userCommentList;
     },
     isLoggedIn() {
-      if(this.$store.getters.userAuth == null || this.$store.getters.userAuth.isSignedIn() == false) {
+      if (
+        this.$store.getters.userAuth == null ||
+        this.$store.getters.userAuth.isSignedIn() == false
+      ) {
         return null;
-      }
-      else {
+      } else {
         return true;
       }
-    }
+    },
   },
   // watch: {
   //   userCommentList: function () {
@@ -182,45 +184,40 @@ export default {
     // getComments(i) {
     //   return this.userCommentList[i];
     // },
-    postUserComment: async function(e) {
+    postUserComment: async function() {
       console.log(this.userComment);
-      console.log(e);
+      // console.log(e);
       var errorHashNumber = await this.occurrenceDetails[0].hashNumber;
       var userInfo = null;
-      debugger
+
       if (this.isLoggedIn == null) {
-        debugger
-          return alert("Null: You must be logged in to make a comment");
-       }
-        else {
-          userInfo = this.$store.getters.userInfo;
+        return alert("Null: You must be logged in to make a comment");
+      } else {
+        userInfo = this.$store.getters.userInfo;
 
-          console.log("user info: " + userInfo.sd);
-      // it prevent from page reload
-      e.preventDefault();
+        console.log("user info: " + userInfo.sd);
+        // it prevent from page reload
+        // e.preventDefault();
 
-      try {
-        axios
-          .post("http://localhost:3000/errorRouter/userComment", {
-            params: {
-              queryData: this.userComment,
-              hashId: errorHashNumber,
-              userName: userInfo.sd,
-            },
-          })
-          .then(async (response) => {
-            // this.getUserComments();
+        try {
+          axios
+            .post("http://localhost:3000/errorRouter/userComment", {
+              params: {
+                queryData: this.userComment,
+                hashId: errorHashNumber,
+                userName: userInfo.sd,
+              },
+            })
+            .then(async (response) => {
+              // this.getUserComments();
 
-            const result = await response.data;
-            console.log("inside post, post data: " + result);
-            this.userComments();
-
-          });
-      } catch (err) {
-        console.log(err);
-      }
+              const result = await response.data;
+              console.log("inside post, post data: " + result);
+            });
+        } catch (err) {
+          console.log(err);
         }
-        debugger
+      }
       
     },
   },
@@ -245,5 +242,4 @@ export default {
   align-self: center;
   width: 100%;
 }
-
 </style>
