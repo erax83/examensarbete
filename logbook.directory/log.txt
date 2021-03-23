@@ -125,8 +125,9 @@ Lägger till tilte styling till user page.
 Försöker förhindra utloggning med vue-persistence och vue-persist.
 
 2021-03-25
+Menyknapp klar.
 
-
+Gör ER-diagram i Hackolade. 
 
 
 
