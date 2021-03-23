@@ -119,6 +119,12 @@ Försöker fixa problem relaterat till pagerefresh med localstorage.
 
 Kommentarer blir nu synliga direkt efter att de laggts till. Användaren blir dock utloggad.
 
+Lägger till tilte styling till user page.
+
+2021-03-24
+Försöker förhindra utloggning med vue-persistence och vue-persist.
+
+2021-03-25
 
 
 
