@@ -171,10 +171,6 @@ li {
   border: none;
 }
 
-.dropbtn:hover {
-  color: #388af6;
-}
-
 .dropdown {
   position: relative;
   display: inline-block;
@@ -184,6 +180,7 @@ li {
   display: none;
   position: absolute;
   background-color: #f1f1f1;
+  right: 0;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0);
   z-index: 1;
@@ -204,13 +201,8 @@ li {
   display: block;
 }
 
-.dropdown:hover .dropbtn {
-  background-color:  white;
-}
-
 /* img {
   border: 3px solid black;
   border-radius: 25px;
 } */
-
 </style>
