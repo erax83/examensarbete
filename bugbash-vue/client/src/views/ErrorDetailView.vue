@@ -195,7 +195,7 @@ export default {
       } else {
         userInfo = this.$store.getters.userInfo;
 
-        console.log("user info: " + userInfo.sd);
+        console.log("user info: " + userInfo.Te);
         // it prevent from page reload
         // e.preventDefault();
 
@@ -205,7 +205,7 @@ export default {
               params: {
                 queryData: this.userComment,
                 hashId: errorHashNumber,
-                userName: userInfo.sd,
+                userName: userInfo.Te,
               },
             })
             .then(async (response) => {
