@@ -159,10 +159,6 @@ li {
   background: #333;
 }
 
-/* a {
-  color: #42b983;
-} */
-
 .dropbtn {
   /* background-color: #4caf50; */
   color: white;
@@ -201,8 +197,4 @@ li {
   display: block;
 }
 
-/* img {
-  border: 3px solid black;
-  border-radius: 25px;
-} */
 </style>

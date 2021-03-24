@@ -129,7 +129,9 @@ Menyknapp klar.
 
 Gör ER-diagram i Hackolade. 
 
+Uppdaterar menyknappen.
 
+Försöker fixa bugg med användarinitialer som inte längre syns.
 
 
 

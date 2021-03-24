@@ -16,7 +16,7 @@
       >
       <button @click="testMethod">Test</button>
     </div>
-    <div>
+    <div >
       <div>
         <image-uploader
           :debug="1"
@@ -40,12 +40,11 @@
         </label> -->
         </image-uploader>
         <div>
-          <!-- <button @click="removeUserImage">Remove userimage</button> -->
+          <button @click="removeUserImage">Remove userimage</button>
           <font-awesome-icon
             @click="removeUserImage"
             icon="trash-alt"
           ></font-awesome-icon>
-          <!-- <p>|</p> -->
           <button>Accept</button>
         </div>
       </div>
@@ -113,17 +112,6 @@ export default {
   },
   methods: {
     testMethod() {
-      // if(this.$store.getters.userAuth !== null) { 
-      //   if(this.$store.getters.userAuth.isSignedIn()) {
-      //     console.log('true');
-      //   }
-      //   else {
-      //     console.log('false');
-      //   }
-      // }
-      // else {
-      //   console.log('null');
-      // }
       if(this.$store.getters.userAuth !== null) {
         if(this.$store.getters.userAuth.isSignedIn() == true) {
           console.log('true');
@@ -138,19 +126,18 @@ export default {
     },
     onSuccess(googleUser) {
       console.log(googleUser);
-      // console.log(JSON.stringify(googleUser));
+      console.log(JSON.stringify(googleUser));
       const userData = googleUser.getBasicProfile();
+      console.log(userData.Te);
       this.$store.commit("changeUserInfo", userData);
-      console.log("full name: " + userData.sd);
+      console.log("full name: " + userData.Te);
       this.signedInUser = googleUser;
-      // this.userInitials = userData.sd;
-      this.$store.commit("changeUserInitials", userData.sd);
+      // this.userInitials = userData.Te;
+      this.$store.commit("changeUserInitials", userData.Te);
       this.$store.commit("changeSignedIn", true);
       // const image = googleUser.getBasicProfile().getImageUrl();
       // this.userIcon = image;
-      // const test = gapi.auth2.getAuthInstance().isSignedIn.get();
       // console.log(test);
-      // console.log(auth2.isSignedIn.get());
       this.$store.commit("changeUserAuth", googleUser);
       console.log("testing: " + googleUser.isSignedIn());
     },
