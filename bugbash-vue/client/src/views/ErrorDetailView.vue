@@ -45,8 +45,23 @@
       <img :src="this.errorOccurrence[0].canvas" alt="canvas" />
     </div>
     <div>
-       <form v-on:submit="postUserComment">
-        <span><h3> Add a comment: </h3></span>
+      <div>
+        <h3>Issues</h3>
+        <form v-on:submit="openNewIssue">
+          <span><h4>Add new issue in Github:</h4></span>
+          <br />
+          <input
+            v-model="issueHeadline"
+            type="text"
+            placeholder="add issue headline"
+          />
+          <br />
+          <button type="submit">Add Issue</button>
+        </form>
+      </div>
+
+      <form v-on:submit="postUserComment">
+        <span><h3>Add a comment:</h3></span>
         <br />
         <textarea
           v-model="userComment"
@@ -74,7 +89,6 @@
           <br />
         </ul>
       </div>
-     
     </div>
   </div>
 </template>
@@ -97,6 +111,7 @@ export default {
       userCommentList: [],
       // userCommentList: this.getUserComments,
       userComment: "",
+      issueHeadline: "",
       // isLoggedIn: this.$store.getters.userAuth.isSignedIn(),
       // testy: this.userComments(),
       // canvasUrl: this.errorOccurrence[0].browserWindowHeight,
@@ -170,7 +185,7 @@ export default {
             responseArray = response.data;
             // console.log("response data: " + responseArray[1]);
 
-            this.userCommentList = responseArray;
+            this.userCommentList = responseArray.reverse();
 
             // return responseArray;
 
@@ -219,6 +234,10 @@ export default {
           console.log(err);
         }
       }
+    },
+    openNewIssue() {
+      console.log(this.issueHeadline);
+      window.open('https://github.com/bryntum/bugbash/issues/new?title=foo&body=bar');
     },
   },
 
