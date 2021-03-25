@@ -15,6 +15,7 @@
     "vue-image-upload-resize": "^2.3.0",
     "vue-menu-button": "^0.2.3",
     "vue-meta": "^2.4.0",
+    "vue-persistent-state": "^0.2.1",
     "vue-router": "^3.5.1",
     "vue-simple-uploader": "^0.7.6",
     "vuex-persist": "^3.1.3",

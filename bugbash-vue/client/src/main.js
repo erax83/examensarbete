@@ -11,6 +11,19 @@ import ImageUploader from "vue-image-upload-resize";
 import { LoaderPlugin } from "vue-google-login";
 // import VueCookies from "vue-cookies";
 
+// import persistentState from "vue-persistent-state";
+
+// let initialState = {
+//   str: "persist me",
+//   obj: {
+//     a: "nested object",
+//   },
+//   number: 42,
+//   arr: ["item 0"],
+// };
+
+// Vue.use(persistentState, initialState);
+
 library.add(fas);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);

@@ -41,10 +41,21 @@
       <p>{{ this.errorOccurrence[0].browserWindowWidth }}</p>
       <h3>Browser Window Height</h3>
       <p>{{ this.errorOccurrence[0].browserWindowHeight }}</p>
-      <h3>Canvas</h3>
+      <h3>Screen</h3>
       <img :src="this.errorOccurrence[0].canvas" alt="canvas" />
     </div>
     <div>
+       <form v-on:submit="postUserComment">
+        <span><h3> Add a comment: </h3></span>
+        <br />
+        <textarea
+          v-model="userComment"
+          name="userCommentName"
+          placeholder="add your comment"
+        ></textarea>
+        <br />
+        <button type="submit">Add Comment</button>
+      </form>
       <div>
         <h3>Comments</h3>
         <ul v-for="(comment, index) in userComments" v-bind:key="index">
@@ -63,17 +74,7 @@
           <br />
         </ul>
       </div>
-      <form v-on:submit="postUserComment">
-        <span>Add a comment:</span>
-        <br />
-        <textarea
-          v-model="userComment"
-          name="userCommentName"
-          placeholder="add your comment"
-        ></textarea>
-        <br />
-        <button type="submit">Add Comment</button>
-      </form>
+     
     </div>
   </div>
 </template>

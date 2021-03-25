@@ -102,29 +102,29 @@ Försöker få .env att fungera.
 
 Försöker autouppdatera errordetail-sidan.
 
-2021-03-21
+2021-03-19
 Läser på om debugging.
 
 Påbrjar dropdownmeny.
 
 .env fungerar nu.
 
-2021-03-22
+2021-03-20
 Fixar bugg vid kommentarsinlägg.
 
 Läser på om cookies, local storage och session storage.
 
-2021-03-23
+2021-03-21
 Försöker fixa problem relaterat till pagerefresh med localstorage.
 
 Kommentarer blir nu synliga direkt efter att de laggts till. Användaren blir dock utloggad.
 
 Lägger till tilte styling till user page.
 
-2021-03-24
+2021-03-22
 Försöker förhindra utloggning med vue-persistence och vue-persist.
 
-2021-03-25
+2021-03-23
 Menyknapp klar.
 
 Gör ER-diagram i Hackolade. 
@@ -132,6 +132,21 @@ Gör ER-diagram i Hackolade.
 Uppdaterar menyknappen.
 
 Försöker fixa bugg med användarinitialer som inte längre syns.
+
+2021-03-24
+Bugg fixad. Avataren syns igenom.
+
+Bugg fixad. Namn syns igen när man lägger till en kommentarer.
+
+Läser på om ticketing för Jira och Github.
+
+2021-03-25
+Testar igen att förhindra utloggning vid pagerefresh mad localstorage / sessionstorage.
+
+Möte med handledare. Vi går igenom sägerhet (XSS), ticketsystem med Github och användarhantering.
+
+Läser på om ticketsystem.
+
 
 
 
