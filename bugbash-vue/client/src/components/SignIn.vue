@@ -16,7 +16,7 @@
       >
       <button @click="testMethod">Test</button>
     </div>
-    <div >
+    <div>
       <div>
         <image-uploader
           :debug="1"
@@ -59,11 +59,11 @@
         :size="38"
       ></avatar>
     </div>
-    
   </div>
 </template>
 
 <script>
+import axios from "axios";
 import Avatar from "vue-avatar";
 import GoogleLogin from "vue-google-login";
 // Behövs för viss funktionalitet
@@ -92,7 +92,7 @@ export default {
       image: "",
       hasImage: false,
       params: {
-        client_id: process.env.VUE_APP_GOOGLECLIENT_ID
+        client_id: process.env.VUE_APP_GOOGLECLIENT_ID,
       },
       renderParams: {
         width: 180,
@@ -104,31 +104,46 @@ export default {
   computed: {
     signedIn() {
       var check = false;
-      if(this.$store.getters.userAuth !== null) {
-        check = this.$store.getters.userAuth.isSignedIn()
-      } 
+      if (this.$store.getters.userAuth !== null) {
+        check = this.$store.getters.userAuth.isSignedIn();
+      }
       return check;
-    }
+    },
   },
   methods: {
     testMethod() {
-      if(this.$store.getters.userAuth !== null) {
-        if(this.$store.getters.userAuth.isSignedIn() == true) {
-          console.log('true');
+      if (this.$store.getters.userAuth !== null) {
+        if (this.$store.getters.userAuth.isSignedIn() == true) {
+          console.log("true");
+        } else {
+          console.log("false");
         }
-        else {
-          console.log('false');
-        }
-      }
-      else {
-        console.log('null');
+      } else {
+        console.log("null");
       }
     },
     onSuccess(googleUser) {
+      const userExists = null;
       console.log(googleUser);
       console.log(JSON.stringify(googleUser));
       const userData = googleUser.getBasicProfile();
       console.log(userData.Te);
+      debugger;
+      try {
+        axios
+          .get("http://localhost:3000/errorRouter/userComments", {
+            params: { queryData: userData.At },
+          })
+          .then((response) => {
+            debugger;
+            this.userExists = response.data;
+          });
+      } catch (err) {
+        debugger;
+        console.log(err);
+      }
+      
+      console.log("Existing user: " + userExists);
       this.$store.commit("changeUserInfo", userData);
       console.log("full name: " + userData.Te);
       this.signedInUser = googleUser;

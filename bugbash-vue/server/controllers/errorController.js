@@ -1,5 +1,6 @@
 const OccurrenceModel = require("../models/occurrenceModel");
 const ErrorModel = require("../models/errorModel");
+const UserModel = require("../models/userModel");
 
 const crypto = require("crypto");
 
@@ -43,6 +44,19 @@ const getHashCount = async (req, res) => {
   }
 };
 
+const getUserCheck = async (req, res) => {
+  debugger;
+  console.log('Inside getUserCheck: ' + req.query.queryData);
+  try {
+    const result = await await UserModel.find({
+      mail: req.query.queryData,
+    });
+    res.send(result);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
 const getErrorList = async (req, res) => {
   try {
     const test = await ErrorModel.aggregate([
@@ -65,10 +79,7 @@ const getErrorList = async (req, res) => {
   }
 };
 
-// const getParamsPage = async (req, res) => {
-//   console.log("inside controller time: " + req.query.id);
-//   res.render("/" + req.params.id);
-// };
+
 
 const postMonitorError = async (req, res) => {
   const newMessage = await req.body.message;
@@ -175,6 +186,7 @@ module.exports = {
   getOccurrencesById,
   getHashCount,
   getErrorList,
+  getUserCheck,
   // getParamsPage,
   postMonitorError,
   postErrorHash,
