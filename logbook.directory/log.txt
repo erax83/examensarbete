@@ -147,6 +147,10 @@ Möte med handledare. Vi går igenom sägerhet (XSS), ticketsystem med Github oc
 
 Läser på om ticketsystem.
 
+Flyttar om lite i detaljvyn och lägger till automatisk githublänk för att lägga till nya issues. 
+
+Läser på om XSS.
+
 
 
 
