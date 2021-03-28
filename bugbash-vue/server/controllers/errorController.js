@@ -47,10 +47,17 @@ const getHashCount = async (req, res) => {
 const getUserCheck = async (req, res) => {
   console.log("Inside getUserCheck: " + req.query.queryData);
   try {
-    const result = await UserModel.find({
+    const result = await UserModel.findOne({
       mail: req.query.queryData,
     });
-    res.send(result);
+    if(result) {
+      res.send(true);
+    }
+    else {
+      res.send(false);
+    }
+    // res.send(result);
+    // console.log('From getUserCheck: ' + result.fullName);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

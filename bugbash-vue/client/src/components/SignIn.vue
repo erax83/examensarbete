@@ -123,52 +123,25 @@ export default {
       }
     },
     onSuccess: async function(googleUser) {
-      var userExists = null;
-      console.log(googleUser);
-      console.log(JSON.stringify(googleUser));
+      let userExists = null;
+      // console.log(JSON.stringify(googleUser));
       let userData = await googleUser.getBasicProfile();
-      let currentName = userData.Te;
-      let currentMail = userData.At;
-      console.log(userData.Te);
+      let currentName = await userData.Te;
+      let currentMail = await userData.At;
+      // userExists = await this.checkUser(currentMail);
+      // await console.log('userexists: ' + userExists);
       await axios
         .get("http://localhost:3000/errorRouter/userCheck", {
-          params: { queryData: userData.At },
+          params: { queryData: currentMail },
         })
-        .then((response) => {
-          userExists = response.data;
-          console.log("userExistss: " + userExists);
+        .then(async (response) => {
+          userExists = await response.data;
         });
-      console.log("test");
-      console.log(userData.At);
-      console.log(userExists.At);
-      if (userExists == null) {
-        console.log("User allready exists");
-      } else {
-        console.log("user data: " + currentMail);
-        console.log("user data: " + currentName);
-        debugger;
-        this.postNewUser(currentName, currentMail);
 
-        // axios
-        //   .post(
-        //     "http://localhost:3000/errorRouter/user",
-        //     {
-        //       params: {
-        //         fullName: currentName,
-        //         mail: currentMail,
-        //       },
-        //     },
-        //     {
-        //       headers: {
-        //         "Content-Type": "application/x-www-form-urlencoded",
-        //       },
-        //     }
-        //   )
-        //   .then(async (response) => {
-        //     debugger;
-        //     const result = await response.data;
-        //     console.log("inside post, post data: " + result);
-        //   });
+      if ((await userExists) == true) {
+        console.log("User already exists");
+      } else {
+        await this.postNewUser(currentName, currentMail);
       }
 
       this.$store.commit("changeUserInfo", userData);

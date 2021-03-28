@@ -157,7 +157,7 @@ Skapar användare-collection i databasen med router, model och två metoder i co
 Försöker få allt gällande användaren att fungera.
 
 2021-03-27
-Försöker lösa bug angående axios post.
+Att lägga till användare fungerar nu.
 
 
 
