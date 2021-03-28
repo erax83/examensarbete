@@ -151,6 +151,16 @@ Flyttar om lite i detaljvyn och lägger till automatisk githublänk för att lä
 
 Läser på om XSS.
 
+2021-03-26
+Skapar användare-collection i databasen med router, model och två metoder i controllern.
+
+Försöker få allt gällande användaren att fungera.
+
+2021-03-27
+Försöker lösa bug angående axios post.
+
+
+
 
 
 

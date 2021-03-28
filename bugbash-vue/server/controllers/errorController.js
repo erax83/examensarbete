@@ -45,16 +45,25 @@ const getHashCount = async (req, res) => {
 };
 
 const getUserCheck = async (req, res) => {
-  debugger;
-  console.log('Inside getUserCheck: ' + req.query.queryData);
+  console.log("Inside getUserCheck: " + req.query.queryData);
   try {
-    const result = await await UserModel.find({
+    const result = await UserModel.find({
       mail: req.query.queryData,
     });
     res.send(result);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
+};
+
+const postUser = async (req, res) => {
+  const newName = await req.body.fullName;
+  const newMail = await req.body.mail;
+  console.log('inside postUser: ' + newName);
+  console.log('inside postUser: ' + newMail);
+  // const newBody = await req.body;
+  const newUser = await new UserModel(req.body);
+  await newUser.save();
 };
 
 const getErrorList = async (req, res) => {
@@ -78,8 +87,6 @@ const getErrorList = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-
-
 
 const postMonitorError = async (req, res) => {
   const newMessage = await req.body.message;
@@ -136,7 +143,7 @@ const deleteMonitorError = async (req, res) => {
 };
 
 const getUserComments = async (req, res) => {
-  console.log('inside get comments controller ' + req.query.queryData);
+  console.log("inside get comments controller " + req.query.queryData);
   var hashData = await req.query.queryData;
   // console.log('hashData: ' + hashData);
   // const result = await ErrorModel.find({
@@ -154,8 +161,6 @@ const getUserComments = async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
-
-
 };
 
 const postUserComment = async (req, res) => {
@@ -166,15 +171,15 @@ const postUserComment = async (req, res) => {
   console.log("inside post user comment and params: " + commentData);
   console.log("inside post user comment and params: " + hashData);
   console.log("inside post user comment and params: " + nameData);
-  
+
   const userAndComment = {
     userName: nameData,
-    userComment: commentData
-  }
+    userComment: commentData,
+  };
 
- const result = await ErrorModel.findOne({
+  const result = await ErrorModel.findOne({
     hashNumber: hashData,
-  }); 
+  });
   console.log(result.message);
   result.comments.push(userAndComment);
   await result.save();
@@ -188,6 +193,7 @@ module.exports = {
   getErrorList,
   getUserCheck,
   // getParamsPage,
+  postUser,
   postMonitorError,
   postErrorHash,
   deleteMonitorError,

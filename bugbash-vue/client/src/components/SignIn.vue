@@ -122,32 +122,57 @@ export default {
         console.log("null");
       }
     },
-    onSuccess(googleUser) {
-      const userExists = null;
+    onSuccess: async function(googleUser) {
+      var userExists = null;
       console.log(googleUser);
       console.log(JSON.stringify(googleUser));
-      const userData = googleUser.getBasicProfile();
+      let userData = await googleUser.getBasicProfile();
+      let currentName = userData.Te;
+      let currentMail = userData.At;
       console.log(userData.Te);
-      debugger;
-      try {
-        axios
-          .get("http://localhost:3000/errorRouter/userComments", {
-            params: { queryData: userData.At },
-          })
-          .then((response) => {
-            debugger;
-            this.userExists = response.data;
-          });
-      } catch (err) {
+      await axios
+        .get("http://localhost:3000/errorRouter/userCheck", {
+          params: { queryData: userData.At },
+        })
+        .then((response) => {
+          userExists = response.data;
+          console.log("userExistss: " + userExists);
+        });
+      console.log("test");
+      console.log(userData.At);
+      console.log(userExists.At);
+      if (userExists == null) {
+        console.log("User allready exists");
+      } else {
+        console.log("user data: " + currentMail);
+        console.log("user data: " + currentName);
         debugger;
-        console.log(err);
+        this.postNewUser(currentName, currentMail);
+
+        // axios
+        //   .post(
+        //     "http://localhost:3000/errorRouter/user",
+        //     {
+        //       params: {
+        //         fullName: currentName,
+        //         mail: currentMail,
+        //       },
+        //     },
+        //     {
+        //       headers: {
+        //         "Content-Type": "application/x-www-form-urlencoded",
+        //       },
+        //     }
+        //   )
+        //   .then(async (response) => {
+        //     debugger;
+        //     const result = await response.data;
+        //     console.log("inside post, post data: " + result);
+        //   });
       }
-      
-      console.log("Existing user: " + userExists);
+
       this.$store.commit("changeUserInfo", userData);
-      console.log("full name: " + userData.Te);
       this.signedInUser = googleUser;
-      // this.userInitials = userData.Te;
       this.$store.commit("changeUserInitials", userData.Te);
       this.$store.commit("changeSignedIn", true);
       // const image = googleUser.getBasicProfile().getImageUrl();
@@ -155,6 +180,22 @@ export default {
       // console.log(test);
       this.$store.commit("changeUserAuth", googleUser);
       console.log("testing: " + googleUser.isSignedIn());
+    },
+    postNewUser: async function(newName, newMail) {
+      console.log("postNewUser: " + newName + " " + newMail);
+      try {
+        await axios
+          .post("http://localhost:3000/errorRouter/user", {
+            fullName: newName,
+            mail: newMail,
+          })
+          .then(async (response) => {
+            const result = await response.data;
+            console.log("response: " + result);
+          });
+      } catch (err) {
+        console.log("error: " + err);
+      }
     },
     setImage: function(file) {
       this.hasImage = true;
