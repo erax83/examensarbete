@@ -23,6 +23,7 @@ export const store = new Vuex.Store({
            signedIn: false,
            userInitials: null,
            userAuth: null,
+           completeGoogleUser: null,
          },
          mutations: {
            // initialiseStore(state) {
@@ -85,6 +86,9 @@ export const store = new Vuex.Store({
            changeUserAuth(state, userAuth) {
              state.userAuth = userAuth;
            },
+           changeCompleteGoogleUser(state, completeGoogleUser) {
+             state.completeGoogleUser = completeGoogleUser;
+           }
          },
          getters: {
            // Tror att detta är occurrences från occurrences collection
@@ -117,6 +121,7 @@ export const store = new Vuex.Store({
            signedIn: (state) => state.signedIn,
            userInitials: (state) => state.userInitials,
            userAuth: (state) => state.userAuth,
+           completeGoogleUser: (state) => state.completeGoogleUser,
          },
         //  plugins: [createPersistedState()],
        });

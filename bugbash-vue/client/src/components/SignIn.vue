@@ -81,7 +81,6 @@ export default {
       userInitials: this.$store.getters.userInitials,
       // signedIn: this.$store.getters.signedIn,
       // signedIn: this.$store.getters.userAuth.isSignedIn(),
-
       // user: null,
       file: "",
       signedInUser: null,
@@ -124,12 +123,10 @@ export default {
     },
     onSuccess: async function(googleUser) {
       let userExists = null;
-      // console.log(JSON.stringify(googleUser));
       let userData = await googleUser.getBasicProfile();
+
       let currentName = await userData.Te;
       let currentMail = await userData.At;
-      // userExists = await this.checkUser(currentMail);
-      // await console.log('userexists: ' + userExists);
       await axios
         .get("http://localhost:3000/errorRouter/userCheck", {
           params: { queryData: currentMail },
@@ -144,7 +141,8 @@ export default {
         await this.postNewUser(currentName, currentMail);
       }
 
-      this.$store.commit("changeUserInfo", userData);
+      this.$store.commit("changeUserInfo", googleUser.getBasicProfile());
+      this.$store.commit("changeCompleteGoogleUser", googleUser);
       this.signedInUser = googleUser;
       this.$store.commit("changeUserInitials", userData.Te);
       this.$store.commit("changeSignedIn", true);

@@ -5,6 +5,10 @@
       <router-link to="/">Back</router-link>
     </button>
     <sign-in class="sign-in"></sign-in>
+    <div>
+      <p>{{loggedInOrNot}}</p>
+    </div>
+    
   </div>
 </template>
 
@@ -16,6 +20,16 @@ export default {
   components: {
     SignIn,
   },
+  data: function() {
+    return {
+      // active: this.loggedInOrNot(),
+    };
+  },
+  computed: {
+    loggedInOrNot() {
+      return this.$store.getters.completeGoogleUser.isSignedIn();
+    },
+  }
 };
 </script>
 
