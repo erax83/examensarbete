@@ -27,6 +27,8 @@ router.get("/errorList", cors(corsOptions), errorController.getErrorList);
 
 router.get("/userCheck", cors(corsOptions), errorController.getUserCheck);
 
+router.get("/userActivity", cors(corsOptions), errorController.getUserActivity);
+
 router.post("/user", cors(corsOptions), errorController.postUser);
 
 // router.get("/messages/:id", cors(corsOptions), errorController.getMessages);

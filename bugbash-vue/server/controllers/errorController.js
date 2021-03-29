@@ -56,8 +56,22 @@ const getUserCheck = async (req, res) => {
     else {
       res.send(false);
     }
-    // res.send(result);
-    // console.log('From getUserCheck: ' + result.fullName);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+const getUserActivity = async (req, res) => {
+  console.log("Inside getUserActivity: " + req.query.queryData);
+  try {
+    const result = await ErrorModel.find({
+      userName: req.query.queryData,
+    });
+    if (result) {
+      res.send(result);
+    } else {
+      res.send("No comments found");
+    }
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -199,6 +213,7 @@ module.exports = {
   getHashCount,
   getErrorList,
   getUserCheck,
+  getUserActivity,
   // getParamsPage,
   postUser,
   postMonitorError,
