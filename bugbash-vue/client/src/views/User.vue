@@ -69,7 +69,7 @@ export default {
 </script>
 
 <style>
-.sign-in {
+/* .sign-in {
   margin: 2em;
-}
+} */
 </style>

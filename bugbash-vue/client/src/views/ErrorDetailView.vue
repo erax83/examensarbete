@@ -197,9 +197,7 @@ export default {
         console.log(err);
       }
     },
-    // getComments(i) {
-    //   return this.userCommentList[i];
-    // },
+    
     postUserComment: async function() {
       console.log(this.userComment);
       // console.log(e);
@@ -225,7 +223,6 @@ export default {
               },
             })
             .then(async (response) => {
-              // this.getUserComments();
 
               const result = await response.data;
               console.log("inside post, post data: " + result);
@@ -237,20 +234,17 @@ export default {
     },
     openNewIssue() {
       console.log(this.issueHeadline);
-      window.open('https://github.com/bryntum/bugbash/issues/new?title=foo&body=bar');
+      window.open(`https://github.com/bryntum/bugbash/issues/new?title=${this.issueHeadline}&body=bar`);
+
     },
   },
 
   updated: function() {
     this.getOccurrencesDates();
-    // this.getOccurrencesById(this.id);
-    // this.getUserComments();
-    // this.userComments();
   },
 
   mounted() {
     this.getOccurrencesById(this.id);
-    // this.userComments();
   },
 };
 </script>

@@ -159,6 +159,15 @@ Försöker få allt gällande användaren att fungera.
 2021-03-27
 Att lägga till användare fungerar nu.
 
+2021-03-28
+Uppdaterar användare och användarsidan.
+
+2021-03-29
+Försöker visa all aktivitet från en användare på användarsidan.
+
+2021-03-30
+Läser på om säkerhet: Om säkerhet i Vue och SQLi och XSS.
+
 
 
 
