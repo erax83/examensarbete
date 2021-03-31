@@ -168,6 +168,11 @@ Försöker visa all aktivitet från en användare på användarsidan.
 2021-03-30
 Läser på om säkerhet: Om säkerhet i Vue och SQLi och XSS.
 
+Möte med handledare. Vi går bland annat igenom säkerhet och gör en test för att se över
+programmets säkerhet.
+
+Försöker att även skicka med errorinfo när man skapar ett issue.
+
 
 
 

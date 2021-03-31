@@ -47,11 +47,11 @@
     <div>
       <div>
         <h3>Issues</h3>
-        <form v-on:submit="openNewIssue">
+        <form v-on:submit="openNewIssue()">
           <span><h4>Add new issue in Github:</h4></span>
           <br />
           <input
-            v-model="issueHeadline"
+            v-model="issueHeadline.x"
             type="text"
             placeholder="add issue headline"
           />
@@ -105,13 +105,16 @@ export default {
   data: function() {
     return {
       id: this.$route.params.id,
-      // hash: this.errorOccurrence[0].hashNumber,
       occurrenceDetails: [],
       selected: "",
       userCommentList: [],
       // userCommentList: this.getUserComments,
       userComment: "",
-      issueHeadline: "",
+      issueHeadline: {
+        x: "",
+        y: "",
+      },
+      // testId: this.errorOccurrence[0]._id,
       // isLoggedIn: this.$store.getters.userAuth.isSignedIn(),
       // testy: this.userComments(),
       // canvasUrl: this.errorOccurrence[0].browserWindowHeight,
@@ -134,6 +137,16 @@ export default {
       } else {
         return true;
       }
+    },
+    paramData() {
+      // const userInfo = this.errorOccurrence[0]._id;
+      const userInfo = `Error occurrence: Date: ${new Date(this.errorOccurrence[0].timeStamp).toLocaleString()} ` + 
+                        `ID: ${this.errorOccurrence[0]._id} ` +
+                        // `Stacktrace: ${this.errorOccurrence[0].stack} ` +
+                        `Language: ${this.errorOccurrence[0].language} ` +
+                        `Browser Window Width: ${this.errorOccurrence[0].browserWindowWidth} ` +
+                        `Browser Window Height: ${this.errorOccurrence[0].browserWindowHeight} `;
+      return userInfo;
     },
   },
   // watch: {
@@ -197,7 +210,7 @@ export default {
         console.log(err);
       }
     },
-    
+
     postUserComment: async function() {
       console.log(this.userComment);
       // console.log(e);
@@ -223,7 +236,6 @@ export default {
               },
             })
             .then(async (response) => {
-
               const result = await response.data;
               console.log("inside post, post data: " + result);
             });
@@ -232,10 +244,15 @@ export default {
         }
       }
     },
-    openNewIssue() {
-      console.log(this.issueHeadline);
-      window.open(`https://github.com/bryntum/bugbash/issues/new?title=${this.issueHeadline}&body=bar`);
-
+    openNewIssue: async function() {
+      // this.issueHeadline.y = await this.occurrenceDetails[0].stack;
+      // const issueData = await `hello ${this.occurrenceDetails[0].stack} helo hello`;
+      // debugger;
+      // console.log('headline: ' + await issueData);
+      // debugger;
+      await window.open(
+        `https://github.com/bryntum/bugbash/issues/new?title=${this.issueHeadline.x}&body=${this.paramData}`
+      );
     },
   },
 
