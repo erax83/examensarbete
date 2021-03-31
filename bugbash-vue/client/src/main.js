@@ -9,6 +9,7 @@ import VueMeta from "vue-meta";
 import VueHtml2Canvas from "vue-html2canvas";
 import ImageUploader from "vue-image-upload-resize";
 import { LoaderPlugin } from "vue-google-login";
+import VModal from "vue-js-modal";
 // import VueCookies from "vue-cookies";
 
 // import persistentState from "vue-persistent-state";
@@ -36,6 +37,8 @@ Vue.use(ImageUploader);
 Vue.use(LoaderPlugin, {
   client_id: process.env.VUE_APP_GOOGLECLIENT_ID,
 });
+
+Vue.use(VModal);
 
 // Vue.use(VueCookies);
 // // set default config

@@ -42,7 +42,31 @@
       <h3>Browser Window Height</h3>
       <p>{{ this.errorOccurrence[0].browserWindowHeight }}</p>
       <h3>Screen</h3>
-      <img :src="this.errorOccurrence[0].canvas" alt="canvas" />
+       <img
+          id="canvasScreen"
+          :src="this.errorOccurrence[0].canvas"
+          alt="canvas"
+        />
+      <simple-modal v-model="isShow" @click="isShow = !isShow">
+       <template slot="body">
+        <h2>My modal</h2>
+        <input>
+        <p>Hello you</p>
+        <img
+          id="canvasScreen"
+          :src="this.errorOccurrence[0].canvas"
+          alt="canvas"
+        />
+      </template>
+      <template slot="footer">
+        <button>OK</button>
+      </template>
+      </simple-modal>
+      <button @click="isShow = !isShow"><img
+          id="canvasScreen"
+          :src="this.errorOccurrence[0].canvas"
+          alt="canvas"
+        /></button>
     </div>
     <div>
       <div>
@@ -95,13 +119,14 @@
 
 <script>
 import axios from "axios";
+import SimpleModal from "simple-modal-vue";
 // import GoogleLogin from "vue-google-login";
 
 export default {
   name: "ErrorDetailView",
-  // components: {
-  //   GoogleLogin,
-  // },
+  components: {
+    SimpleModal,
+  },
   data: function() {
     return {
       id: this.$route.params.id,
@@ -118,6 +143,7 @@ export default {
       // isLoggedIn: this.$store.getters.userAuth.isSignedIn(),
       // testy: this.userComments(),
       // canvasUrl: this.errorOccurrence[0].browserWindowHeight,
+      isShow: false,
     };
   },
   computed: {
@@ -140,12 +166,15 @@ export default {
     },
     paramData() {
       // const userInfo = this.errorOccurrence[0]._id;
-      const userInfo = `Error occurrence: Date: ${new Date(this.errorOccurrence[0].timeStamp).toLocaleString()} ` + 
-                        `ID: ${this.errorOccurrence[0]._id} ` +
-                        // `Stacktrace: ${this.errorOccurrence[0].stack} ` +
-                        `Language: ${this.errorOccurrence[0].language} ` +
-                        `Browser Window Width: ${this.errorOccurrence[0].browserWindowWidth} ` +
-                        `Browser Window Height: ${this.errorOccurrence[0].browserWindowHeight} `;
+      const userInfo =
+        `Error occurrence: Date: ${new Date(
+          this.errorOccurrence[0].timeStamp
+        ).toLocaleString()} ` +
+        `ID: ${this.errorOccurrence[0]._id} ` +
+        // `Stacktrace: ${this.errorOccurrence[0].stack} ` +
+        `Language: ${this.errorOccurrence[0].language} ` +
+        `Browser Window Width: ${this.errorOccurrence[0].browserWindowWidth} ` +
+        `Browser Window Height: ${this.errorOccurrence[0].browserWindowHeight} `;
       return userInfo;
     },
   },
@@ -155,6 +184,12 @@ export default {
   //   }
   // },
   methods: {
+    show() {
+      this.$modal.show("my-first-modal");
+    },
+    hide() {
+      this.$modal.hide("my-first-modal");
+    },
     onSelectChange: async function() {
       this.id = await this.selected;
       this.getOccurrencesById(this.id);
@@ -271,5 +306,10 @@ export default {
   max-width: 1024px;
   align-self: center;
   width: 100%;
+}
+
+#canvasScreen {
+  width: 500px;
+  /* height: 1em; */
 }
 </style>

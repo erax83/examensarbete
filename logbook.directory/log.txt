@@ -173,6 +173,10 @@ programmets säkerhet.
 
 Försöker att även skicka med errorinfo när man skapar ett issue.
 
+2021-03-31
+Aktuell errorinformation följer nu med automatiskt när man skapar ett nytt issue. 
+
+
 
 
 
