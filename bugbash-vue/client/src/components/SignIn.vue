@@ -127,9 +127,10 @@ export default {
 
       let currentName = await userData.Te;
       let currentMail = await userData.At;
+      let currentId = await userData.getId();
       await axios
         .get("http://localhost:3000/errorRouter/userCheck", {
-          params: { queryData: currentMail },
+          params: { queryData: currentMail, },
         })
         .then(async (response) => {
           userExists = await response.data;
@@ -138,7 +139,7 @@ export default {
       if ((await userExists) == true) {
         console.log("User already exists");
       } else {
-        await this.postNewUser(currentName, currentMail);
+        await this.postNewUser(currentName, currentMail, currentId);
       }
 
       this.$store.commit("changeUserInfo", googleUser.getBasicProfile());
@@ -152,13 +153,14 @@ export default {
       this.$store.commit("changeUserAuth", googleUser);
       console.log("testing: " + googleUser.isSignedIn());
     },
-    postNewUser: async function(newName, newMail) {
-      console.log("postNewUser: " + newName + " " + newMail);
+    postNewUser: async function(newName, newMail, newId) {
+      console.log("postNewUser: " + newName + " " + newMail + " " + newId);
       try {
         await axios
           .post("http://localhost:3000/errorRouter/user", {
             fullName: newName,
             mail: newMail,
+            id: newId,
           })
           .then(async (response) => {
             const result = await response.data;

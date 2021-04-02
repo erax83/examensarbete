@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const userModelSchema = new Schema({
   fullName: { type: String },
   mail: { type: String },
+  id: { type: Number },
   comments: [
     {
       occurrence: { type: String },

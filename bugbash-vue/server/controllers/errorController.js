@@ -80,8 +80,10 @@ const getUserActivity = async (req, res) => {
 const postUser = async (req, res) => {
   const newName = await req.body.fullName;
   const newMail = await req.body.mail;
+  const newId = await req.body.id;
   console.log('inside postUser: ' + newName);
   console.log('inside postUser: ' + newMail);
+  console.log("inside postUser: " + newId);
   // const newBody = await req.body;
   const newUser = await new UserModel(req.body);
   await newUser.save();
