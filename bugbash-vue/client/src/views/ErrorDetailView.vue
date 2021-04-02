@@ -106,7 +106,7 @@
           <li>
             <router-link
             :to="{
-              name: 'user',
+              name: 'userById',
               // params: { id: error.occurrenceDetails[0]._id },
             }"
             ><h4>{{ comment.userName }}</h4></router-link
