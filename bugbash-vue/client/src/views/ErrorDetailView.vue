@@ -42,31 +42,23 @@
       <h3>Browser Window Height</h3>
       <p>{{ this.errorOccurrence[0].browserWindowHeight }}</p>
       <h3>Screen</h3>
-       <img
-          id="canvasScreen"
-          :src="this.errorOccurrence[0].canvas"
-          alt="canvas"
-        />
       <simple-modal v-model="isShow" @click="isShow = !isShow">
-       <template slot="body">
-        <h2>My modal</h2>
-        <input>
-        <p>Hello you</p>
+        <template slot="body">
+          <h2>Screen</h2>
+          <img
+            id="canvasScreen"
+            :src="this.errorOccurrence[0].canvas"
+            alt="canvas"
+          />
+        </template>
+      </simple-modal>
+      <button @click="isShow = !isShow">
         <img
           id="canvasScreen"
           :src="this.errorOccurrence[0].canvas"
           alt="canvas"
         />
-      </template>
-      <template slot="footer">
-        <button>OK</button>
-      </template>
-      </simple-modal>
-      <button @click="isShow = !isShow"><img
-          id="canvasScreen"
-          :src="this.errorOccurrence[0].canvas"
-          alt="canvas"
-        /></button>
+      </button>
     </div>
     <div>
       <div>
@@ -105,12 +97,12 @@
         <ul v-for="(comment, index) in this.userCommentList" v-bind:key="index">
           <li>
             <router-link
-            :to="{
-              name: 'userById',
-              // params: { id: error.occurrenceDetails[0]._id },
-            }"
-            ><h4>{{ comment.userName }}</h4></router-link
-          >
+              :to="{
+                name: 'userById',
+                // params: { id: error.occurrenceDetails[0]._id },
+              }"
+              ><h4>{{ comment.userName }}</h4></router-link
+            >
           </li>
           <br />
           <li>{{ comment.userComment }}</li>
