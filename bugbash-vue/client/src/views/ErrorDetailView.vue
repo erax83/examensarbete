@@ -104,9 +104,13 @@
         </ul>
         <ul v-for="(comment, index) in this.userCommentList" v-bind:key="index">
           <li>
-            <h4>
-              {{ comment.userName }}
-            </h4>
+            <router-link
+            :to="{
+              name: 'user',
+              // params: { id: error.occurrenceDetails[0]._id },
+            }"
+            ><h4>{{ comment.userName }}</h4></router-link
+          >
           </li>
           <br />
           <li>{{ comment.userComment }}</li>
