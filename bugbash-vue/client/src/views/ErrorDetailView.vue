@@ -99,7 +99,7 @@
             <router-link
               :to="{
                 name: 'userById',
-                // params: { id: error.occurrenceDetails[0]._id },
+                params: { id: comment.userId },
               }"
               ><h4>{{ comment.userName }}</h4></router-link
             >

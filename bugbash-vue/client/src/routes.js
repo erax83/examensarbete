@@ -22,7 +22,7 @@ export const router = new VueRouter({
              component: ErrorDetailView,
            },
            { path: "/user", name: "user", component: User },
-           { path: "/userById", name: "userById", component: UserById },
+           { path: "/userById/:id", name: "userById", component: UserById },
            { path: "/about", component: About },
            { path: "/errorstest", component: Errorstest },
            { path: "/errortest/:id", name: "err", component: Errortest },
