@@ -9,6 +9,7 @@ const errorModelSchema = new Schema({
     {
       userName: { type: String },
       userComment: { type: String },
+      userId: { type: Number },
     },
   ],
 });

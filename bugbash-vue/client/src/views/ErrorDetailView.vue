@@ -247,13 +247,14 @@ export default {
       // console.log(e);
       var errorHashNumber = await this.occurrenceDetails[0].hashNumber;
       var userInfo = null;
+      var userInfoId = null;
 
       if (this.isLoggedIn == null) {
         return alert("Null: You must be logged in to make a comment");
       } else {
         userInfo = this.$store.getters.userInfo;
-
-        console.log("user info: " + userInfo.Te);
+        userInfoId = userInfo.getId();
+        // console.log("user info: " + userInfo.Te);
         // it prevent from page reload
         // e.preventDefault();
 
@@ -264,6 +265,7 @@ export default {
                 queryData: this.userComment,
                 hashId: errorHashNumber,
                 userName: userInfo.Te,
+                userId: userInfoId,
               },
             })
             .then(async (response) => {

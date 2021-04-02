@@ -179,7 +179,7 @@ const getUserComments = async (req, res) => {
     });
     console.log(result.comments.userName);
     console.log(result.comments.userComment);
-
+    // console.log(result.comments.userId);
     res.send(result.comments);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -190,14 +190,18 @@ const postUserComment = async (req, res) => {
   var commentData = await req.body.params.queryData;
   var hashData = await req.body.params.hashId;
   var nameData = await req.body.params.userName;
+  var idData = await req.body.params.userId;
 
   console.log("inside post user comment and params: " + commentData);
   console.log("inside post user comment and params: " + hashData);
   console.log("inside post user comment and params: " + nameData);
+  console.log("inside post user comment and params: " + idData);
+
 
   const userAndComment = {
     userName: nameData,
     userComment: commentData,
+    userId: idData,
   };
 
   const result = await ErrorModel.findOne({
