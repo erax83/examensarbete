@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header class="main-header">
-      <a class="logo">Bugbash</a>
+      <a class="logo">Bug Bash</a>
       <!-- <div class="global-buttons"></div> -->
       <div>
         <avatar

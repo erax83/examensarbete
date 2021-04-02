@@ -1,6 +1,9 @@
 <template>
   <div class="user-viewer">
-    <h1>User By Id</h1>
+    <div v-if="this.currentUser !== null">
+      <h2>{{ currentUser.fullName }}</h2>
+      <h2>{{ currentUser.mail }}</h2>
+    </div>
   </div>
 </template>
 
@@ -11,19 +14,39 @@ export default {
   name: "UserById",
   components: {},
   data: function() {
-    return {};
+    return {
+      id: this.$route.params.id,
+      currentUser: null,
+    };
   },
   computed: {},
   methods: {
-    getActivities: async function() {
+    getUser: function() {
+      debugger;
       axios
-        .get("http://localhost:3000/errorRouter/userActivity")
+        .get("http://localhost:3000/errorRouter/userById", {
+          params: { queryData: this.id },
+        })
         .then((response) => {
-          const r = response.data;
-          console.log(r);
-          return r;
+          debugger;
+          console.log("test: " + response.data);
+          debugger;
+          this.currentUser = response.data;
+          debugger;
         });
     },
+    // getActivities: async function() {
+    //   axios
+    //     .get("http://localhost:3000/errorRouter/userActivity")
+    //     .then((response) => {
+    //       const r = response.data;
+    //       console.log(r);
+    //       return r;
+    //     });
+    // },
+  },
+  mounted() {
+    this.getUser();
   },
 };
 </script>

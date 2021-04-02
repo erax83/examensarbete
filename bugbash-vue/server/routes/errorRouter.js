@@ -31,6 +31,8 @@ router.get("/userActivity", cors(corsOptions), errorController.getUserActivity);
 
 router.post("/user", cors(corsOptions), errorController.postUser);
 
+router.get("/userById", cors(corsOptions), errorController.getUserById);
+
 // router.get("/messages/:id", cors(corsOptions), errorController.getMessages);
 
 // router.get("/:id", cors(corsOptions), errorController.getParamsPage);

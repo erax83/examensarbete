@@ -50,10 +50,9 @@ const getUserCheck = async (req, res) => {
     const result = await UserModel.findOne({
       mail: req.query.queryData,
     });
-    if(result) {
+    if (result) {
       res.send(true);
-    }
-    else {
+    } else {
       res.send(false);
     }
   } catch (err) {
@@ -81,12 +80,24 @@ const postUser = async (req, res) => {
   const newName = await req.body.fullName;
   const newMail = await req.body.mail;
   const newId = await req.body.id;
-  console.log('inside postUser: ' + newName);
-  console.log('inside postUser: ' + newMail);
+  console.log("inside postUser: " + newName);
+  console.log("inside postUser: " + newMail);
   console.log("inside postUser: " + newId);
   // const newBody = await req.body;
   const newUser = await new UserModel(req.body);
   await newUser.save();
+};
+
+const getUserById = async (req, res) => {
+
+  try {
+    const result = await UserModel.findOne({
+      id: req.query.queryData,
+    });
+    res.send(result);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 };
 
 const getErrorList = async (req, res) => {
@@ -197,7 +208,6 @@ const postUserComment = async (req, res) => {
   console.log("inside post user comment and params: " + nameData);
   console.log("inside post user comment and params: " + idData);
 
-
   const userAndComment = {
     userName: nameData,
     userComment: commentData,
@@ -222,6 +232,7 @@ module.exports = {
   getUserActivity,
   // getParamsPage,
   postUser,
+  getUserById,
   postMonitorError,
   postErrorHash,
   deleteMonitorError,
