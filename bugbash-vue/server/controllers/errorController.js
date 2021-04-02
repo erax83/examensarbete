@@ -61,20 +61,38 @@ const getUserCheck = async (req, res) => {
 };
 
 const getUserActivity = async (req, res) => {
-  console.log("Inside getUserActivity: " + req.query.queryData);
+  console.log("Inside getUserActivityyyy: " + req.query.queryData);
+  // errorList = [];
   try {
     const result = await ErrorModel.find({
-      userName: req.query.queryData,
+      "comments.userId": req.query.queryData,
     });
     if (result) {
       res.send(result);
-    } else {
-      res.send("No comments found");
+    } 
+    else {
+      console.log('no results');
     }
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
+
+// const getUserActivity = async (req, res) => {
+//   console.log("Inside getUserActivity: " + req.query.queryData);
+//   try {
+//     const result = await ErrorModel.find({
+//       userName: req.query.queryData,
+//     });
+//     if (result) {
+//       res.send(result);
+//     } else {
+//       res.send("No comments found");
+//     }
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// };
 
 const postUser = async (req, res) => {
   const newName = await req.body.fullName;
@@ -89,7 +107,6 @@ const postUser = async (req, res) => {
 };
 
 const getUserById = async (req, res) => {
-
   try {
     const result = await UserModel.findOne({
       id: req.query.queryData,

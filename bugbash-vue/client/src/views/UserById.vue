@@ -4,6 +4,21 @@
       <h2>{{ currentUser.fullName }}</h2>
       <h2>{{ currentUser.mail }}</h2>
     </div>
+    <div v-if="this.errors !== null">
+      <ul
+        v-for="(error, index) in this.errors"
+        v-bind:key="index"
+      >
+      <li>{{ error.message }}</li>
+      <!-- <li><router-link
+            :to="{
+              name: 'errorInfo',
+            }"
+            >{{
+              new Date(error.occurrenceDetails[0].timeStamp).toLocaleString()
+            }}</router-link></li> -->
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -17,33 +32,39 @@ export default {
     return {
       id: this.$route.params.id,
       currentUser: null,
+      errors: null,
     };
   },
   computed: {},
   methods: {
     getUser: function() {
-      debugger;
       axios
         .get("http://localhost:3000/errorRouter/userById", {
           params: { queryData: this.id },
         })
-        .then((response) => {
-          debugger;
+        .then(async (response) => {
           console.log("test: " + response.data);
-          debugger;
-          this.currentUser = response.data;
-          debugger;
+          this.currentUser = await response.data;
+          await this.getErrors();
         });
     },
-    // getActivities: async function() {
+    // getErrorActivities: function() {
     //   axios
     //     .get("http://localhost:3000/errorRouter/userActivity")
     //     .then((response) => {
-    //       const r = response.data;
-    //       console.log(r);
-    //       return r;
+    //       this.errors = response.data;
     //     });
     // },
+    getErrors: async function() {
+      axios
+        .get("http://localhost:3000/errorRouter/userActivity", {
+          params: { queryData: this.id },
+        })
+        .then((response) => {
+          console.log(JSON.stringify(response.data));
+          this.errors = response.data;
+        });
+    },
   },
   mounted() {
     this.getUser();
