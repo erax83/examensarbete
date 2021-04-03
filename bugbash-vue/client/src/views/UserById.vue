@@ -2,23 +2,33 @@
   <div class="user-viewer">
     <div v-if="this.currentUser !== null">
       <h2>{{ currentUser.fullName }}</h2>
-      <h2>{{ currentUser.mail }}</h2>
+      <p>{{ currentUser.mail }}</p>
+      <h2>Comments</h2>
     </div>
     <div v-if="this.errors !== null">
-      <ul
-        v-for="(error, index) in this.errors"
-        v-bind:key="index"
-      >
-      <li>{{ error.message }}</li>
-      <!-- <li><router-link
-            :to="{
-              name: 'errorInfo',
-            }"
-            >{{
-              new Date(error.occurrenceDetails[0].timeStamp).toLocaleString()
-            }}</router-link></li> -->
+      <ul v-for="(error, index) in this.errors" v-bind:key="index">
+        <li>
+          <div>
+            <p>{{ error.message }}</p>
+          </div>
+          <div>
+            <ul v-for="(e, index) in error.comments" v-bind:key="index">
+              <li >
+                <p>{{ e.userComment }}</p>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li></li>
       </ul>
     </div>
+    <!-- <div v-if="this.testUser !== null">
+      <ul v-for="(error, index) in this.testUser" v-bind:key="index">
+        <li>{{ error.message }}</li>
+
+        
+      </ul>
+    </div> -->
   </div>
 </template>
 
@@ -33,9 +43,14 @@ export default {
       id: this.$route.params.id,
       currentUser: null,
       errors: null,
+      testUser: this.userFromStore,
     };
   },
-  computed: {},
+  computed: {
+    userFromStore() {
+      return this.$store.getters.userErrors(this.id);
+    },
+  },
   methods: {
     getUser: function() {
       axios

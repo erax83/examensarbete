@@ -88,7 +88,7 @@ export const store = new Vuex.Store({
            },
            changeCompleteGoogleUser(state, completeGoogleUser) {
              state.completeGoogleUser = completeGoogleUser;
-           }
+           },
          },
          getters: {
            // Tror att detta är occurrences från occurrences collection
@@ -104,6 +104,14 @@ export const store = new Vuex.Store({
                (err) => err.occurrenceDetails[0]._id == id
              );
            },
+
+           //Alla errors då användaren kommenterat
+           userErrors: (state) => (id) => {
+             return state.errorsList.find(
+               (err) => err.comments.userId == id
+             );
+           },
+
            // errorTest: (state) => (id) => {
            //   return state.errorsList.find((err) => err.hashNumber == id);
            // },
@@ -123,7 +131,7 @@ export const store = new Vuex.Store({
            userAuth: (state) => state.userAuth,
            completeGoogleUser: (state) => state.completeGoogleUser,
          },
-        //  plugins: [createPersistedState()],
+         //  plugins: [createPersistedState()],
        });
 
 // // Subscribe to store updates
