@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header class="main-header">
-      <a class="logo">Bug Bash</a>
+      <router-link class="logo" to="/">Bug Bash</router-link>
       <!-- <div class="global-buttons"></div> -->
       <div>
         <avatar
@@ -102,6 +102,7 @@ header button {
 
 .logo {
   color: white;
+  text-decoration: none;
 }
 
 a.logo {
@@ -196,5 +197,4 @@ li {
 .dropdown:hover .dropdown-content {
   display: block;
 }
-
 </style>
