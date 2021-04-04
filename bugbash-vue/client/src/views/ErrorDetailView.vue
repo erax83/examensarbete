@@ -205,7 +205,6 @@ export default {
           })
           .then((response) => {
             console.log("res: " + JSON.stringify(response.data));
-            debugger;
             this.occurrenceDetails = response.data;
           });
       } catch (err) {

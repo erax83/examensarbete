@@ -102,7 +102,7 @@ export default {
         );
     },
     getErrorsList() {
-      let arr = this.$store.getters.errorsList.reverse();
+      let arr = this.$store.getters.errorsList;
       return arr;
     },
     selectItem(index) {
@@ -194,6 +194,9 @@ table tr th {
 
 input {
   margin-right: 1.2em;
+  height: 1.6em;
+  padding: 0.4em;
+  align-self: center;
 }
 
 h3 {
