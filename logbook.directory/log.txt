@@ -183,6 +183,12 @@ Planerar för hur UserById ska fungera och byggas upp.
 En ny UserById-view finns nu där man får tillgång till andra användares mejladdress samt 
 vilka fel de har kommenterat med dessa kommentarer. 
 
+2021-03-03
+UserById-sidan har uppdaterats.
+
+2021-03-04
+
+
 
 
 

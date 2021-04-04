@@ -24,9 +24,23 @@ const getOccurrencesByHash = async (req, res) => {
   }
 };
 
+const getOneOccurrenceByHash = async (req, res) => {
+  console.log("inside getOne: " + req.query.queryData);
+  try {
+    const result = await OccurrenceModel.findOne({
+      hashNumber: req.query.queryData,
+    });
+    // console.log('response: ' + result);
+    res.send(result);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
 const getOccurrencesById = async (req, res) => {
   try {
-    const result = await await OccurrenceModel.find({
+    console.log('inside controller ' + req.query.queryData);
+    const result = await OccurrenceModel.find({
       _id: req.query.queryData,
     });
     res.send(result);
@@ -69,9 +83,27 @@ const getUserActivity = async (req, res) => {
     });
     if (result) {
       res.send(result);
-    } 
-    else {
-      console.log('no results');
+      // try {
+      //   const test = await result.aggregate([
+      //     {
+      //       $lookup: {
+      //         from: "occurrences",
+      //         let: { hashNumber: "$hashNumber" },
+      //         pipeline: [
+      //           { $match: { $expr: { $eq: ["$$hashNumber", "$hashNumber"] } } },
+      //           { $sort: { _id: -1 } },
+      //           { $limit: 1 },
+      //         ],
+      //         as: "occurrenceDetails",
+      //       },
+      //     },
+      //   ]);
+      //   res.send(test);
+      // } catch (err) {
+      //   res.status(500).json({ message: err.message });
+      // }
+    } else {
+      console.log("no results");
     }
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -242,6 +274,7 @@ const postUserComment = async (req, res) => {
 module.exports = {
   getMonitorError,
   getOccurrencesByHash,
+  getOneOccurrenceByHash,
   getOccurrencesById,
   getHashCount,
   getErrorList,

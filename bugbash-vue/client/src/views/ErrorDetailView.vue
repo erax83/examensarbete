@@ -200,12 +200,15 @@ export default {
         .then((response) => this.$store.commit("changeErrors", response.data));
     },
     getOccurrencesById: function(id) {
+      console.log('id: ' + id);
       try {
         axios
           .get("http://localhost:3000/errorRouter/occurrencesById", {
             params: { queryData: id },
           })
           .then((response) => {
+            console.log('res: ' + JSON.stringify(response.data));
+            debugger;
             this.occurrenceDetails = response.data;
           });
       } catch (err) {
@@ -294,6 +297,7 @@ export default {
   },
 
   mounted() {
+    console.log('mounted: ' + this.id);
     this.getOccurrencesById(this.id);
   },
 };
