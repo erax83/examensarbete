@@ -5,8 +5,10 @@
     <button @click="testMethod">Test</button>
     <div v-if="loggedInOrNot == true">
       <h3>{{ userName }}</h3>
-      <h3>{{ userMail }}</h3>
+      <p>{{ userMail }}</p>
+      
     </div>
+    <hr>
   </div>
 </template>
 
@@ -66,7 +68,5 @@ export default {
 </script>
 
 <style>
-/* .sign-in {
-  margin: 2em;
-} */
+
 </style>

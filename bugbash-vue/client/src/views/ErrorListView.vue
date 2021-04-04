@@ -13,7 +13,7 @@
         Url Toggle
       </button>
     </div>
-
+    <hr>
     <table class="error-list">
       <tr>
         <th v-if="$store.state.dateState == true">Date</th>
@@ -54,7 +54,6 @@
             }"
             >{{ error.message }}</router-link
           >
-          <!-- {{ error.message }} -->
         </td>
         <td @click="moreErrorDetails(error)">
           <router-link
@@ -64,7 +63,6 @@
             }"
             >{{ error.occurrencesCount }}</router-link
           >
-          <!-- {{ error.occurrencesCount }} -->
         </td>
         <td v-if="$store.state.urlState == true">
           <a :href="error.occurrenceDetails[0].session.url" target="_blank">{{

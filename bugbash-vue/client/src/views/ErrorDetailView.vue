@@ -1,9 +1,7 @@
 <template>
   <div class="detail-view">
     <h1>{{ this.errorOccurrence[0].message }}</h1>
-    <button>
-      <router-link to="/">Back</router-link>
-    </button>
+    <router-link to="/"><button>Back</button></router-link>
     <!-- <button @click="getOccurrencesDates()">Uppdatera</button> -->
     <h3>Earlier occurrences</h3>
     <select v-model="selected" @change="onSelectChange()">
@@ -21,7 +19,7 @@
         {{ new Date(option.timeStamp).toLocaleString() }}
       </option>
     </select>
-
+    <hr>
     <div>
       <h3>Date</h3>
       <p>
@@ -62,38 +60,37 @@
     </div>
     <div>
       <div>
-        <h3>Issues</h3>
         <form v-on:submit="openNewIssue()">
-          <span><h4>Add new issue in Github:</h4></span>
-          <br />
+          <span><h3>Add new issue to Github</h3></span>
           <input
             v-model="issueHeadline.x"
             type="text"
-            placeholder="add issue headline"
+            placeholder="Issue headline"
           />
           <br />
-          <button type="submit">Add Issue</button>
+          <button type="submit">Post Issue</button>
         </form>
       </div>
 
       <form v-on:submit="postUserComment">
-        <span><h3>Add a comment:</h3></span>
-        <br />
+        <span><h3>Add a comment</h3></span>
         <textarea
+          id="commentTextArea"
           v-model="userComment"
           name="userCommentName"
-          placeholder="add your comment"
+          placeholder="Add your comment"
         ></textarea>
         <br />
-        <button type="submit">Add Comment</button>
-      </form>
-      <div>
-        <h3>Comments</h3>
+        <button type="submit">Post Comment</button>
         <ul v-for="(comment, index) in userComments" v-bind:key="index">
           <li>
             {{ comment }}
           </li>
         </ul>
+      </form>
+      <div>
+        <h3>Comments</h3>
+        
         <ul v-for="(comment, index) in this.userCommentList" v-bind:key="index">
           <li>
             <router-link
@@ -200,14 +197,14 @@ export default {
         .then((response) => this.$store.commit("changeErrors", response.data));
     },
     getOccurrencesById: function(id) {
-      console.log('id: ' + id);
+      console.log("id: " + id);
       try {
         axios
           .get("http://localhost:3000/errorRouter/occurrencesById", {
             params: { queryData: id },
           })
           .then((response) => {
-            console.log('res: ' + JSON.stringify(response.data));
+            console.log("res: " + JSON.stringify(response.data));
             debugger;
             this.occurrenceDetails = response.data;
           });
@@ -297,7 +294,7 @@ export default {
   },
 
   mounted() {
-    console.log('mounted: ' + this.id);
+    console.log("mounted: " + this.id);
     this.getOccurrencesById(this.id);
   },
 };
@@ -312,6 +309,10 @@ export default {
 
 #canvasScreen {
   width: 500px;
-  /* height: 1em; */
+}
+
+#commentTextArea {
+  width: 30em;
+  height: 10em;
 }
 </style>

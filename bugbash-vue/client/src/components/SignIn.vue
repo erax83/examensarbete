@@ -45,6 +45,7 @@
       </div>
     </div>
     <div>
+      
       <avatar
         class="avatar"
         :click="showImageUploader"
@@ -54,6 +55,7 @@
         :size="25"
       ></avatar>
     </div>
+    
   </div>
 </template>
 

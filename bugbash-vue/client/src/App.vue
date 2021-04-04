@@ -62,15 +62,14 @@ export default {
 body {
   margin: 0;
   padding: 0;
+  color: #333;
+  line-height: 1.7em;
 }
 
 #app {
   display: flex;
   flex-direction: column;
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: hsl(210, 29%, 24%);
 }
 
 header.main-header {
@@ -81,11 +80,11 @@ header.main-header {
   padding: 0.5em 1em;
 }
 
-header button {
+/* header button {
   color: #fff;
   margin: 0;
   padding: 0;
-}
+} */
 
 .error-viewer {
   max-width: 1024px;
@@ -99,30 +98,22 @@ header button {
   width: 100%;
 }
 
-.logo {
-  color: white;
-  text-decoration: none;
-}
-
-a.logo {
-  display: flex;
-  flex: 1;
-  font-size: 1.4em;
-}
-
-nav {
+/* nav {
   background-color: whitesmoke;
   height: 100px;
   padding: 20px;
+} */
+
+hr {
+  margin: 10px 5px 15px 5px;
 }
 
 button {
   background-color: transparent;
   border: 1px solid #388af6;
   border-radius: 3px;
-  color: #333;
   padding: 0.5em 1em;
-  margin: 0 0.5em 0 0;
+  margin: 0.5em;
   text-align: center;
   text-decoration: none;
 }
@@ -131,10 +122,6 @@ button:hover {
   background-color: #388af6;
   color: white;
   cursor: pointer;
-}
-
-h3 {
-  margin: 40px 0 0;
 }
 
 td {
@@ -149,6 +136,18 @@ ul {
 li {
   display: inline-block;
   margin: 0 10px;
+}
+
+/* Bugbash logo */
+.logo {
+  color: white;
+  text-decoration: none;
+}
+
+a.logo {
+  display: flex;
+  flex: 1;
+  font-size: 1.4em;
 }
 
 /* Avatar */

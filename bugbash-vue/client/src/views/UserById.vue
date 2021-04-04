@@ -1,8 +1,10 @@
 <template>
   <div class="user-viewer">
+    <div><h1>User</h1></div>
     <div v-if="this.currentUser !== null">
       <h2>{{ currentUser.fullName }}</h2>
       <p>{{ currentUser.mail }}</p>
+      <hr>
       <h2>Commented errors</h2>
     </div>
     <div v-if="this.errors !== null">
@@ -14,7 +16,7 @@
                 name: 'errorInfo',
                 params: { id: getOneOccurrenceByHash(error.hashNumber) },
               }"
-              >{{ error.message }}
+              > <h3>{{ error.message }}</h3> 
             </router-link>
           </div>
 
