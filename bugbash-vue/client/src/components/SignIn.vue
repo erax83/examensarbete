@@ -33,11 +33,6 @@
           @onUpload="startImageResize"
           @onComplete="endImageResize"
         >
-          <!-- <label for="fileInput" slot="upload-label">
-          <span class="upload-caption">{{
-            hasImage ? "Replace" : "Upload"
-          }}</span>
-        </label> -->
         </image-uploader>
         <div>
           <button @click="removeUserImage">Remove userimage</button>
@@ -56,7 +51,7 @@
         v-if="this.signedIn == true"
         :username="this.$store.getters.userInitials"
         :src="this.$store.getters.avatarImage"
-        :size="38"
+        :size="25"
       ></avatar>
     </div>
   </div>

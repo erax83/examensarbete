@@ -2,14 +2,13 @@
   <div id="app">
     <header class="main-header">
       <router-link class="logo" to="/">Bug Bash</router-link>
-      <!-- <div class="global-buttons"></div> -->
       <div>
         <avatar
           v-if="this.signedIn == true"
           class="avatar"
           :username="this.$store.getters.userInitials"
           :src="this.$store.getters.avatarImage"
-          :size="38"
+          :size="25"
         ></avatar>
       </div>
 
@@ -152,14 +151,10 @@ li {
   margin: 0 10px;
 }
 
+/* Avatar */
 .avatar {
   margin-right: 2.7em;
 }
-
-/* .menu-button {
-  background: #333;
-} */
-
 
 /* Menubutton */
 .dropdown {
