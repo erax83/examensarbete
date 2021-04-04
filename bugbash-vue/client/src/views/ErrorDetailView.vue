@@ -19,7 +19,7 @@
         {{ new Date(option.timeStamp).toLocaleString() }}
       </option>
     </select>
-    <hr>
+    <hr />
     <div>
       <h3>Date</h3>
       <p>
@@ -61,7 +61,7 @@
     <div>
       <div>
         <form v-on:submit="openNewIssue()">
-          <span><h3>Add new issue to Github</h3></span>
+          <h3>Add new issue to Github</h3>
           <input
             v-model="issueHeadline.x"
             type="text"
@@ -90,7 +90,7 @@
       </form>
       <div>
         <h3>Comments</h3>
-        
+
         <ul v-for="(comment, index) in this.userCommentList" v-bind:key="index">
           <li class="list-item">
             <router-link
@@ -160,14 +160,14 @@ export default {
     paramData() {
       // const userInfo = this.errorOccurrence[0]._id;
       const userInfo =
-        `Error occurrence: Date: ${new Date(
+        `Error occurrence: ` + `* Message: ` + `* Date: ${new Date(
           this.errorOccurrence[0].timeStamp
         ).toLocaleString()} ` +
-        `ID: ${this.errorOccurrence[0]._id} ` +
+        `* ID: ${this.errorOccurrence[0]._id} ` +
         // `Stacktrace: ${this.errorOccurrence[0].stack} ` +
-        `Language: ${this.errorOccurrence[0].language} ` +
-        `Browser Window Width: ${this.errorOccurrence[0].browserWindowWidth} ` +
-        `Browser Window Height: ${this.errorOccurrence[0].browserWindowHeight} `;
+        `* Language: ${this.errorOccurrence[0].language} ` +
+        `* Browser Window Width: ${this.errorOccurrence[0].browserWindowWidth} ` +
+        `* Browser Window Height: ${this.errorOccurrence[0].browserWindowHeight} `;
       return userInfo;
     },
   },
