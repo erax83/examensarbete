@@ -92,7 +92,7 @@
         <h3>Comments</h3>
         
         <ul v-for="(comment, index) in this.userCommentList" v-bind:key="index">
-          <li>
+          <li class="list-item">
             <router-link
               :to="{
                 name: 'userById',
@@ -102,7 +102,7 @@
             >
           </li>
           <br />
-          <li>{{ comment.userComment }}</li>
+          <li class="list-item">{{ comment.userComment }}</li>
           <br />
         </ul>
       </div>
@@ -313,5 +313,9 @@ export default {
 #commentTextArea {
   width: 30em;
   height: 10em;
+}
+
+.list-item {
+  display: inline;
 }
 </style>

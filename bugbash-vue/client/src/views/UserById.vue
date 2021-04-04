@@ -4,7 +4,7 @@
     <div v-if="this.currentUser !== null">
       <h2>{{ currentUser.fullName }}</h2>
       <p>{{ currentUser.mail }}</p>
-      <hr>
+      <hr />
       <h2>Commented errors</h2>
     </div>
     <div v-if="this.errors !== null">
@@ -12,27 +12,28 @@
         <li>
           <div>
             <router-link
+              id="comment-message"
               :to="{
                 name: 'errorInfo',
                 params: { id: getOneOccurrenceByHash(error.hashNumber) },
               }"
-              > <h3>{{ error.message }}</h3> 
+            >
+              <h3>{{ error.message }}</h3>
             </router-link>
           </div>
 
-          <div>
+          <!-- <div>
             <h3>{{ error.message }}</h3>
-            <!-- <h3>{{ error.hashNumber}}</h3> -->
-          </div>
+          </div> -->
           <div>
             <ul v-for="(e, index) in error.comments" v-bind:key="index">
-              <li>
+              <li id="user-comment">
+                <p>* </p>
                 <p>{{ e.userComment }}</p>
               </li>
             </ul>
           </div>
         </li>
-        <li></li>
       </ul>
     </div>
     <!-- <div v-if="this.testUser !== null">
@@ -110,7 +111,10 @@ export default {
 </script>
 
 <style>
-/* .sign-in {
-  margin: 2em;
-} */
+.comment-message {
+  display: inline;
+}
+p {
+  display: inline;
+}
 </style>
