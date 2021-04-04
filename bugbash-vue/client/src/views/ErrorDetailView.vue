@@ -41,10 +41,10 @@
       <p>{{ this.errorOccurrence[0].browserWindowHeight }}</p>
       <h3>Screen</h3>
       <simple-modal v-model="isShow" @click="isShow = !isShow">
-        <template slot="body">
+        <template slot="body" >
           <h2>Screen</h2>
           <img
-            id="canvasScreen"
+          id="canvas-screen-modal"
             :src="this.errorOccurrence[0].canvas"
             alt="canvas"
           />
@@ -52,7 +52,7 @@
       </simple-modal>
       <button @click="isShow = !isShow">
         <img
-          id="canvasScreen"
+          id="canvas-screen-button"
           :src="this.errorOccurrence[0].canvas"
           alt="canvas"
         />
@@ -160,7 +160,9 @@ export default {
     paramData() {
       // const userInfo = this.errorOccurrence[0]._id;
       const userInfo =
-        `Error occurrence: ` + `* Message: ` + `* Date: ${new Date(
+        `Error occurrence: ` +
+        `* Message: ` +
+        `* Date: ${new Date(
           this.errorOccurrence[0].timeStamp
         ).toLocaleString()} ` +
         `* ID: ${this.errorOccurrence[0]._id} ` +
@@ -306,8 +308,13 @@ export default {
   width: 100%;
 }
 
-#canvasScreen {
-  width: 500px;
+#canvas-screen-button {
+  width: 200px;
+  padding: 1em;
+}
+
+#canvas-screen-modal {
+  width: 800px;
 }
 
 #commentTextArea {
