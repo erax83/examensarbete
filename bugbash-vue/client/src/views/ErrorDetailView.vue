@@ -1,7 +1,9 @@
 <template>
   <div class="detail-view">
-    <h1>{{ this.errorOccurrence[0].message }}</h1>
-    <router-link to="/"><button>Back</button></router-link>
+    <div v-if="this.message !== null">
+    <h1>{{ this.message }}</h1>
+    </div>
+    <router-link to="/"><button>Error list</button></router-link>
     <!-- <button @click="getOccurrencesDates()">Uppdatera</button> -->
     <h3>Earlier occurrences</h3>
     <select v-model="selected" @change="onSelectChange()">
@@ -132,6 +134,7 @@ export default {
         x: "",
         y: "",
       },
+      message: null,
       // testId: this.errorOccurrence[0]._id,
       // isLoggedIn: this.$store.getters.userAuth.isSignedIn(),
       // testy: this.userComments(),
@@ -206,8 +209,22 @@ export default {
             params: { queryData: id },
           })
           .then((response) => {
-            console.log("res: " + JSON.stringify(response.data));
             this.occurrenceDetails = response.data;
+            this.getMessageByOccurrenceHash();
+          });
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    getMessageByOccurrenceHash: function() {
+      console.log('TESTING: ' + this.occurrenceDetails[0].hashNumber);
+      try {
+        axios
+          .get("http://localhost:3000/errorRouter/messageByOccurrenceHash", {
+            params: { queryData: this.occurrenceDetails[0].hashNumber },
+          })
+          .then((response) => {
+            this.message = response.data;
           });
       } catch (err) {
         console.log(err);

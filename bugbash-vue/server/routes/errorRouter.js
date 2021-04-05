@@ -23,6 +23,12 @@ router.get(
 );
 
 router.get(
+  "/messageByOccurrenceHash",
+  cors(corsOptions),
+  errorController.getMessageByOccurrenceHash
+);
+
+router.get(
   "/occurrencesById",
   cors(corsOptions),
   errorController.getOccurrencesById);

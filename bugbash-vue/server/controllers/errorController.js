@@ -49,6 +49,19 @@ const getOccurrencesById = async (req, res) => {
   }
 };
 
+const getMessageByOccurrenceHash = async (req, res) => {
+  try {
+    console.log("inside messageBy " + req.query.queryData);
+    const result = await ErrorModel.findOne({
+      hashNumber: req.query.queryData,
+    });
+    console.log('from getMessageBy: ' + result.message);
+    res.send(result.message);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
 const getHashCount = async (req, res) => {
   try {
     const result = await ErrorModel.find();
@@ -276,6 +289,7 @@ module.exports = {
   getOccurrencesByHash,
   getOneOccurrenceByHash,
   getOccurrencesById,
+  getMessageByOccurrenceHash,
   getHashCount,
   getErrorList,
   getUserCheck,
