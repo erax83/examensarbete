@@ -9,13 +9,14 @@
     </div>
     <div v-if="this.errors !== null">
       <ul v-for="(error, index) in this.errors" v-bind:key="index">
+        
         <li>
           <div>
             <router-link
               id="comment-message"
               :to="{
                 name: 'errorInfo',
-                params: { id: getOneOccurrenceByHash(error.hashNumber) },
+                params: { id: getOccurrenceId },
               }"
             >
               <h3>{{ error.message }}</h3>
@@ -28,7 +29,7 @@
           <div>
             <ul v-for="(e, index) in error.comments" v-bind:key="index">
               <li id="user-comment">
-                <p>* </p>
+                <p>- </p>
                 <p>{{ e.userComment }}</p>
               </li>
             </ul>
@@ -57,14 +58,15 @@ export default {
       id: this.$route.params.id,
       currentUser: null,
       errors: null,
+      routerParams: '6066ee9aa05f0690bc73cd50',
       // occurrenceId: this.getOneOccurrenceByHash(),
       // testUser: this.userFromStore,
     };
   },
   computed: {
-    // getOccurrenceId(hashNumber) {
-    //   return this.getOneOccurrenceByHash(hashNumber);
-    // },
+    getOccurrenceId(hashNumber) {
+      return this.getOneOccurrenceByHash(hashNumber);
+    },
   },
   methods: {
     getUser: function() {
@@ -83,8 +85,9 @@ export default {
           params: { queryData: hashNumber },
         })
         .then((response) => {
-          console.log("test getOne back: " + response.data._id);
-          return response.data._id;
+          console.log("test getOne back: " + response.data);
+          debugger;
+          return response.data;
         });
     },
     // getErrorActivities: function() {

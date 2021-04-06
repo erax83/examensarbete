@@ -2,7 +2,7 @@
   <div class="user-viewer">
     <h1>User</h1>
     <sign-in class="sign-in"></sign-in>
-    <button @click="testMethod">Test</button>
+    <!-- <button @click="testMethod">Test</button> -->
     <div v-if="loggedInOrNot == true">
       <h3>{{ userName }}</h3>
       <p>{{ userMail }}</p>

@@ -14,9 +14,9 @@
         :signOut="signOut"
         >Logout</GoogleLogin
       >
-      <button @click="testMethod">Test</button>
+      <!-- <button @click="testMethod">Test</button> -->
     </div>
-    <div>
+    <!-- <div>
       <div>
         <image-uploader
           :debug="1"
@@ -43,8 +43,8 @@
           <button>Accept</button>
         </div>
       </div>
-    </div>
-    <div>
+    </div> -->
+    <!-- <div>
       
       <avatar
         class="avatar"
@@ -54,14 +54,14 @@
         :src="this.$store.getters.avatarImage"
         :size="25"
       ></avatar>
-    </div>
+    </div> -->
     
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import Avatar from "vue-avatar";
+// import Avatar from "vue-avatar";
 import GoogleLogin from "vue-google-login";
 // Behövs för viss funktionalitet
 // import { LoaderPlugin } from 'vue-google-login';
@@ -69,7 +69,7 @@ export default {
   name: "SignIn",
   components: {
     GoogleLogin,
-    Avatar,
+    // Avatar,
   },
   data: function() {
     return {

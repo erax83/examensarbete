@@ -30,8 +30,8 @@ const getOneOccurrenceByHash = async (req, res) => {
     const result = await OccurrenceModel.findOne({
       hashNumber: req.query.queryData,
     });
-    // console.log('response: ' + result);
-    res.send(result);
+    console.log("response getOne: " + result.language);
+    res.send(result._id);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -39,7 +39,7 @@ const getOneOccurrenceByHash = async (req, res) => {
 
 const getOccurrencesById = async (req, res) => {
   try {
-    console.log('inside controller ' + req.query.queryData);
+    console.log("inside controller " + req.query.queryData);
     const result = await OccurrenceModel.find({
       _id: req.query.queryData,
     });
@@ -55,7 +55,7 @@ const getMessageByOccurrenceHash = async (req, res) => {
     const result = await ErrorModel.findOne({
       hashNumber: req.query.queryData,
     });
-    console.log('from getMessageBy: ' + result.message);
+    console.log("from getMessageBy: " + result.message);
     res.send(result.message);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -89,32 +89,36 @@ const getUserCheck = async (req, res) => {
 
 const getUserActivity = async (req, res) => {
   console.log("Inside getUserActivityyyy: " + req.query.queryData);
+  var result = null;
+  var errorObject = {
+    errorResults: Array,
+    occurrenceId: Array,
+  };
   // errorList = [];
   try {
-    const result = await ErrorModel.find({
+    result = await ErrorModel.find({
       "comments.userId": req.query.queryData,
     });
     if (result) {
-      res.send(result);
-      // try {
-      //   const test = await result.aggregate([
-      //     {
-      //       $lookup: {
-      //         from: "occurrences",
-      //         let: { hashNumber: "$hashNumber" },
-      //         pipeline: [
-      //           { $match: { $expr: { $eq: ["$$hashNumber", "$hashNumber"] } } },
-      //           { $sort: { _id: -1 } },
-      //           { $limit: 1 },
-      //         ],
-      //         as: "occurrenceDetails",
-      //       },
-      //     },
-      //   ]);
-      //   res.send(test);
-      // } catch (err) {
-      //   res.status(500).json({ message: err.message });
+      // errorObject.errorResults = await result;
+
+      // var hash = await errorObject.errorResults;
+      // console.log('hash: ' + hash);
+
+      // for (let index = 0; index < hash.length; index++) {
+      //   var idResult = await OccurrenceModel.findOne({
+      //     hashNumber: hash[index].hashNumber,
+      //   });
+      //   if(!idResult) {
+      //     errorObject.occurrenceId.push(idResult._id);
+      //     console.log('idTest: ' + idResult._id);
+      //   }
       // }
+
+      // console.log("check error: " + await errorObject.errorResults[0]);
+      // console.log("check id: " + await errorObject.occurrenceId[0]);
+
+      res.send(result);
     } else {
       console.log("no results");
     }
