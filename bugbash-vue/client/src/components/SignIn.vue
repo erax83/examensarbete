@@ -8,6 +8,7 @@
         :onFailure="onFailure"
       ></GoogleLogin>
       <GoogleLogin
+        v-if="signedIn == true"
         :params="params"
         :logoutButton="true"
         :onFailure="onFailure"

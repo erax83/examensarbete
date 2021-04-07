@@ -187,9 +187,19 @@ vilka fel de har kommenterat med dessa kommentarer.
 UserById-sidan har uppdaterats.
 
 2021-03-04
-Styling
+Styling.
 
 Fixa diverse buggar.
+
+2021-03-05
+Styling.
+
+Fixa diverse buggar. 
+
+2021-03-06
+Möte med handledaren. Genomgång av vad som gjorts och vad som är rimligt att fixa till. 
+
+Skriva LIA-rapport. 
 
 
 

@@ -1,6 +1,6 @@
 <template>
   <div class="user-viewer">
-    <h1>User</h1>
+    <h1>Sign in</h1>
     <sign-in class="sign-in"></sign-in>
     <!-- <button @click="testMethod">Test</button> -->
     <div v-if="loggedInOrNot == true">
