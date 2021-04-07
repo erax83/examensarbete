@@ -3,11 +3,15 @@
     <h1>Sign in</h1>
     <sign-in class="sign-in"></sign-in>
     <!-- <button @click="testMethod">Test</button> -->
-    <div v-if="loggedInOrNot == true">
-      <h3>{{ userName }}</h3>
-      <p>{{ userMail }}</p>
+    <span v-if="loggedInOrNot == true">
+       <h3>{{ userName }}</h3>
       
-    </div>
+      
+      
+      <p>{{ userMail }}</p>
+      <br/>
+      
+    </span>
     <hr>
   </div>
 </template>
@@ -15,16 +19,26 @@
 <script>
 import SignIn from "../components/SignIn.vue";
 import axios from "axios";
+// import Avatar from "vue-avatar";
+
 
 export default {
   name: "User",
   components: {
     SignIn,
+    // Avatar,
   },
   data: function() {
     return {};
   },
   computed: {
+    signedIn() {
+      var check = false;
+      if (this.$store.getters.userAuth !== null) {
+        check = this.$store.getters.userAuth.isSignedIn();
+      }
+      return check;
+    },
     loggedInOrNot() {
       if (this.$store.getters.completeGoogleUser !== null) {
         return this.$store.getters.completeGoogleUser.isSignedIn();

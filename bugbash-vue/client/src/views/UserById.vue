@@ -2,14 +2,14 @@
   <div class="user-viewer">
     <div><h1>User</h1></div>
     <div v-if="this.currentUser !== null">
-      <h2>{{ currentUser.fullName }}</h2>
+      <h3>{{ currentUser.fullName }}</h3>
       <p>{{ currentUser.mail }}</p>
       <hr />
       <h2>Commented errors</h2>
     </div>
     <div v-if="this.errors !== null">
       <ul v-for="(error, index) in this.errors" v-bind:key="index">
-        
+
         <li>
           <div>
             <router-link

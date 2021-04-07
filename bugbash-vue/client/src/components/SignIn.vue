@@ -45,12 +45,10 @@
         </div>
       </div>
     </div> -->
-    <!-- <div>
-      
+    <!-- <div v-if="signedIn == true">
       <avatar
         class="avatar"
         :click="showImageUploader"
-        v-if="this.signedIn == true"
         :username="this.$store.getters.userInitials"
         :src="this.$store.getters.avatarImage"
         :size="25"
