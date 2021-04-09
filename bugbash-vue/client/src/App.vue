@@ -133,9 +133,9 @@ ul {
   list-style-type: none;
 }
 
-li {
+/* li {
   margin: 0 10px;
-}
+} */
 
 /* Bugbash logo */
 .logo {

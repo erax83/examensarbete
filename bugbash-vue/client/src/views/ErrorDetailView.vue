@@ -1,7 +1,7 @@
 <template>
   <div class="detail-view">
     <div v-if="this.message !== null">
-    <h1>{{ this.message }}</h1>
+      <h1>{{ this.message }}</h1>
     </div>
     <router-link to="/"><button>Error list</button></router-link>
     <!-- <button @click="getOccurrencesDates()">Uppdatera</button> -->
@@ -43,10 +43,10 @@
       <p>{{ this.errorOccurrence[0].browserWindowHeight }}</p>
       <h3>Screen</h3>
       <simple-modal v-model="isShow" @click="isShow = !isShow">
-        <template slot="body" >
+        <template slot="body">
           <h2>Screen</h2>
           <img
-          id="canvas-screen-modal"
+            id="canvas-screen-modal"
             :src="this.errorOccurrence[0].canvas"
             alt="canvas"
           />
@@ -90,24 +90,23 @@
           </li>
         </ul>
       </form>
-      <div>
-        <h3>Comments</h3>
-
-        <ul v-for="(comment, index) in this.userCommentList" v-bind:key="index">
-          <li class="list-item">
-            <router-link
-              :to="{
-                name: 'userById',
-                params: { id: comment.userId },
-              }"
-              ><h4>{{ comment.userName }}</h4></router-link
-            >
-          </li>
-          <br />
-          <li class="list-item">{{ comment.userComment }}</li>
-          <br />
-        </ul>
-      </div>
+    </div>
+    <div>
+      <h3>Comments</h3>
+      <ul v-for="(comment, index) in this.userCommentList" v-bind:key="index">
+        <li class="list-item">
+          <router-link
+            :to="{
+              name: 'userById',
+              params: { id: comment.userId },
+            }"
+            ><h4>{{ comment.userName }}</h4></router-link
+          >
+        </li>
+        <li class="list-item">
+          <p>{{ comment.userComment }}</p>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -217,7 +216,7 @@ export default {
       }
     },
     getMessageByOccurrenceHash: function() {
-      console.log('TESTING: ' + this.occurrenceDetails[0].hashNumber);
+      console.log("TESTING: " + this.occurrenceDetails[0].hashNumber);
       try {
         axios
           .get("http://localhost:3000/errorRouter/messageByOccurrenceHash", {

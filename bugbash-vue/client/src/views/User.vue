@@ -3,16 +3,18 @@
     <h1>Sign in</h1>
     <sign-in class="sign-in"></sign-in>
     <!-- <button @click="testMethod">Test</button> -->
-    <span v-if="loggedInOrNot == true">
-       <h3>{{ userName }}</h3>
-      
-      
-      
+    <span v-if="loggedInOrNot">
+      <router-link
+        :to="{
+          name: 'userById',
+          params: { id: userId },
+        }"
+        ><h3>{{ userName }}</h3></router-link
+      >
       <p>{{ userMail }}</p>
-      <br/>
-      
+      <br />
     </span>
-    <hr>
+    <hr />
   </div>
 </template>
 
@@ -21,15 +23,17 @@ import SignIn from "../components/SignIn.vue";
 import axios from "axios";
 // import Avatar from "vue-avatar";
 
-
 export default {
   name: "User",
   components: {
     SignIn,
+
     // Avatar,
   },
   data: function() {
-    return {};
+    return {
+      errors: null,
+    };
   },
   computed: {
     signedIn() {
@@ -51,6 +55,9 @@ export default {
     },
     userMail() {
       return this.$store.getters.completeGoogleUser.getBasicProfile().At;
+    },
+    userId() {
+      return this.$store.getters.completeGoogleUser.getBasicProfile().getId();
     },
   },
   methods: {
@@ -81,6 +88,4 @@ export default {
 };
 </script>
 
-<style>
-
-</style>
+<style></style>
