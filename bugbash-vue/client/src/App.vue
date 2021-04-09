@@ -16,7 +16,7 @@
         <button class="dropbtn"><font-awesome-icon icon="bars" /></button>
         <div class="dropdown-content">
           <router-link to="/">Start Page</router-link>
-          <router-link to="/user">User Sign In</router-link>
+          <router-link to="/userSignIn">User Sign In</router-link>
           <router-link to="/about">About</router-link>
         </div>
       </div>

@@ -4,7 +4,7 @@ import VueRouter from "vue-router";
 // import Home from "./views/Home";
 import ErrorListView from "./views/ErrorListView";
 import ErrorDetailView from "./views/ErrorDetailView";
-import User from "./views/User";
+import UserSignIn from "./views/UserSignIn";
 import UserById from "./views/UserById";
 import About from "./views/About";
 import Errorstest from "./views/Errorstest";
@@ -21,7 +21,7 @@ export const router = new VueRouter({
              name: "errorInfo",
              component: ErrorDetailView,
            },
-           { path: "/user", name: "user", component: User },
+           { path: "/usersignin", name: "usersignin", component: UserSignIn },
            { path: "/userById/:id", name: "userById", component: UserById },
            { path: "/about", component: About },
            { path: "/errorstest", component: Errorstest },

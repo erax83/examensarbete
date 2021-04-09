@@ -24,7 +24,7 @@ import axios from "axios";
 // import Avatar from "vue-avatar";
 
 export default {
-  name: "User",
+  name: "userSignIn",
   components: {
     SignIn,
 
