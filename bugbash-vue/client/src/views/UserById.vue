@@ -9,29 +9,25 @@
     </div>
     <div v-if="this.errors !== null">
       <ul v-for="(error, index) in this.errors" v-bind:key="index">
-
         <li>
           <div>
             <router-link
-              id="comment-message"
               :to="{
                 name: 'errorInfo',
-                params: { id: getOccurrenceId },
+                params: { id: routerParams },
               }"
             >
               <h3>{{ error.message }}</h3>
             </router-link>
           </div>
-
-          <!-- <div>
-            <h3>{{ error.message }}</h3>
-          </div> -->
           <div>
             <ul v-for="(e, index) in error.comments" v-bind:key="index">
-              <li id="user-comment">
-                <p>- </p>
-                <p>{{ e.userComment }}</p>
-              </li>
+              <div v-if="e.userName == currentUser.fullName">
+                <li id="user-comment">
+                  <p>- </p>
+                  <p>{{ e.userComment }}</p>
+                </li>
+              </div>
             </ul>
           </div>
         </li>
@@ -58,13 +54,15 @@ export default {
       id: this.$route.params.id,
       currentUser: null,
       errors: null,
-      routerParams: '6066ee9aa05f0690bc73cd50',
+      routerParams: "6066ee9aa05f0690bc73cd50",
       // occurrenceId: this.getOneOccurrenceByHash(),
       // testUser: this.userFromStore,
     };
   },
   computed: {
     getOccurrenceId(hashNumber) {
+      console.log("hash get: " + hashNumber);
+
       return this.getOneOccurrenceByHash(hashNumber);
     },
   },
@@ -80,6 +78,7 @@ export default {
         });
     },
     getOneOccurrenceByHash(hashNumber) {
+      console.log("hash: " + hashNumber);
       axios
         .get("http://localhost:3000/errorRouter/occurrenceByHash", {
           params: { queryData: hashNumber },
@@ -98,11 +97,15 @@ export default {
     //     });
     // },
     getErrors: async function() {
+      console.log("check: " + this.id);
+
       axios
         .get("http://localhost:3000/errorRouter/userActivity", {
           params: { queryData: this.id },
         })
         .then((response) => {
+          console.log("check: " + JSON.stringify(response.data));
+
           this.errors = response.data;
         });
     },
@@ -114,9 +117,9 @@ export default {
 </script>
 
 <style>
-.comment-message {
+/* .comment-message {
   display: inline;
-}
+} */
 p {
   display: inline;
 }

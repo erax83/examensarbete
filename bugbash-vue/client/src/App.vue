@@ -126,6 +126,7 @@ button:hover {
 
 td {
   cursor: pointer;
+  text-decoration: none;
 }
 
 ul {

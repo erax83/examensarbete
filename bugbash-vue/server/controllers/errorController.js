@@ -25,12 +25,12 @@ const getOccurrencesByHash = async (req, res) => {
 };
 
 const getOneOccurrenceByHash = async (req, res) => {
-  console.log("inside getOne: " + req.query.queryData);
+  console.log("inside getOne: ");
   try {
     const result = await OccurrenceModel.findOne({
       hashNumber: req.query.queryData,
     });
-    console.log("response getOne: " + result.language);
+    // console.log("response getOne: " + result.language);
     res.send(result._id);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -39,7 +39,6 @@ const getOneOccurrenceByHash = async (req, res) => {
 
 const getOccurrencesById = async (req, res) => {
   try {
-    console.log("inside controller " + req.query.queryData);
     const result = await OccurrenceModel.find({
       _id: req.query.queryData,
     });
@@ -51,11 +50,9 @@ const getOccurrencesById = async (req, res) => {
 
 const getMessageByOccurrenceHash = async (req, res) => {
   try {
-    console.log("inside messageBy " + req.query.queryData);
     const result = await ErrorModel.findOne({
       hashNumber: req.query.queryData,
     });
-    console.log("from getMessageBy: " + result.message);
     res.send(result.message);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -72,7 +69,6 @@ const getHashCount = async (req, res) => {
 };
 
 const getUserCheck = async (req, res) => {
-  console.log("Inside getUserCheck: " + req.query.queryData);
   try {
     const result = await UserModel.findOne({
       mail: req.query.queryData,
@@ -88,13 +84,11 @@ const getUserCheck = async (req, res) => {
 };
 
 const getUserActivity = async (req, res) => {
-  console.log("Inside getUserActivityyyy: " + req.query.queryData);
   var result = null;
   var errorObject = {
     errorResults: Array,
     occurrenceId: Array,
   };
-  // errorList = [];
   try {
     result = await ErrorModel.find({
       "comments.userId": req.query.queryData,
@@ -144,13 +138,6 @@ const getUserActivity = async (req, res) => {
 // };
 
 const postUser = async (req, res) => {
-  const newName = await req.body.fullName;
-  const newMail = await req.body.mail;
-  const newId = await req.body.id;
-  console.log("inside postUser: " + newName);
-  console.log("inside postUser: " + newMail);
-  console.log("inside postUser: " + newId);
-  // const newBody = await req.body;
   const newUser = await new UserModel(req.body);
   await newUser.save();
 };
@@ -268,11 +255,6 @@ const postUserComment = async (req, res) => {
   var hashData = await req.body.params.hashId;
   var nameData = await req.body.params.userName;
   var idData = await req.body.params.userId;
-
-  console.log("inside post user comment and params: " + commentData);
-  console.log("inside post user comment and params: " + hashData);
-  console.log("inside post user comment and params: " + nameData);
-  console.log("inside post user comment and params: " + idData);
 
   const userAndComment = {
     userName: nameData,
