@@ -6,7 +6,6 @@
       <tr v-for="(err, index) in errorList" :key="index">
         <td>{{ err.hashNumber }}</td>
         <td>
-          <!-- <router-link :to="`/errortest/${err.hashNumber}`">view</router-link> -->
           <router-link :to="{ name: 'err', params: { id: err._id } }"
             >view</router-link
           >

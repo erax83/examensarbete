@@ -90,10 +90,80 @@ const getUserActivity = async (req, res) => {
     occurrenceId: Array,
   };
   try {
+    // result = await ErrorModel.find({
+    //   "comments.userId": req.query.queryData,
+    // }).aggregate([
+    //   {
+    //     $lookup: {
+    //       from: "occurrences",
+    //       let: { hashNumber: "$hashNumber" },
+    //       pipeline: [
+    //         { $match: { $expr: { $eq: ["$$hashNumber", "$hashNumber"] } } },
+    //         { $sort: { _id: -1 } },
+    //         { $limit: 1 },
+    //       ],
+    //       as: "occurrenceDetails",
+    //     },
+    //   },
+    // ]);
+
+
+
     result = await ErrorModel.find({
       "comments.userId": req.query.queryData,
     });
     if (result) {
+
+      
+      
+      // const test = await result.aggregate([
+      //   {
+      //     $lookup: {
+      //       from: "occurrences",
+      //       let: { hashNumber: "$hashNumber" },
+      //       pipeline: [
+      //         { $match: { $expr: { $eq: ["$$hashNumber", "$hashNumber"] } } },
+      //         { $sort: { _id: -1 } },
+      //         { $limit: 1 },
+      //       ],
+      //       as: "occurrenceDetails",
+      //     },
+      //   },
+      // ]);
+
+      // const test = await result.aggregate([
+      //   {
+      //     $match: {
+      //       "comments.userId": req.query.queryData,
+      //     },
+      //   },
+      //   {
+      //     $lookup: {
+      //       from: "occurrences",
+      //       let: { hashNumber: "$hashNumber" },
+      //       pipeline: [
+      //         { $match: { $expr: { $eq: ["$$hashNumber", "$hashNumber"] } } },
+      //         { $sort: { _id: -1 } },
+      //         { $limit: 1 },
+      //       ],
+      //       as: "occurrenceDetails",
+      //     },
+      //   },
+      // ]);
+
+      // console.log("TEST: " + test);
+
+      // let itemNames = await test.filter(
+      //   (eachObj) => eachObj.comments.userId === 1500
+      // );
+
+      // const testTwo = await test.filter(
+      //   (eachObj) => eachObj.comments.userId === req.query.queryData
+      // );
+
+      // console.log('testTwo: ' + test[0]);
+      // const testTwo = await test.find({ "comments.userId": req.query.queryData });
+
       // errorObject.errorResults = await result;
 
       // var hash = await errorObject.errorResults;

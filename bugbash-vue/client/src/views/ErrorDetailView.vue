@@ -4,7 +4,6 @@
       <h1>{{ this.message }}</h1>
     </div>
     <router-link to="/"><button>Error list</button></router-link>
-    <!-- <button @click="getOccurrencesDates()">Uppdatera</button> -->
     <h3>Earlier occurrences</h3>
     <select v-model="selected" @change="onSelectChange()">
       <option value="" disabled>{{
@@ -127,17 +126,12 @@ export default {
       occurrenceDetails: [],
       selected: "",
       userCommentList: [],
-      // userCommentList: this.getUserComments,
       userComment: "",
       issueHeadline: {
         x: "",
         y: "",
       },
       message: null,
-      // testId: this.errorOccurrence[0]._id,
-      // isLoggedIn: this.$store.getters.userAuth.isSignedIn(),
-      // testy: this.userComments(),
-      // canvasUrl: this.errorOccurrence[0].browserWindowHeight,
       isShow: false,
     };
   },

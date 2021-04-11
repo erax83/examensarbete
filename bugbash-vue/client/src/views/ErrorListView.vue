@@ -41,7 +41,6 @@
               new Date(error.occurrenceDetails[0].timeStamp).toLocaleString()
             }}</router-link
           >
-          <!-- {{ new Date(error.occurrenceDetails[0].timeStamp).toLocaleString() }} -->
         </td>
         <td
           @click="moreErrorDetails(error)"
@@ -217,7 +216,4 @@ li {
   margin: 0 10px;
 }
 
-/* a {
-  color: #42b983;
-} */
 </style>

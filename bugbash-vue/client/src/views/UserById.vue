@@ -19,6 +19,8 @@
             >
               <h3>{{ error.message }}</h3>
             </router-link>
+              <!-- <p>{{ error.occurrenceDetails[0]._id }}</p> -->
+
           </div>
           <div>
             <ul v-for="(e, index) in error.comments" v-bind:key="index">

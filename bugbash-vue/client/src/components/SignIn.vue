@@ -15,7 +15,6 @@
         :signOut="signOut"
         >Logout</GoogleLogin
       >
-      <!-- <button @click="testMethod">Test</button> -->
     </div>
     <!-- <div>
       <div>
@@ -106,17 +105,6 @@ export default {
     },
   },
   methods: {
-    testMethod() {
-      if (this.$store.getters.userAuth !== null) {
-        if (this.$store.getters.userAuth.isSignedIn() == true) {
-          console.log("true");
-        } else {
-          console.log("false");
-        }
-      } else {
-        console.log("null");
-      }
-    },
     onSuccess: async function(googleUser) {
       let userExists = null;
       let userData = await googleUser.getBasicProfile();
@@ -143,9 +131,6 @@ export default {
       this.signedInUser = googleUser;
       this.$store.commit("changeUserInitials", userData.Te);
       this.$store.commit("changeSignedIn", true);
-      // const image = googleUser.getBasicProfile().getImageUrl();
-      // this.userIcon = image;
-      // console.log(test);
       this.$store.commit("changeUserAuth", googleUser);
       console.log("testing: " + googleUser.isSignedIn());
     },

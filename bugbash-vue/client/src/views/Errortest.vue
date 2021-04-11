@@ -7,8 +7,6 @@
       <p>Hashnumber</p>
       <p>{{ err.hashNumber }}</p>
     </div>
-    <!-- <p>{{ $route.params.id }}</p>
-    <hr /> -->
   </div>
 </template>
 
