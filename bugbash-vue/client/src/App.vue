@@ -59,6 +59,7 @@ export default {
 </script>
 
 <style>
+
 body {
   margin: 0;
   padding: 0;
@@ -84,6 +85,12 @@ header.main-header {
   color: #fff;
   margin: 0;
   padding: 0;
+} */
+
+/* main {
+  max-width: 1024px;
+  align-self: center;
+  width: 100%;
 } */
 
 .error-viewer {
@@ -177,7 +184,7 @@ a.logo {
   right: 0;
   min-width: 160px;
   z-index: 1;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
 .dropdown-content a {
@@ -197,4 +204,16 @@ a.logo {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+/* 
+@media screen and (max-width: 600px) {
+  body {
+    background-color: yellow;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  body {
+    background-color: orange;
+  }
+} */
 </style>

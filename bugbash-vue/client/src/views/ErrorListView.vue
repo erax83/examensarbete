@@ -3,6 +3,7 @@
     <h1>Error List</h1>
     <div class="filter-bar">
       <input type="text" v-model="searchInput" v-on:input="search" />
+      
       <button v-on:click="dateToggleFunction">
         Date Toggle
       </button>
@@ -166,6 +167,7 @@ export default {
 <style scoped>
 .filter-bar {
   display: flex;
+  flex-direction: row;
   padding: 1em 0;
 }
 
@@ -214,6 +216,10 @@ ul {
 li {
   display: inline-block;
   margin: 0 10px;
+}
+
+@media screen and (max-width: 600px) {
+
 }
 
 </style>
