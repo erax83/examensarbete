@@ -3,7 +3,7 @@
     <h1>Error List</h1>
     <div class="filter-bar">
       <input type="text" v-model="searchInput" v-on:input="search" />
-      
+
       <button v-on:click="dateToggleFunction">
         Date Toggle
       </button>
@@ -14,68 +14,76 @@
         Url Toggle
       </button>
     </div>
-    <hr>
+    <hr />
     <table class="error-list">
-      <tr>
-        <th v-if="$store.state.dateState == true">Date</th>
-        <th v-if="$store.state.messageState == true">Message</th>
-        <th>Quantity</th>
-        <th v-if="$store.state.urlState == true">Url</th>
-        <th></th>
-      </tr>
-      <tr
-        v-for="(error, index) in getErrorsList()"
-        v-bind:key="index"
-        class="result-line"
-        :class="{ active: index === activeItem }"
-      >
-        <td
-          @click="moreErrorDetails(error)"
-          v-if="$store.state.dateState == true"
+      <thead>
+        <tr>
+          <th v-if="$store.state.dateState == true">Date</th>
+          <th v-if="$store.state.messageState == true">Message</th>
+          <th>Occurrences</th>
+          <th v-if="$store.state.urlState == true">Url</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="(error, index) in getErrorsList()"
+          v-bind:key="index"
+          class="result-line"
+          :class="{ active: index === activeItem }"
         >
-          <router-link
-            :to="{
-              name: 'errorInfo',
-              params: { id: error.occurrenceDetails[0]._id },
-            }"
-            >{{
-              new Date(error.occurrenceDetails[0].timeStamp).toLocaleString()
-            }}</router-link
+          <td
+            @click="moreErrorDetails(error)"
+            v-if="$store.state.dateState == true"
           >
-        </td>
-        <td
-          @click="moreErrorDetails(error)"
-          v-if="$store.state.messageState == true"
-        >
-          <router-link
-            :to="{
-              name: 'errorInfo',
-              params: { id: error.occurrenceDetails[0]._id },
-            }"
-            >{{ error.message }}</router-link
+            <span class="error-mobile-prefix"><b>Date </b></span>
+            <router-link
+              :to="{
+                name: 'errorInfo',
+                params: { id: error.occurrenceDetails[0]._id },
+              }"
+              >{{
+                new Date(error.occurrenceDetails[0].timeStamp).toLocaleString()
+              }}</router-link
+            >
+          </td>
+          <td
+            @click="moreErrorDetails(error)"
+            v-if="$store.state.messageState == true"
           >
-        </td>
-        <td @click="moreErrorDetails(error)">
-          <router-link
-            :to="{
-              name: 'errorInfo',
-              params: { id: error.occurrenceDetails[0]._id },
-            }"
-            >{{ error.occurrencesCount }}</router-link
-          >
-        </td>
-        <td v-if="$store.state.urlState == true">
-          <a :href="error.occurrenceDetails[0].session.url" target="_blank">{{
-            error.occurrenceDetails[0].session.url.substring(7)
-          }}</a>
-        </td>
-        <td>
-          <font-awesome-icon
-            @click="deleteRow(error.occurrenceDetails[0].hashNumber)"
-            icon="trash-alt"
-          ></font-awesome-icon>
-        </td>
-      </tr>
+            <span class="error-mobile-prefix"><b>Message </b></span>
+            <router-link
+              :to="{
+                name: 'errorInfo',
+                params: { id: error.occurrenceDetails[0]._id },
+              }"
+              >{{ error.message }}</router-link
+            >
+          </td>
+          <td @click="moreErrorDetails(error)">
+            <span class="error-mobile-prefix"><b>Occurrences </b></span>
+            <router-link
+              :to="{
+                name: 'errorInfo',
+                params: { id: error.occurrenceDetails[0]._id },
+              }"
+              >{{ error.occurrencesCount }}</router-link
+            >
+          </td>
+          <td v-if="$store.state.urlState == true">
+            <span class="error-mobile-prefix"><b>Url </b></span>
+            <a :href="error.occurrenceDetails[0].session.url" target="_blank">{{
+              error.occurrenceDetails[0].session.url.substring(7)
+            }}</a>
+          </td>
+          <td>
+            <font-awesome-icon
+              @click="deleteRow(error.occurrenceDetails[0].hashNumber)"
+              icon="trash-alt"
+            ></font-awesome-icon>
+          </td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </template>
@@ -219,7 +227,5 @@ li {
 }
 
 @media screen and (max-width: 600px) {
-
 }
-
 </style>

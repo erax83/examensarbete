@@ -211,7 +211,11 @@ Diverse småändringar.
 
 Försöker skapa länk mellan UserById och ErrorDetailView.
 
+2021-03-12
+Läser på om TDD.
 
+2021-03-13
+Försöker få TDD att fungera. 
 
 
 

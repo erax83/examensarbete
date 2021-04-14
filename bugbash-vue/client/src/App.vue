@@ -21,7 +21,7 @@
         </div>
       </div>
     </header>
-
+    
     <router-view></router-view>
   </div>
 </template>
@@ -59,7 +59,6 @@ export default {
 </script>
 
 <style>
-
 body {
   margin: 0;
   padding: 0;
@@ -79,6 +78,9 @@ header.main-header {
   background: #388af6;
   color: #fff;
   padding: 0.5em 1em;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 /* header button {
@@ -87,7 +89,7 @@ header.main-header {
   padding: 0;
 } */
 
-/* main {
+/* main-content {
   max-width: 1024px;
   align-self: center;
   width: 100%;
@@ -103,6 +105,7 @@ header.main-header {
   max-width: 1024px;
   align-self: center;
   width: 100%;
+  
 }
 
 /* nav {
@@ -140,6 +143,10 @@ ul {
   padding: 0;
   list-style-type: none;
 }
+
+tbody tr {
+    margin: 5px;
+  }
 
 /* li {
   margin: 0 10px;
@@ -204,16 +211,71 @@ a.logo {
 .dropdown:hover .dropdown-content {
   display: block;
 }
-/* 
-@media screen and (max-width: 600px) {
-  body {
-    background-color: yellow;
-  }
+
+.error-mobile-prefix {
+  display: none;
 }
 
-@media screen and (max-width: 1000px) {
-  body {
-    background-color: orange;
+@media only screen and (max-width: 760px),
+  (min-device-width: 768px) and (max-device-width: 1024px) {
+
+  #app {
+  display: block;
+}
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
   }
-} */
+
+  td,
+  th {
+    padding: 6px;
+    /* border: 1px solid #ccc; */
+    text-align: left;
+  }
+
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tbody tr {
+    margin: 5px;
+  }
+
+  /* tr {
+    border: 1px solid #ccc;
+  } */
+
+  /* td {
+    border: none;
+    position: relative;
+    padding-left: 50%;
+  } */
+
+  /* td:before {
+    position: absolute;
+    top: 3px;
+    left: 30px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  } */
+
+  .error-mobile-prefix {
+    display: inline;
+  }
+}
 </style>
