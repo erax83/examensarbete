@@ -78,9 +78,6 @@ header.main-header {
   background: #388af6;
   color: #fff;
   padding: 0.5em 1em;
-  position: fixed;
-  top: 0;
-  width: 100%;
 }
 
 /* header button {

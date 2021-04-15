@@ -3,16 +3,18 @@
     <h1>Error List</h1>
     <div class="filter-bar">
       <input type="text" v-model="searchInput" v-on:input="search" />
-
-      <button v-on:click="dateToggleFunction">
-        Date Toggle
-      </button>
-      <button v-on:click="messageToggleFunction">
-        Message Toggle
-      </button>
-      <button v-on:click="urlToggleFunction">
-        Url Toggle
-      </button>
+      <br class="small-screen-break" />
+      <div class="filter-buttons">
+        <button v-on:click="dateToggleFunction">
+          Date Toggle
+        </button>
+        <button v-on:click="messageToggleFunction">
+          Message Toggle
+        </button>
+        <button v-on:click="urlToggleFunction">
+          Url Toggle
+        </button>
+      </div>
     </div>
     <hr />
     <table class="error-list">
@@ -173,11 +175,11 @@ export default {
 </script>
 
 <style scoped>
-.filter-bar {
+/* .filter-bar {
   display: flex;
   flex-direction: row;
   padding: 1em 0;
-}
+} */
 
 .error-list {
   width: 100%;
@@ -227,5 +229,17 @@ li {
 }
 
 @media screen and (max-width: 600px) {
+  .filter-buttons {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+@media screen and (min-width: 501px) {
+  .filter-bar {
+    display: flex;
+    flex-direction: row;
+    padding: 1em 0;
+  }
 }
 </style>

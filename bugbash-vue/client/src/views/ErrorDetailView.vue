@@ -157,15 +157,16 @@ export default {
       // const userInfo = this.errorOccurrence[0]._id;
       const userInfo =
         `Error occurrence: ` +
-        `* Message: ` +
-        `* Date: ${new Date(
+        ` * Message: ` + this.message +
+        ` * Date: ${new Date(
           this.errorOccurrence[0].timeStamp
         ).toLocaleString()} ` +
-        `* ID: ${this.errorOccurrence[0]._id} ` +
+        ` * ID: ${this.errorOccurrence[0]._id} ` +
         // `Stacktrace: ${this.errorOccurrence[0].stack} ` +
-        `* Language: ${this.errorOccurrence[0].language} ` +
-        `* Browser Window Width: ${this.errorOccurrence[0].browserWindowWidth} ` +
-        `* Browser Window Height: ${this.errorOccurrence[0].browserWindowHeight} `;
+        ` * Language: ${this.errorOccurrence[0].language} ` +
+        ` * Browser Window Width: ${this.errorOccurrence[0].browserWindowWidth} ` +
+        ` * Browser Window Height: ${this.errorOccurrence[0].browserWindowHeight} `;
+
       return userInfo;
     },
   },
