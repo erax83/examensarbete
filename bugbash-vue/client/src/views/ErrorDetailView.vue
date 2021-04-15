@@ -102,7 +102,7 @@
             ><h4>{{ comment.userName }}</h4></router-link
           >
         </li>
-        <li class="list-item">
+        <li class="comment-field">
           <p>{{ comment.userComment }}</p>
         </li>
       </ul>
@@ -157,7 +157,8 @@ export default {
       // const userInfo = this.errorOccurrence[0]._id;
       const userInfo =
         `Error occurrence: ` +
-        ` * Message: ` + this.message +
+        ` * Message: ` +
+        this.message +
         ` * Date: ${new Date(
           this.errorOccurrence[0].timeStamp
         ).toLocaleString()} ` +
@@ -335,5 +336,10 @@ export default {
 
 .list-item {
   display: inline;
+}
+
+.comment-field {
+  min-width: 300px;
+  max-width: 500px;
 }
 </style>
