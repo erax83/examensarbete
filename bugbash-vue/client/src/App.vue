@@ -11,7 +11,6 @@
           :size="25"
         ></avatar>
       </div>
-
       <div class="dropdown">
         <button class="dropbtn"><font-awesome-icon icon="bars" /></button>
         <div class="dropdown-content">
@@ -21,7 +20,6 @@
         </div>
       </div>
     </header>
-    
     <router-view></router-view>
   </div>
 </template>
@@ -102,7 +100,6 @@ header.main-header {
   max-width: 1024px;
   align-self: center;
   width: 100%;
-  
 }
 
 /* nav {
@@ -141,9 +138,9 @@ ul {
   list-style-type: none;
 }
 
-tbody tr {
-    margin: 5px;
-  }
+/* tbody tr {
+  margin: 5px;
+} */
 
 /* li {
   margin: 0 10px;
@@ -213,12 +210,12 @@ a.logo {
   display: none;
 }
 
-@media only screen and (max-width: 760px),
-  (min-device-width: 768px) and (max-device-width: 1024px) {
-
+@media only screen and (max-width: 800px)
+  /* (min-device-width: 768px) and (max-device-width: 1024px)  */
+  {
   #app {
-  display: block;
-}
+    display: block;
+  }
 
   table {
     width: 100%;
@@ -250,6 +247,7 @@ a.logo {
 
   tbody tr {
     margin: 5px;
+    padding: 12px;
   }
 
   /* tr {

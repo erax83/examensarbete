@@ -19,15 +19,16 @@
             >
               <h3>{{ error.message }}</h3>
             </router-link>
-              <!-- <p>{{ error.occurrenceDetails[0]._id }}</p> -->
-
+            <!-- <p>{{ error.occurrenceDetails[0]._id }}</p> -->
           </div>
           <div>
             <ul v-for="(e, index) in error.comments" v-bind:key="index">
               <div v-if="e.userName == currentUser.fullName">
-                <li id="user-comment">
-                  <p>- </p>
+                <li id="comment-field">
+                  <p>-</p>
                   <p>{{ e.userComment }}</p>
+                  <br />
+                  <br />
                 </li>
               </div>
             </ul>
@@ -119,10 +120,18 @@ export default {
 </script>
 
 <style>
+body {
+  margin: 10px;
+}
 /* .comment-message {
   display: inline;
 } */
 p {
   display: inline;
+}
+
+#comment-field {
+  min-width: 300px;
+  max-width: 700px;
 }
 </style>

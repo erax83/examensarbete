@@ -175,12 +175,6 @@ export default {
 </script>
 
 <style scoped>
-/* .filter-bar {
-  display: flex;
-  flex-direction: row;
-  padding: 1em 0;
-} */
-
 .error-list {
   width: 100%;
   text-align: left;

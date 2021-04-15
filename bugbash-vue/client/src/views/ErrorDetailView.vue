@@ -11,7 +11,6 @@
           this.$store.getters.errors.slice().reverse()[0].timeStamp
         ).toLocaleString()
       }}</option>
-
       <option
         v-for="(option, index) in this.$store.getters.errors.slice().reverse()"
         v-bind:key="index"
@@ -64,7 +63,7 @@
         <form v-on:submit="openNewIssue()">
           <h3>Add new issue to Github</h3>
           <input
-            v-model="issueHeadline.x"
+            v-model="issueHeadline"
             type="text"
             placeholder="Issue headline"
           />
@@ -72,7 +71,6 @@
           <button type="submit">Post Issue</button>
         </form>
       </div>
-
       <form v-on:submit="postUserComment">
         <span><h3>Add a comment</h3></span>
         <textarea
@@ -102,7 +100,7 @@
             ><h4>{{ comment.userName }}</h4></router-link
           >
         </li>
-        <li class="comment-field">
+        <li id="comment-field">
           <p>{{ comment.userComment }}</p>
         </li>
       </ul>
@@ -113,7 +111,6 @@
 <script>
 import axios from "axios";
 import SimpleModal from "simple-modal-vue";
-// import GoogleLogin from "vue-google-login";
 
 export default {
   name: "ErrorDetailView",
@@ -127,10 +124,7 @@ export default {
       selected: "",
       userCommentList: [],
       userComment: "",
-      issueHeadline: {
-        x: "",
-        y: "",
-      },
+      issueHeadline: "",
       message: null,
       isShow: false,
     };
@@ -141,7 +135,6 @@ export default {
     },
     userComments: function() {
       return this.getUserComments();
-      // return this.userCommentList;
     },
     isLoggedIn() {
       if (
@@ -154,7 +147,6 @@ export default {
       }
     },
     paramData() {
-      // const userInfo = this.errorOccurrence[0]._id;
       const userInfo =
         `Error occurrence: ` +
         ` * Message: ` +
@@ -171,11 +163,6 @@ export default {
       return userInfo;
     },
   },
-  // watch: {
-  //   userCommentList: function () {
-
-  //   }
-  // },
   methods: {
     show() {
       this.$modal.show("my-first-modal");
@@ -229,9 +216,6 @@ export default {
       console.log("inside get comments");
       var hashId = await this.occurrenceDetails[0].hashNumber;
       console.log("hash: " + hashId);
-      // const userData = googleUser.getBasicProfile();
-      // console.log('user data: ' + userData.sd);
-      // e.preventDefault();
       try {
         return axios
           .get("http://localhost:3000/errorRouter/userComments", {
@@ -240,15 +224,7 @@ export default {
           .then((response) => {
             var responseArray = [];
             responseArray = response.data;
-            // console.log("response data: " + responseArray[1]);
-
             this.userCommentList = responseArray.reverse();
-
-            // return responseArray;
-
-            // return response;
-
-            // this.userCommentList = response.data;
           });
       } catch (err) {
         console.log(err);
@@ -257,20 +233,14 @@ export default {
 
     postUserComment: async function() {
       console.log(this.userComment);
-      // console.log(e);
       var errorHashNumber = await this.occurrenceDetails[0].hashNumber;
       var userInfo = null;
       var userInfoId = null;
-
       if (this.isLoggedIn == null) {
         return alert("Null: You must be logged in to make a comment");
       } else {
         userInfo = this.$store.getters.userInfo;
         userInfoId = userInfo.getId();
-        // console.log("user info: " + userInfo.Te);
-        // it prevent from page reload
-        // e.preventDefault();
-
         try {
           axios
             .post("http://localhost:3000/errorRouter/userComment", {
@@ -291,13 +261,8 @@ export default {
       }
     },
     openNewIssue: async function() {
-      // this.issueHeadline.y = await this.occurrenceDetails[0].stack;
-      // const issueData = await `hello ${this.occurrenceDetails[0].stack} helo hello`;
-      // debugger;
-      // console.log('headline: ' + await issueData);
-      // debugger;
       await window.open(
-        `https://github.com/bryntum/bugbash/issues/new?title=${this.issueHeadline.x}&body=${this.paramData}`
+        `https://github.com/bryntum/bugbash/issues/new?title=${this.issueHeadline}&body=${this.paramData}`
       );
     },
   },
@@ -338,8 +303,8 @@ export default {
   display: inline;
 }
 
-.comment-field {
+#comment-field {
   min-width: 300px;
-  max-width: 500px;
+  max-width: 700px;
 }
 </style>
