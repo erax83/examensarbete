@@ -100,7 +100,7 @@
             ><h4>{{ comment.userName }}</h4></router-link
           >
         </li>
-        <li id="comment-field">
+        <li class="comment-field">
           <p>{{ comment.userComment }}</p>
         </li>
       </ul>
@@ -278,20 +278,15 @@ export default {
 };
 </script>
 
-<style>
-.detail-view {
-  max-width: 1024px;
-  align-self: center;
-  width: 100%;
-}
+<style scoped>
 
 #canvas-screen-button {
-  width: 200px;
+  width: 25em;
   padding: 1em;
 }
 
 #canvas-screen-modal {
-  width: 800px;
+  width: 50em;
 }
 
 #commentTextArea {
@@ -301,10 +296,5 @@ export default {
 
 .list-item {
   display: inline;
-}
-
-#comment-field {
-  min-width: 300px;
-  max-width: 700px;
 }
 </style>

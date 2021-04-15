@@ -19,12 +19,11 @@
             >
               <h3>{{ error.message }}</h3>
             </router-link>
-            <!-- <p>{{ error.occurrenceDetails[0]._id }}</p> -->
           </div>
           <div>
             <ul v-for="(e, index) in error.comments" v-bind:key="index">
               <div v-if="e.userName == currentUser.fullName">
-                <li id="comment-field">
+                <li class="comment-field">
                   <p>-</p>
                   <p>{{ e.userComment }}</p>
                   <br />
@@ -36,19 +35,11 @@
         </li>
       </ul>
     </div>
-    <!-- <div v-if="this.testUser !== null">
-      <ul v-for="(error, index) in this.testUser" v-bind:key="index">
-        <li>{{ error.message }}</li>
-
-        
-      </ul>
-    </div> -->
   </div>
 </template>
 
 <script>
 import axios from "axios";
-
 export default {
   name: "UserById",
   components: {},
@@ -58,14 +49,11 @@ export default {
       currentUser: null,
       errors: null,
       routerParams: "6066ee9aa05f0690bc73cd50",
-      // occurrenceId: this.getOneOccurrenceByHash(),
-      // testUser: this.userFromStore,
     };
   },
   computed: {
     getOccurrenceId(hashNumber) {
       console.log("hash get: " + hashNumber);
-
       return this.getOneOccurrenceByHash(hashNumber);
     },
   },
@@ -92,13 +80,6 @@ export default {
           return response.data;
         });
     },
-    // getErrorActivities: function() {
-    //   axios
-    //     .get("http://localhost:3000/errorRouter/userActivity")
-    //     .then((response) => {
-    //       this.errors = response.data;
-    //     });
-    // },
     getErrors: async function() {
       console.log("check: " + this.id);
 
@@ -119,19 +100,8 @@ export default {
 };
 </script>
 
-<style>
-body {
-  margin: 10px;
-}
-/* .comment-message {
-  display: inline;
-} */
+<style scoped>
 p {
   display: inline;
-}
-
-#comment-field {
-  min-width: 300px;
-  max-width: 700px;
 }
 </style>

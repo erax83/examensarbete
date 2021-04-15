@@ -176,8 +176,4 @@ export default {
   padding: 0.3em 1.9em;
   margin-right: 1.6em;
 }
-
-/* .avatar {
-  margin-right: 2.7em;
-} */
 </style>

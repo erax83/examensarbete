@@ -20,14 +20,11 @@
 <script>
 import SignIn from "../components/SignIn.vue";
 import axios from "axios";
-// import Avatar from "vue-avatar";
 
 export default {
   name: "userSignIn",
   components: {
     SignIn,
-
-    // Avatar,
   },
   data: function() {
     return {
@@ -87,4 +84,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped></style>

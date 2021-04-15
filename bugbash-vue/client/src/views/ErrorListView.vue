@@ -92,6 +92,7 @@
 
 <script>
 import axios from "axios";
+
 export default {
   name: "ErrorListView",
   data: function() {
@@ -188,13 +189,9 @@ export default {
   text-align: right;
 }
 
-table {
-  border-collapse: collapse;
-}
-
 table tr td,
 table tr th {
-  padding: 0;
+  padding: 3;
 }
 
 input {
@@ -204,28 +201,11 @@ input {
   align-self: center;
 }
 
-h3 {
-  margin: 40px 0 0;
-}
-
-td {
-  cursor: pointer;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
 @media screen and (max-width: 600px) {
   .filter-buttons {
     display: flex;
     flex-direction: row;
+    padding: 1em 0;
   }
 }
 
@@ -233,7 +213,6 @@ li {
   .filter-bar {
     display: flex;
     flex-direction: row;
-    padding: 1em 0;
   }
 }
 </style>

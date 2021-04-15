@@ -26,8 +26,6 @@
 
 <script>
 import Avatar from "vue-avatar";
-// import GoogleLogin from "vue-google-login";
-
 export default {
   name: "App",
   components: {
@@ -49,9 +47,6 @@ export default {
       return check;
     },
   },
-  // beforeCreate() {
-  // 	this.$store.commit('initialiseStore');
-  // },
   methods: {},
 };
 </script>
@@ -70,6 +65,15 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 
+.comment-field {
+  max-width: 700px;
+}
+
+
+h3 {
+  margin: 40px 0 0;
+}
+
 header.main-header {
   display: flex;
   align-items: center;
@@ -78,19 +82,13 @@ header.main-header {
   padding: 0.5em 1em;
 }
 
-/* header button {
-  color: #fff;
-  margin: 0;
-  padding: 0;
-} */
-
-/* main-content {
+.error-viewer {
   max-width: 1024px;
   align-self: center;
   width: 100%;
-} */
+}
 
-.error-viewer {
+.detail-view {
   max-width: 1024px;
   align-self: center;
   width: 100%;
@@ -101,12 +99,6 @@ header.main-header {
   align-self: center;
   width: 100%;
 }
-
-/* nav {
-  background-color: whitesmoke;
-  height: 100px;
-  padding: 20px;
-} */
 
 hr {
   margin: 10px 5px 15px 5px;
@@ -138,13 +130,10 @@ ul {
   list-style-type: none;
 }
 
-/* tbody tr {
-  margin: 5px;
-} */
-
-/* li {
+li {
+  display: inline-block;
   margin: 0 10px;
-} */
+}
 
 /* Bugbash logo */
 .logo {
@@ -210,22 +199,23 @@ a.logo {
   display: none;
 }
 
-@media only screen and (max-width: 800px)
-  /* (min-device-width: 768px) and (max-device-width: 1024px)  */
-  {
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+@media only screen and (max-width: 800px) /* (min-device-width: 768px) and (max-device-width: 1024px) */ {
   #app {
     display: block;
   }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
+  .error-mobile-prefix {
+    display: inline;
   }
 
   td,
   th {
     padding: 6px;
-    /* border: 1px solid #ccc; */
     text-align: left;
   }
 
@@ -248,29 +238,6 @@ a.logo {
   tbody tr {
     margin: 5px;
     padding: 12px;
-  }
-
-  /* tr {
-    border: 1px solid #ccc;
-  } */
-
-  /* td {
-    border: none;
-    position: relative;
-    padding-left: 50%;
-  } */
-
-  /* td:before {
-    position: absolute;
-    top: 3px;
-    left: 30px;
-    width: 45%;
-    padding-right: 10px;
-    white-space: nowrap;
-  } */
-
-  .error-mobile-prefix {
-    display: inline;
   }
 }
 </style>
