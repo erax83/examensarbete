@@ -1,8 +1,11 @@
 <template>
   <div id="app">
+    <!-- Header bar -->
     <header class="main-header">
+      <!-- Logo -->
       <router-link class="logo" to="/">Bug Bash</router-link>
       <div>
+        <!-- Avatar is displayed if user is logged in. -->
         <avatar
           v-if="this.signedIn == true"
           class="avatar"
@@ -11,6 +14,7 @@
           :size="25"
         ></avatar>
       </div>
+      <!-- Drop down menu -->
       <div class="dropdown">
         <button class="dropbtn"><font-awesome-icon icon="bars" /></button>
         <div class="dropdown-content">
@@ -37,6 +41,10 @@ export default {
     };
   },
   computed: {
+    /**
+     * Check if user is logged in.
+     * @return {Boolean} Return Boolean depending on users logg in status.
+     */
     signedIn() {
       var check = false;
       if (this.$store.getters.userAuth !== null) {
@@ -68,7 +76,6 @@ body {
 .comment-field {
   max-width: 700px;
 }
-
 
 h3 {
   margin: 40px 0 0;

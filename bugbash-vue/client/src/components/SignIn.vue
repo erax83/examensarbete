@@ -1,6 +1,7 @@
 <template>
   <div class="sign-in">
     <div>
+      <!-- Google Login -->
       <GoogleLogin
         :params="params"
         :renderParams="renderParams"
@@ -61,8 +62,6 @@
 import axios from "axios";
 // import Avatar from "vue-avatar";
 import GoogleLogin from "vue-google-login";
-// Behövs för viss funktionalitet
-// import { LoaderPlugin } from 'vue-google-login';
 export default {
   name: "SignIn",
   components: {
@@ -96,6 +95,10 @@ export default {
     };
   },
   computed: {
+    /**
+     * Checks if user is logged in. Returns boolean.
+     * @returns {Boolean} 
+     */
     signedIn() {
       var check = false;
       if (this.$store.getters.userAuth !== null) {
@@ -105,10 +108,13 @@ export default {
     },
   },
   methods: {
+    /**
+     * Method called if Google sign in succeeds. 
+     * @param {Object} googleUser User object from Google.
+     */
     onSuccess: async function(googleUser) {
       let userExists = null;
       let userData = await googleUser.getBasicProfile();
-
       let currentName = await userData.Te;
       let currentMail = await userData.At;
       let currentId = await userData.getId();
@@ -120,6 +126,7 @@ export default {
           userExists = await response.data;
         });
 
+      // Create new user in database if user doeas not yet exist.
       if ((await userExists) == true) {
         console.log("User already exists");
       } else {
@@ -134,6 +141,12 @@ export default {
       this.$store.commit("changeUserAuth", googleUser);
       console.log("testing: " + googleUser.isSignedIn());
     },
+    /**
+     * Register new user in the database.
+     * @param {String} newName Name from Google.
+     * @param {String} newMail Mailaddress from Google.
+     * @param {String} newId Id from Google.
+     */
     postNewUser: async function(newName, newMail, newId) {
       console.log("postNewUser: " + newName + " " + newMail + " " + newId);
       try {
@@ -151,20 +164,19 @@ export default {
         console.log("error: " + err);
       }
     },
-    setImage: function(file) {
-      this.hasImage = true;
-      //   this.image = file;
-      this.$store.commit("changeAvatarImage", file.dataUrl);
-    },
-    removeUserImage() {
-      this.$store.commit("changeAvatarImage", "");
-    },
-    showImageUploader() {
-      this.imageUploaderDisplay = true;
-    },
-    hideImageUploader() {
-      this.imageUploaderDisplay = false;
-    },
+    // setImage: function(file) {
+    //   this.hasImage = true;
+    //   this.$store.commit("changeAvatarImage", file.dataUrl);
+    // },
+    // removeUserImage() {
+    //   this.$store.commit("changeAvatarImage", "");
+    // },
+    // showImageUploader() {
+    //   this.imageUploaderDisplay = true;
+    // },
+    // hideImageUploader() {
+    //   this.imageUploaderDisplay = false;
+    // },
   },
 };
 </script>

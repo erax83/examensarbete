@@ -25,7 +25,6 @@ const getOccurrencesByHash = async (req, res) => {
 };
 
 const getOneOccurrenceByHash = async (req, res) => {
-  console.log("inside getOne: ");
   try {
     const result = await OccurrenceModel.findOne({
       hashNumber: req.query.queryData,

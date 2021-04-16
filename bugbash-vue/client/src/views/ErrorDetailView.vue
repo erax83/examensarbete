@@ -1,10 +1,14 @@
 <template>
+  <!-- Page displaying a chosen occurrence of a chosen error. The latest occurrence is default. -->
   <div class="detail-view">
+    <!-- Error message as header. -->
     <div v-if="this.message !== null">
       <h1>{{ this.message }}</h1>
     </div>
+    <!-- Button linking back to error list. -->
     <router-link to="/"><button>Error list</button></router-link>
     <h3>Earlier occurrences</h3>
+    <!-- Choose any of the existing occurrences from the current error. -->
     <select v-model="selected" @change="onSelectChange()">
       <option value="" disabled>{{
         new Date(
@@ -20,6 +24,7 @@
       </option>
     </select>
     <hr />
+    <!-- Detailed information of current occurrence. -->
     <div>
       <h3>Date</h3>
       <p>
@@ -40,19 +45,20 @@
       <h3>Browser Window Height</h3>
       <p>{{ this.errorOccurrence[0].browserWindowHeight }}</p>
       <h3>Screen</h3>
-      <simple-modal v-model="isShow" @click="isShow = !isShow">
+      <!-- Screenshot from when error occured. Can be viewed larger when clicked.  -->
+      <simple-modal v-model="showBoolean" @click="showBoolean = !showBoolean">
         <template slot="body">
           <h2>Screen</h2>
           <img
-            id="canvas-screen-modal"
+            class="canvas-screen-modal"
             :src="this.errorOccurrence[0].canvas"
             alt="canvas"
           />
         </template>
       </simple-modal>
-      <button @click="isShow = !isShow">
+      <button @click="showBoolean = !showBoolean">
         <img
-          id="canvas-screen-button"
+          class="canvas-screen-button"
           :src="this.errorOccurrence[0].canvas"
           alt="canvas"
         />
@@ -60,6 +66,7 @@
     </div>
     <div>
       <div>
+        <!-- Direct link to new issue in github. Errorinfo is added to the issue. -->
         <form v-on:submit="openNewIssue()">
           <h3>Add new issue to Github</h3>
           <input
@@ -71,10 +78,11 @@
           <button type="submit">Post Issue</button>
         </form>
       </div>
+      <!-- Post a comment about the error. The comment can be viewed from any selected occurrence of the same error. -->
       <form v-on:submit="postUserComment">
         <span><h3>Add a comment</h3></span>
         <textarea
-          id="commentTextArea"
+          class="commentTextArea"
           v-model="userComment"
           name="userCommentName"
           placeholder="Add your comment"
@@ -89,6 +97,7 @@
       </form>
     </div>
     <div>
+      <!-- Earlier comments are displayed here. -->
       <h3>Comments</h3>
       <ul v-for="(comment, index) in this.userCommentList" v-bind:key="index">
         <li class="list-item">
@@ -126,16 +135,31 @@ export default {
       userComment: "",
       issueHeadline: "",
       message: null,
-      isShow: false,
+      showBoolean: false,
     };
   },
+  /**
+   * Calls method to get all occurrences from the same error.
+   */
+  mounted() {
+    this.getOccurrencesById(this.id);
+  },
+  updated: function() {
+    this.getOccurrencesDates();
+  },
   computed: {
+    /**
+     * Returns
+     */
     errorOccurrence() {
       return this.occurrenceDetails;
     },
     userComments: function() {
       return this.getUserComments();
     },
+    /**
+     * Returns boolean value based on if user is logged in or not.
+     */
     isLoggedIn() {
       if (
         this.$store.getters.userAuth == null ||
@@ -164,12 +188,6 @@ export default {
     },
   },
   methods: {
-    show() {
-      this.$modal.show("my-first-modal");
-    },
-    hide() {
-      this.$modal.hide("my-first-modal");
-    },
     onSelectChange: async function() {
       this.id = await this.selected;
       this.getOccurrencesById(this.id);
@@ -183,8 +201,11 @@ export default {
         })
         .then((response) => this.$store.commit("changeErrors", response.data));
     },
+    /**
+     * Gets all occurrences from the same error type. 
+     * @param {ObjectId} id ObjectId in database.
+     */
     getOccurrencesById: function(id) {
-      console.log("id: " + id);
       try {
         axios
           .get("http://localhost:3000/errorRouter/occurrencesById", {
@@ -198,8 +219,10 @@ export default {
         console.log(err);
       }
     },
+    /**
+     * Gets all messages of error from hashnumber. 
+     */
     getMessageByOccurrenceHash: function() {
-      console.log("TESTING: " + this.occurrenceDetails[0].hashNumber);
       try {
         axios
           .get("http://localhost:3000/errorRouter/messageByOccurrenceHash", {
@@ -212,10 +235,11 @@ export default {
         console.log(err);
       }
     },
+    /**
+     * Gets comments connected to current error. 
+     */
     getUserComments: async function() {
-      console.log("inside get comments");
       var hashId = await this.occurrenceDetails[0].hashNumber;
-      console.log("hash: " + hashId);
       try {
         return axios
           .get("http://localhost:3000/errorRouter/userComments", {
@@ -230,7 +254,9 @@ export default {
         console.log(err);
       }
     },
-
+    /**
+     * Post comment from user input.
+     */
     postUserComment: async function() {
       console.log(this.userComment);
       var errorHashNumber = await this.occurrenceDetails[0].hashNumber;
@@ -260,36 +286,29 @@ export default {
         }
       }
     },
+    /**
+     * Opens link to new issue in Github toggether with occurrence info and header from user input.
+     */
     openNewIssue: async function() {
       await window.open(
         `https://github.com/bryntum/bugbash/issues/new?title=${this.issueHeadline}&body=${this.paramData}`
       );
     },
   },
-
-  updated: function() {
-    this.getOccurrencesDates();
-  },
-
-  mounted() {
-    console.log("mounted: " + this.id);
-    this.getOccurrencesById(this.id);
-  },
 };
 </script>
 
 <style scoped>
-
-#canvas-screen-button {
+.canvas-screen-button {
   width: 25em;
   padding: 1em;
 }
 
-#canvas-screen-modal {
+.canvas-screen-modal {
   width: 50em;
 }
 
-#commentTextArea {
+.commentTextArea {
   width: 30em;
   height: 10em;
 }

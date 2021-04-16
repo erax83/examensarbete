@@ -1,9 +1,13 @@
 <template>
+  <!-- Opening page, list registered errors. -->
   <div class="error-viewer">
     <h1>Error List</h1>
+    <!-- Filter section. Filters types of data by search word and collumns. -->
     <div class="filter-bar">
+      <!-- Search in errormessages by written input from user. -->
       <input type="text" v-model="searchInput" v-on:input="search" />
       <br class="small-screen-break" />
+      <!-- Buttons for filtering collumns. -->
       <div class="filter-buttons">
         <button v-on:click="dateToggleFunction">
           Date Toggle
@@ -17,7 +21,9 @@
       </div>
     </div>
     <hr />
+    <!-- Table displaying errors. -->
     <table class="error-list">
+      <!-- Collumn heading. -->
       <thead>
         <tr>
           <th v-if="$store.state.dateState == true">Date</th>
@@ -28,6 +34,7 @@
         </tr>
       </thead>
       <tbody>
+        <!-- Errors with info from getErrorList method. Displayed in tablecollumns. -->
         <tr
           v-for="(error, index) in getErrorsList()"
           v-bind:key="index"
@@ -102,9 +109,15 @@ export default {
     };
   },
   mounted: function() {
+    /**
+     * Calls getErrors method when component is mounted.
+     */
     this.getErrors();
   },
   methods: {
+    /**
+     * Gets list of errors from database and store the list in store.
+     */
     getErrors: async function() {
       axios
         .get("http://localhost:3000/errorRouter/errorList")
@@ -112,23 +125,40 @@ export default {
           this.$store.commit("changeErrorsList", response.data)
         );
     },
+    /**
+     * Gets a list of errors from store to be displayed in a table.
+     * @return {Array} Return array of error information from store.
+     */
     getErrorsList() {
       let arr = this.$store.getters.errorsList;
       return arr;
     },
-    selectItem(index) {
-      if (this.activeItem == null || this.activeItem != index) {
-        this.activeItem = index;
-      } else {
-        this.activeItem = null;
-      }
-    },
+    /**
+     * 
+     */
+    // selectItem(index) {
+    //   if (this.activeItem == null || this.activeItem != index) {
+    //     this.activeItem = index;
+    //   } else {
+    //     this.activeItem = null;
+    //   }
+    // },
+    /**
+     * Alter the current occurrence in store.
+     */
     moreErrorDetails(errorInfo) {
       this.$store.commit("changeCurrentOccurrence", errorInfo);
     },
+    /**
+     * The list off errors is filtered in store by input from user.
+     */
     search: function() {
       this.$store.commit("onFilterChange", this.searchInput);
     },
+    /**
+     * Deletes chosen error together with all coresponding occurrences in database. 
+     * @param {String} index Hashnumber of error and all coresponding occurrences. 
+     */
     deleteRow(index) {
       if (confirm("Are you sure you want to delete row?") === true) {
         axios
@@ -144,6 +174,10 @@ export default {
           });
       }
     },
+    /**
+     * Called from the togglebutton to filter collumn in error information table.
+     * Alters Boolean value in store.  
+     */
     dateToggleFunction: function() {
       var trueOrFalse = this.$store.getters.dateState;
       if (trueOrFalse == true) {
@@ -153,6 +187,10 @@ export default {
       }
       this.$store.commit("changeDateToggle", trueOrFalse);
     },
+    /**
+     * Called from the togglebutton to filter collumn in error information table.
+     * Alters Boolean value in store.  
+     */
     messageToggleFunction: function() {
       var trueOrFalse = this.$store.getters.messageState;
       if (trueOrFalse == true) {
@@ -162,6 +200,10 @@ export default {
       }
       this.$store.commit("changeMessageToggle", trueOrFalse);
     },
+    /**
+     * Called from the togglebutton to filter collumn in error information table.
+     * Alters Boolean value in store.  
+     */
     urlToggleFunction: function() {
       var trueOrFalse = this.$store.getters.urlState;
       if (trueOrFalse == true) {

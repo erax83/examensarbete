@@ -48,7 +48,6 @@ export const store = new Vuex.Store({
       state.currentOccurrence = occurrence;
     },
     onFilterChange(state, searchWord) {
-      // debugger;
       if (!searchWord) {
         state.errorsList = state.allErrorsList;
       } else {
