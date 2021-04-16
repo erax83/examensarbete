@@ -8,12 +8,8 @@ export default class ErrorMonitor {
     super.constructor(...arguments);
     Object.assign(this, config);
     this.onError = this.onError.bind(this);
-    // require('server.js');
-
     const script = document.createElement("script");
     script.src = "../node_modules/html2canvas/dist/html2canvas.js";
-    // script.src =
-    //   "/Library/WebServer/Documents/bugbash/node_modules/html2canvas/dist/html2canvas.js";
     document.head.appendChild(script);
     if (this.autoStart) {
       this.start();
@@ -23,7 +19,6 @@ export default class ErrorMonitor {
    * Start the window monitor for errors.
    */
   start() {
-    console.log("inside start");
     this.startDate = new Date();
     window.addEventListener("error", this.onError, true);
   }
@@ -50,17 +45,12 @@ export default class ErrorMonitor {
    * @param {ErrorEvent} errorEvent
    */
   async onError(errorEvent) {
-    console.log("inside onError Vue");
     await this.loadHtml2Canvas();
     const options = {
       type: "dataURL",
     };
-
     const canvas = await html2canvas(document.body, options);
     const canvasUrl = canvas.toDataURL();
-    console.log('canvas: ' + canvasUrl);
-    // document.body.appendChild(canvas);
-
     this.logError(errorEvent.error);
     this.addError(errorEvent.error, canvasUrl);
     this.addErrorHash(errorEvent.error);

@@ -219,7 +219,7 @@ export default {
 
 <style scoped>
 .error-list {
-  width: 100%;
+  width: 95%;
   text-align: left;
 }
 
@@ -242,6 +242,8 @@ input {
   padding: 0.4em;
   align-self: center;
 }
+
+
 
 @media screen and (max-width: 600px) {
   .filter-buttons {

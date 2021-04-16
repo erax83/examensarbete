@@ -173,8 +173,7 @@ export default {
     paramData() {
       const userInfo =
         `Error occurrence: ` +
-        ` * Message: ` +
-        this.message +
+        ` * Message: ${this.message} ` +
         ` * Date: ${new Date(
           this.errorOccurrence[0].timeStamp
         ).toLocaleString()} ` +

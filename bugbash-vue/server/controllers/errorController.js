@@ -29,7 +29,6 @@ const getOneOccurrenceByHash = async (req, res) => {
     const result = await OccurrenceModel.findOne({
       hashNumber: req.query.queryData,
     });
-    // console.log("response getOne: " + result.language);
     res.send(result._id);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -106,15 +105,10 @@ const getUserActivity = async (req, res) => {
     //   },
     // ]);
 
-
-
     result = await ErrorModel.find({
       "comments.userId": req.query.queryData,
     });
     if (result) {
-
-      
-      
       // const test = await result.aggregate([
       //   {
       //     $lookup: {
@@ -279,40 +273,30 @@ const postErrorHash = async (req, res) => {
 };
 
 const deleteMonitorError = async (req, res) => {
-  console.log("inside delete, params test: " + req.params.id);
   await OccurrenceModel.deleteMany({ hashNumber: req.params.id })
     .then(function () {
-      console.log("Occurrence data deleted"); // Success
+      console.log("Occurrence data deleted");
     })
     .catch(function (error) {
-      console.log(error); // Failure
+      console.log(error);
     });
 
   await ErrorModel.deleteOne({ hashNumber: req.params.id })
     .then(function () {
-      console.log("Error data deleted"); // Success
+      console.log("Error data deleted");
     })
     .catch(function (error) {
-      console.log(error); // Failure
+      console.log(error);
     });
   await res.send("success");
 };
 
 const getUserComments = async (req, res) => {
-  console.log("inside get comments controller " + req.query.queryData);
   var hashData = await req.query.queryData;
-  // console.log('hashData: ' + hashData);
-  // const result = await ErrorModel.find({
-  //   hashNumber: hashData,
-  // });
-
   try {
     const result = await ErrorModel.findOne({
       hashNumber: hashData,
     });
-    console.log(result.comments.userName);
-    console.log(result.comments.userComment);
-    // console.log(result.comments.userId);
     res.send(result.comments);
   } catch (err) {
     res.status(500).json({ message: err.message });

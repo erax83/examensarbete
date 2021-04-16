@@ -92,19 +92,19 @@ header.main-header {
 .error-viewer {
   max-width: 1024px;
   align-self: center;
-  width: 100%;
+  width: 95%;
 }
 
 .detail-view {
   max-width: 1024px;
   align-self: center;
-  width: 100%;
+  width: 95%;
 }
 
 .user-viewer {
   max-width: 1024px;
   align-self: center;
-  width: 100%;
+  width: 95%;
 }
 
 hr {
