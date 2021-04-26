@@ -172,16 +172,16 @@ export default {
     },
     paramData() {
       const occurrenceInfo =
-        `Error occurrence: \n\n` +
-        ` * Message: ${this.message} ` +
-        ` * Date: ${new Date(
+        `Error occurrence: \n` +
+        `  Message: ${this.message} \n` +
+        `  Date: ${new Date(
           this.errorOccurrence[0].timeStamp
-        ).toLocaleString()} ` +
-        ` * ID: ${this.errorOccurrence[0]._id} ` +
+        ).toLocaleString()} \n` +
+        `  ID: ${this.errorOccurrence[0]._id} \n` +
         // `Stacktrace: ${this.errorOccurrence[0].stack} ` +
-        ` * Language: ${this.errorOccurrence[0].language} ` +
-        ` * Browser Window Width: ${this.errorOccurrence[0].browserWindowWidth} ` +
-        ` * Browser Window Height: ${this.errorOccurrence[0].browserWindowHeight} `;
+        `  Language: ${this.errorOccurrence[0].language} \n` +
+        `  Browser Window Width: ${this.errorOccurrence[0].browserWindowWidth} \n` +
+        `  Browser Window Height: ${this.errorOccurrence[0].browserWindowHeight} \n`;
 
       return occurrenceInfo;
     },
@@ -256,7 +256,8 @@ export default {
     /**
      * Post comment from user input.
      */
-    postUserComment: async function() {
+    postUserComment: async function(e) {
+      e.preventDefault();
       console.log(this.userComment);
       var errorHashNumber = await this.occurrenceDetails[0].hashNumber;
       var userInfo = null;
@@ -280,6 +281,9 @@ export default {
               const result = await response.data;
               console.log("inside post, post data: " + result);
             });
+            this.getUserComments();
+            // e.preventDefault();
+            this.$router.push(window.location.pathname); 
         } catch (err) {
           console.log(err);
         }
