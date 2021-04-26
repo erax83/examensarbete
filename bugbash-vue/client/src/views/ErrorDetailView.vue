@@ -171,8 +171,8 @@ export default {
       }
     },
     paramData() {
-      const userInfo =
-        `Error occurrence: ` +
+      const occurrenceInfo =
+        `Error occurrence: \n\n` +
         ` * Message: ${this.message} ` +
         ` * Date: ${new Date(
           this.errorOccurrence[0].timeStamp
@@ -183,7 +183,7 @@ export default {
         ` * Browser Window Width: ${this.errorOccurrence[0].browserWindowWidth} ` +
         ` * Browser Window Height: ${this.errorOccurrence[0].browserWindowHeight} `;
 
-      return userInfo;
+      return occurrenceInfo;
     },
   },
   methods: {
@@ -272,7 +272,7 @@ export default {
               params: {
                 queryData: this.userComment,
                 hashId: errorHashNumber,
-                userName: userInfo.Te,
+                userName: userInfo.Ue,
                 userId: userInfoId,
               },
             })
@@ -290,7 +290,7 @@ export default {
      */
     openNewIssue: async function() {
       await window.open(
-        `https://github.com/bryntum/bugbash/issues/new?title=${this.issueHeadline}&body=${this.paramData}`
+        `https://github.com/bryntum/bugbash/issues/new?title=${encodeURIComponent(this.issueHeadline)}&body=${encodeURIComponent(this.paramData)}`
       );
     },
   },

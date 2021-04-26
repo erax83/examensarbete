@@ -115,8 +115,8 @@ export default {
     onSuccess: async function(googleUser) {
       let userExists = null;
       let userData = await googleUser.getBasicProfile();
-      let currentName = await userData.Te;
-      let currentMail = await userData.At;
+      let currentName = await userData.Ue;
+      let currentMail = await userData.Rt;
       let currentId = await userData.getId();
       await axios
         .get("http://localhost:3000/errorRouter/userCheck", {
@@ -136,7 +136,7 @@ export default {
       this.$store.commit("changeUserInfo", googleUser.getBasicProfile());
       this.$store.commit("changeCompleteGoogleUser", googleUser);
       this.signedInUser = googleUser;
-      this.$store.commit("changeUserInitials", userData.Te);
+      this.$store.commit("changeUserInitials", userData.Ue);
       this.$store.commit("changeSignedIn", true);
       this.$store.commit("changeUserAuth", googleUser);
       console.log("testing: " + googleUser.isSignedIn());

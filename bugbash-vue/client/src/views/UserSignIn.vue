@@ -5,7 +5,7 @@
     <h1>Sign in</h1>
     <sign-in class="sign-in"></sign-in>
     <!-- User name and mail. Links to userpage with usercomments. -->
-    <span v-if="loggedInOrNot">
+    <div v-if="loggedInOrNot">
       <router-link
         :to="{
           name: 'userById',
@@ -15,7 +15,7 @@
       >
       <p>{{ userMail }}</p>
       <br />
-    </span>
+    </div>
     <hr />
   </div>
 </template>
@@ -53,6 +53,7 @@ export default {
      */
     loggedInOrNot() {
       if (this.$store.getters.completeGoogleUser !== null) {
+        console.log('true');
         return this.$store.getters.completeGoogleUser.isSignedIn();
       } else {
         return false;
@@ -63,14 +64,15 @@ export default {
      * @returns {String} 
      */
     userName() {
-      return this.$store.getters.completeGoogleUser.getBasicProfile().Te;
+      console.log('test: ' + JSON.stringify(this.$store.getters.completeGoogleUser.getBasicProfile()));
+      return this.$store.getters.completeGoogleUser.getBasicProfile().Ue;
     },
     /**
      * Returns users mail if user is logged in.
      * @returns {String} 
      */
     userMail() {
-      return this.$store.getters.completeGoogleUser.getBasicProfile().At;
+      return this.$store.getters.completeGoogleUser.getBasicProfile().Rt;
     },
     /**
      * Returns users id if user is logged in. Used to link to UserById view.

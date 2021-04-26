@@ -48,7 +48,6 @@ export default {
     signedIn() {
       var check = false;
       if (this.$store.getters.userAuth !== null) {
-        // console.log('signedIn: ' + this.$store.getters.userAuth.isSignedIn());
         check = this.$store.getters.userAuth;
         check = check.isSignedIn();
       }
@@ -211,7 +210,9 @@ table {
   border-collapse: collapse;
 }
 
-@media only screen and (max-width: 800px) /* (min-device-width: 768px) and (max-device-width: 1024px) */ {
+@media only screen and (max-width: 800px)
+ /* (min-device-width: 768px) and (max-device-width: 1024px)  */
+ {
   #app {
     display: block;
   }
@@ -235,7 +236,6 @@ table {
     display: block;
   }
 
-  /* Hide table headers (but not display: none;, for accessibility) */
   thead tr {
     position: absolute;
     top: -9999px;
