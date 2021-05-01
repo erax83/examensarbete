@@ -94,7 +94,7 @@ header.main-header {
   width: 95%;
 }
 
-.detail-view {
+.detail-viewer {
   max-width: 1024px;
   align-self: center;
   width: 95%;
@@ -210,15 +210,25 @@ table {
   border-collapse: collapse;
 }
 
-@media only screen and (max-width: 800px)
- /* (min-device-width: 768px) and (max-device-width: 1024px)  */
- {
+@media only screen and (max-width: 800px) /* (min-device-width: 768px) and (max-device-width: 1024px) */ {
   #app {
     display: block;
   }
 
   .error-mobile-prefix {
     display: inline;
+  }
+
+  .error-viewer {
+    margin-left: 10px;
+  }
+
+  .detail-viewer {
+    margin-left: 10px;
+  }
+
+  .user-viewer {
+    margin-left: 10px;
   }
 
   td,

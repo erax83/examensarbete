@@ -1,6 +1,6 @@
 <template>
   <!-- Page displaying a chosen occurrence of a chosen error. The latest occurrence is default. -->
-  <div class="detail-view">
+  <div class="detail-viewer">
     <!-- Error message as header. -->
     <div v-if="this.message !== null">
       <h1>{{ this.message }}</h1>
@@ -106,8 +106,8 @@
               name: 'userById',
               params: { id: comment.userId },
             }"
-            ><h4>{{ comment.userName }}</h4></router-link
-          >
+            ><h4>{{ comment.userName }}</h4>
+          </router-link>
         </li>
         <li class="comment-field">
           <p>{{ comment.userComment }}</p>
@@ -146,6 +146,7 @@ export default {
   },
   updated: function() {
     this.getOccurrencesDates();
+    // this.getUserComments();
   },
   computed: {
     /**
@@ -201,7 +202,7 @@ export default {
         .then((response) => this.$store.commit("changeErrors", response.data));
     },
     /**
-     * Gets all occurrences from the same error type. 
+     * Gets all occurrences from the same error type.
      * @param {ObjectId} id ObjectId in database.
      */
     getOccurrencesById: function(id) {
@@ -219,7 +220,7 @@ export default {
       }
     },
     /**
-     * Gets all messages of error from hashnumber. 
+     * Gets all messages of error from hashnumber.
      */
     getMessageByOccurrenceHash: function() {
       try {
@@ -235,7 +236,7 @@ export default {
       }
     },
     /**
-     * Gets comments connected to current error. 
+     * Gets comments connected to current error.
      */
     getUserComments: async function() {
       var hashId = await this.occurrenceDetails[0].hashNumber;
@@ -281,9 +282,8 @@ export default {
               const result = await response.data;
               console.log("inside post, post data: " + result);
             });
-            this.getUserComments();
-            // e.preventDefault();
-            this.$router.push(window.location.pathname); 
+          this.getUserComments();
+          this.$router.push(window.location.pathname);
         } catch (err) {
           console.log(err);
         }
@@ -294,7 +294,9 @@ export default {
      */
     openNewIssue: async function() {
       await window.open(
-        `https://github.com/bryntum/bugbash/issues/new?title=${encodeURIComponent(this.issueHeadline)}&body=${encodeURIComponent(this.paramData)}`
+        `https://github.com/bryntum/bugbash/issues/new?title=${encodeURIComponent(
+          this.issueHeadline
+        )}&body=${encodeURIComponent(this.paramData)}`
       );
     },
   },
