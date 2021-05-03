@@ -17,7 +17,7 @@
             <router-link
               :to="{
                 name: 'errorInfo',
-                params: { id: routerParams },
+                params: { id: idArray[index] },
               }"
             >
               <h3>{{ error.message }}</h3>
@@ -25,10 +25,12 @@
           </div>
           <!-- Comments -->
           <div>
-            <ul v-for="(errorIndex, index) in error.comments" v-bind:key="index">
+            <ul
+              v-for="(errorIndex, index) in error.comments"
+              v-bind:key="index"
+            >
               <div v-if="errorIndex.userName == currentUser.fullName">
                 <li class="comment-field">
-                  <p>-</p>
                   <p>{{ errorIndex.userComment }}</p>
                   <br />
                   <br />
@@ -52,7 +54,8 @@ export default {
       id: this.$route.params.id,
       currentUser: null,
       errors: null,
-      routerParams: "6066ee9aa05f0690bc73cd50",
+      idArray: [],
+      occurrenceArray: [],
     };
   },
   computed: {
@@ -87,27 +90,32 @@ export default {
      * Gets latest occurrence corresponding with error.
      * @param {String} hashNumber Error occurrence is found by hashNumber.
      */
-    getOneOccurrenceByHash(hashNumber) {
-      console.log("hash: " + hashNumber);
-      axios
+    getOneOccurrenceByHash: async function(hashNumber) {
+      await axios
         .get("http://localhost:3000/errorRouter/occurrenceByHash", {
           params: { queryData: hashNumber },
         })
-        .then((response) => {
-          return response.data;
+        .then(async (response) => {
+          await this.idArray.push(response.data);
         });
     },
     /**
-     * Gets errors that the user have mede comments to. 
+     * Gets errors that the user have mede comments to.
      */
     getErrors: async function() {
       axios
         .get("http://localhost:3000/errorRouter/userActivity", {
           params: { queryData: this.id },
         })
-        .then((response) => {
-          this.errors = response.data;
+        .then(async (response) => {
+          this.errors = await response.data;
+          await this.getHashArray();
         });
+    },
+    getHashArray: async function() {
+      for (let i = 0; i < this.errors.length; i++) {
+        await this.getOneOccurrenceByHash(this.errors[i].hashNumber);
+      }
     },
   },
 };

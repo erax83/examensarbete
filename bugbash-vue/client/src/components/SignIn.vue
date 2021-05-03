@@ -115,6 +115,7 @@ export default {
     onSuccess: async function(googleUser) {
       let userExists = null;
       let userData = await googleUser.getBasicProfile();
+      console.log('userData: ' + JSON.stringify(userData));
       let currentName = await userData.Ue;
       let currentMail = await userData.Rt;
       let currentId = await userData.getId();
