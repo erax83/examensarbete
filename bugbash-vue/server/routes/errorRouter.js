@@ -10,6 +10,8 @@ router.use(cors(corsOptions));
 
 router.get("/", cors(corsOptions), errorController.getMonitorError);
 
+router.get("/errorList", cors(corsOptions), errorController.getErrorList);
+
 router.get(
   "/occurrencesByHash",
   cors(corsOptions),
@@ -31,9 +33,8 @@ router.get(
 router.get(
   "/occurrencesById",
   cors(corsOptions),
-  errorController.getOccurrencesById);
-
-router.get("/errorList", cors(corsOptions), errorController.getErrorList);
+  errorController.getOccurrencesById
+);
 
 router.get("/userCheck", cors(corsOptions), errorController.getUserCheck);
 
@@ -47,18 +48,10 @@ router.post("/", cors(corsOptions), errorController.postMonitorError);
 
 router.post("/hash", cors(corsOptions), errorController.postErrorHash);
 
+router.get("/userComments", cors(corsOptions), errorController.getUserComments);
+
+router.post("/userComment", cors(corsOptions), errorController.postUserComment);
+
 router.delete("/:id", cors(corsOptions), errorController.deleteMonitorError);
-
-router.get(
-  "/userComments",
-  cors(corsOptions),
-  errorController.getUserComments
-);
-
-router.post(
-  "/userComment",
-  cors(corsOptions),
-  errorController.postUserComment
-);
 
 module.exports = router;

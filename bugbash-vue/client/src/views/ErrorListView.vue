@@ -4,7 +4,7 @@
     <h1>Error List</h1>
     <!-- Filter section. Filters types of data by search word and collumns. -->
     <div class="filter-bar">
-      <!-- Search in errormessages by written input from user. -->
+      <!-- Search in errormessages by input from user. -->
       <input type="text" v-model="searchInput" v-on:input="search" />
       <br class="small-screen-break" />
       <!-- Buttons for filtering collumns. -->
@@ -143,6 +143,7 @@ export default {
     //     this.activeItem = null;
     //   }
     // },
+
     /**
      * Alter the current occurrence in store.
      */
@@ -150,7 +151,7 @@ export default {
       this.$store.commit("changeCurrentOccurrence", errorInfo);
     },
     /**
-     * The list off errors is filtered in store by input from user.
+     * The list off errors is filtered in store by searchfield input from user.
      */
     search: function() {
       this.$store.commit("onFilterChange", this.searchInput);
@@ -242,8 +243,6 @@ input {
   padding: 0.4em;
   align-self: center;
 }
-
-
 
 @media screen and (max-width: 600px) {
   .filter-buttons {

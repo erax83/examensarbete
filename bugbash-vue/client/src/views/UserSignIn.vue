@@ -22,7 +22,6 @@
 
 <script>
 import SignIn from "../components/SignIn.vue";
-// import axios from "axios";
 
 export default {
   name: "userSignIn",
@@ -37,23 +36,16 @@ export default {
   computed: {
     /**
      * Checks if user is logged in or not. Returns boolean.
-     * @returns {Boolean} 
+     * @returns {Boolean}
      */
-    // signedIn() {
-    //   var check = false;
-    //   if (this.$store.getters.userAuth !== null) {
-    //     check = this.$store.getters.userAuth.isSignedIn();
-    //   }
-    //   return check;
-    // },
-    
+
     /**
-     * Checks if user is logged in. Returns boolean. 
-     * @returns {Boolean} 
+     * Checks if user is logged in. Returns boolean.
+     * @returns {Boolean}
      */
     loggedInOrNot() {
       if (this.$store.getters.completeGoogleUser !== null) {
-        console.log('true');
+        console.log("true");
         return this.$store.getters.completeGoogleUser.isSignedIn();
       } else {
         return false;
@@ -61,52 +53,27 @@ export default {
     },
     /**
      * Returns username if user is logged in.
-     * @returns {String} 
+     * @returns {String}
      */
     userName() {
-      console.log('test: ' + JSON.stringify(this.$store.getters.completeGoogleUser.getBasicProfile()));
       return this.$store.getters.completeGoogleUser.getBasicProfile().Ue;
     },
     /**
      * Returns users mail if user is logged in.
-     * @returns {String} 
+     * @returns {String}
      */
     userMail() {
       return this.$store.getters.completeGoogleUser.getBasicProfile().Rt;
     },
     /**
      * Returns users id if user is logged in. Used to link to UserById view.
-     * @returns {String} 
+     * @returns {String}
      */
     userId() {
       return this.$store.getters.completeGoogleUser.getBasicProfile().getId();
     },
   },
-  methods: {
-    // testMethod() {
-    //   if (this.$store.getters.userAuth !== null) {
-    //     if (this.$store.getters.completeGoogleUser.isSignedIn() == true) {
-    //       console.log("true");
-    //       console.log(
-    //         this.$store.getters.completeGoogleUser.getBasicProfile().Te
-    //       );
-    //     } else {
-    //       console.log("false");
-    //     }
-    //   } else {
-    //     console.log("null");
-    //   }
-    // },
-    // getActivities: async function() {
-    //   axios
-    //     .get("http://localhost:3000/errorRouter/userActivity")
-    //     .then((response) => {
-    //       const r = response.data;
-    //       console.log(r);
-    //       return r;
-    //     });
-    // },
-  },
+  methods: {},
 };
 </script>
 

@@ -4,6 +4,34 @@ const UserModel = require("../models/userModel");
 
 const crypto = require("crypto");
 
+/**
+ * Gets all documents from errors-collection from the database and the latest
+ * corresponding occurrence. These are displayed in the opening page.
+ * @param {*} req
+ * @param {*} res
+ */
+const getErrorList = async (req, res) => {
+  try {
+    const test = await ErrorModel.aggregate([
+      {
+        $lookup: {
+          from: "occurrences",
+          let: { hashNumber: "$hashNumber" },
+          pipeline: [
+            { $match: { $expr: { $eq: ["$$hashNumber", "$hashNumber"] } } },
+            { $sort: { _id: -1 } },
+            { $limit: 1 },
+          ],
+          as: "occurrenceDetails",
+        },
+      },
+    ]);
+    res.send(test);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
 const getMonitorError = async (req, res) => {
   try {
     const result = await OccurrenceModel.find();
@@ -24,19 +52,28 @@ const getOccurrencesByHash = async (req, res) => {
   }
 };
 
+/**
+ * Gets latest occurrence of an error by hashnumber.
+ * @param {*} req
+ * @param {*} res
+ */
 const getOneOccurrenceByHash = async (req, res) => {
-  console.log('inside get one: ' +req.query.queryData);
   try {
     const result = await OccurrenceModel.findOne({
       hashNumber: req.query.queryData,
     });
-    console.log('res: ' + result._id);
+    console.log("res: " + result._id);
     res.send(result._id);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
 
+/**
+ * Gets all occurreces of the same errortype. These can be switched between in detailpage.
+ * @param {*} req
+ * @param {*} res
+ */
 const getOccurrencesById = async (req, res) => {
   try {
     const result = await OccurrenceModel.find({
@@ -47,7 +84,11 @@ const getOccurrencesById = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-
+/**
+ * Gets message based on occurrence hashnumber.
+ * @param {*} req
+ * @param {*} res
+ */
 const getMessageByOccurrenceHash = async (req, res) => {
   try {
     const result = await ErrorModel.findOne({
@@ -82,101 +123,19 @@ const getUserCheck = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-
+/**
+ * Gets errors based on if it includes comments from a choosen user.
+ * 
+ * @param {*} req
+ * @param {*} res
+ */
 const getUserActivity = async (req, res) => {
   var result = null;
-  var errorObject = {
-    errorResults: Array,
-    occurrenceId: Array,
-  };
   try {
-    // result = await ErrorModel.find({
-    //   "comments.userId": req.query.queryData,
-    // }).aggregate([
-    //   {
-    //     $lookup: {
-    //       from: "occurrences",
-    //       let: { hashNumber: "$hashNumber" },
-    //       pipeline: [
-    //         { $match: { $expr: { $eq: ["$$hashNumber", "$hashNumber"] } } },
-    //         { $sort: { _id: -1 } },
-    //         { $limit: 1 },
-    //       ],
-    //       as: "occurrenceDetails",
-    //     },
-    //   },
-    // ]);
-
     result = await ErrorModel.find({
       "comments.userId": req.query.queryData,
     });
     if (result) {
-      // const test = await result.aggregate([
-      //   {
-      //     $lookup: {
-      //       from: "occurrences",
-      //       let: { hashNumber: "$hashNumber" },
-      //       pipeline: [
-      //         { $match: { $expr: { $eq: ["$$hashNumber", "$hashNumber"] } } },
-      //         { $sort: { _id: -1 } },
-      //         { $limit: 1 },
-      //       ],
-      //       as: "occurrenceDetails",
-      //     },
-      //   },
-      // ]);
-
-      // const test = await result.aggregate([
-      //   {
-      //     $match: {
-      //       "comments.userId": req.query.queryData,
-      //     },
-      //   },
-      //   {
-      //     $lookup: {
-      //       from: "occurrences",
-      //       let: { hashNumber: "$hashNumber" },
-      //       pipeline: [
-      //         { $match: { $expr: { $eq: ["$$hashNumber", "$hashNumber"] } } },
-      //         { $sort: { _id: -1 } },
-      //         { $limit: 1 },
-      //       ],
-      //       as: "occurrenceDetails",
-      //     },
-      //   },
-      // ]);
-
-      // console.log("TEST: " + test);
-
-      // let itemNames = await test.filter(
-      //   (eachObj) => eachObj.comments.userId === 1500
-      // );
-
-      // const testTwo = await test.filter(
-      //   (eachObj) => eachObj.comments.userId === req.query.queryData
-      // );
-
-      // console.log('testTwo: ' + test[0]);
-      // const testTwo = await test.find({ "comments.userId": req.query.queryData });
-
-      // errorObject.errorResults = await result;
-
-      // var hash = await errorObject.errorResults;
-      // console.log('hash: ' + hash);
-
-      // for (let index = 0; index < hash.length; index++) {
-      //   var idResult = await OccurrenceModel.findOne({
-      //     hashNumber: hash[index].hashNumber,
-      //   });
-      //   if(!idResult) {
-      //     errorObject.occurrenceId.push(idResult._id);
-      //     console.log('idTest: ' + idResult._id);
-      //   }
-      // }
-
-      // console.log("check error: " + await errorObject.errorResults[0]);
-      // console.log("check id: " + await errorObject.occurrenceId[0]);
-
       res.send(result);
     } else {
       console.log("no results");
@@ -186,27 +145,11 @@ const getUserActivity = async (req, res) => {
   }
 };
 
-// const getUserActivity = async (req, res) => {
-//   console.log("Inside getUserActivity: " + req.query.queryData);
-//   try {
-//     const result = await ErrorModel.find({
-//       userName: req.query.queryData,
-//     });
-//     if (result) {
-//       res.send(result);
-//     } else {
-//       res.send("No comments found");
-//     }
-//   } catch (err) {
-//     res.status(500).json({ message: err.message });
-//   }
-// };
-
-const postUser = async (req, res) => {
-  const newUser = await new UserModel(req.body);
-  await newUser.save();
-};
-
+/**
+ * Gets user by id in userpage.
+ * @param {*} req
+ * @param {*} res
+ */
 const getUserById = async (req, res) => {
   try {
     const result = await UserModel.findOne({
@@ -218,26 +161,30 @@ const getUserById = async (req, res) => {
   }
 };
 
-const getErrorList = async (req, res) => {
+/**
+ * Gets all usercomments related to errortype currently viewed.
+ * @param {*} req
+ * @param {*} res
+ */
+const getUserComments = async (req, res) => {
+  var hashData = await req.query.queryData;
   try {
-    const test = await ErrorModel.aggregate([
-      {
-        $lookup: {
-          from: "occurrences",
-          let: { hashNumber: "$hashNumber" },
-          pipeline: [
-            { $match: { $expr: { $eq: ["$$hashNumber", "$hashNumber"] } } },
-            { $sort: { _id: -1 } },
-            { $limit: 1 },
-          ],
-          as: "occurrenceDetails",
-        },
-      },
-    ]);
-    res.send(test);
+    const result = await ErrorModel.findOne({
+      hashNumber: hashData,
+    });
+    res.send(result.comments);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
+};
+/**
+ * Post new user.
+ * @param {*} req 
+ * @param {*} res 
+ */
+const postUser = async (req, res) => {
+  const newUser = await new UserModel(req.body);
+  await newUser.save();
 };
 
 const postMonitorError = async (req, res) => {
@@ -273,38 +220,11 @@ const postErrorHash = async (req, res) => {
     const result = await newDbDocument.save();
   }
 };
-
-const deleteMonitorError = async (req, res) => {
-  await OccurrenceModel.deleteMany({ hashNumber: req.params.id })
-    .then(function () {
-      console.log("Occurrence data deleted");
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-
-  await ErrorModel.deleteOne({ hashNumber: req.params.id })
-    .then(function () {
-      console.log("Error data deleted");
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  await res.send("success");
-};
-
-const getUserComments = async (req, res) => {
-  var hashData = await req.query.queryData;
-  try {
-    const result = await ErrorModel.findOne({
-      hashNumber: hashData,
-    });
-    res.send(result.comments);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
-
+/**
+ * Posts new comment. The document is saved in the errors-collection.
+ * @param {*} req
+ * @param {*} res
+ */
 const postUserComment = async (req, res) => {
   var commentData = await req.body.params.queryData;
   var hashData = await req.body.params.hashId;
@@ -325,14 +245,38 @@ const postUserComment = async (req, res) => {
   await result.save();
 };
 
+/**
+ * Deletes one error and all related occurrences.
+ * @param {*} req
+ * @param {*} res
+ */
+const deleteMonitorError = async (req, res) => {
+  await OccurrenceModel.deleteMany({ hashNumber: req.params.id })
+    .then(function () {
+      console.log("Occurrence data deleted");
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+  await ErrorModel.deleteOne({ hashNumber: req.params.id })
+    .then(function () {
+      console.log("Error data deleted");
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  await res.send("success");
+};
+
 module.exports = {
+  getErrorList,
   getMonitorError,
   getOccurrencesByHash,
   getOneOccurrenceByHash,
   getOccurrencesById,
   getMessageByOccurrenceHash,
   getHashCount,
-  getErrorList,
   getUserCheck,
   getUserActivity,
   // getParamsPage,
@@ -340,7 +284,7 @@ module.exports = {
   getUserById,
   postMonitorError,
   postErrorHash,
-  deleteMonitorError,
   getUserComments,
   postUserComment,
+  deleteMonitorError,
 };

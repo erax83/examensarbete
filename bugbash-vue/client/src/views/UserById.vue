@@ -8,7 +8,7 @@
       <p>{{ currentUser.mail }}</p>
       <hr />
       <h2>Commented errors</h2>
-      <!-- Displaying errors that the user have made comments to. -->
+      <!-- Displays errors that the user has commented on.  -->
     </div>
     <div v-if="this.errors !== null">
       <ul v-for="(error, index) in this.errors" v-bind:key="index">
@@ -87,7 +87,8 @@ export default {
         });
     },
     /**
-     * Gets latest occurrence corresponding with error.
+     * Gets latest occurrence related to error. These are used to make a link 
+     * to the related occurrence in ErrorDetailView.
      * @param {String} hashNumber Error occurrence is found by hashNumber.
      */
     getOneOccurrenceByHash: async function(hashNumber) {
@@ -100,7 +101,7 @@ export default {
         });
     },
     /**
-     * Gets errors that the user have mede comments to.
+     * Gets errors that the user have made comments to. Calls getHashArray
      */
     getErrors: async function() {
       axios
@@ -112,6 +113,9 @@ export default {
           await this.getHashArray();
         });
     },
+    /**
+     * Calls getOneOccurrenceByHash to get one occurrence id number for every error.
+     */
     getHashArray: async function() {
       for (let i = 0; i < this.errors.length; i++) {
         await this.getOneOccurrenceByHash(this.errors[i].hashNumber);

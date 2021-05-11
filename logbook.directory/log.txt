@@ -176,46 +176,59 @@ Försöker att även skicka med errorinfo när man skapar ett issue.
 2021-03-31
 Aktuell errorinformation följer nu med automatiskt när man skapar ett nytt issue. 
 
-2021-03-01
+2021-04-01
 Planerar för hur UserById ska fungera och byggas upp.
 
-2021-03-02
+2021-04-02
 En ny UserById-view finns nu där man får tillgång till andra användares mejladdress samt 
 vilka fel de har kommenterat med dessa kommentarer. 
 
-2021-03-03
+2021-04-03
 UserById-sidan har uppdaterats.
 
-2021-03-04
+2021-04-04
 Styling.
 
 Fixa diverse buggar.
 
-2021-03-05
+2021-04-05
 Styling.
 
 Fixa diverse buggar. 
 
-2021-03-06
+2021-04-06
 Möte med handledaren. Genomgång av vad som gjorts och vad som är rimligt att fixa till. 
 
 Skriva LIA-rapport. 
 
-2021-03-07
+2021-04-07
 skriva LIA-rapport.
 
 Styling. 
 
-2021-03-08 
+2021-04-08 
 Diverse småändringar.
 
 Försöker skapa länk mellan UserById och ErrorDetailView.
 
-2021-03-12
+2021-04-12
 Läser på om TDD.
 
-2021-03-13
+2021-04-13
 Försöker få TDD att fungera. 
+
+2021-04-14
+Snyggar upp kod och lägger till kommentarer.
+
+2021-04-15
+Snyggar upp kod och lägger till kommentarer.
+
+2021-04-16
+Avslutningsmöte med handledare. 
+
+
+Jag har efter det gjort diverse små uppdateringar
+samt försökt fixa några buggar.
 
 
 

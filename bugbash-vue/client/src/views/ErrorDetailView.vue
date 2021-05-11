@@ -99,7 +99,7 @@
     <div>
       <!-- Earlier comments are displayed here. -->
       <h3>Comments</h3>
-      <ul v-for="(comment, index) in this.userCommentList" v-bind:key="index">
+      <ul v-for="(comment, index) in userCommentList" v-bind:key="index">
         <li class="list-item">
           <router-link
             :to="{
@@ -150,11 +150,14 @@ export default {
   },
   computed: {
     /**
-     * Returns
+     * Returns occurrenceDetails list.
      */
     errorOccurrence() {
       return this.occurrenceDetails;
     },
+    /**
+     * Returns getUserComments function
+     */
     userComments: function() {
       return this.getUserComments();
     },
@@ -171,6 +174,9 @@ export default {
         return true;
       }
     },
+    /**
+     * Returns data from the current occurrence. It will be shown when you create an new issue in Github.
+     */
     paramData() {
       const occurrenceInfo =
         `Error occurrence: \n` +
@@ -188,11 +194,17 @@ export default {
     },
   },
   methods: {
+    /**
+     * Alters the occurrence shown when the user is chosing a new date.
+     */
     onSelectChange: async function() {
       this.id = await this.selected;
       this.getOccurrencesById(this.id);
       this.$router.replace({ name: "errorInfo", params: { id: this.id } });
     },
+    /**
+     * 
+     */
     getOccurrencesDates: async function() {
       var errorHashNumber = await this.occurrenceDetails[0].hashNumber;
       axios
@@ -220,7 +232,7 @@ export default {
       }
     },
     /**
-     * Gets all messages of error from hashnumber.
+     * Gets message of error by hashnumber.
      */
     getMessageByOccurrenceHash: function() {
       try {
@@ -236,7 +248,7 @@ export default {
       }
     },
     /**
-     * Gets comments connected to current error.
+     * Gets comments related to current error.
      */
     getUserComments: async function() {
       var hashId = await this.occurrenceDetails[0].hashNumber;
@@ -278,14 +290,14 @@ export default {
                 userId: userInfoId,
               },
             })
-            .then(async (response) => {
-              const result = await response.data;
+            .then((response) => {
+              const result = response.data;
               console.log("inside post, post data: " + result);
             });
           this.getUserComments();
           this.$router.push(window.location.pathname);
         } catch (err) {
-          console.log(err);
+          console.log("error: " + err);
         }
       }
     },

@@ -45,7 +45,7 @@
         </div>
       </div>
     </div> -->
-    <!-- <div v-if="signedIn == true">
+     <!-- <div v-if="signedIn == true">
       <avatar
         class="avatar"
         :click="showImageUploader"
@@ -53,7 +53,7 @@
         :src="this.$store.getters.avatarImage"
         :size="25"
       ></avatar>
-    </div> -->
+    </div>  -->
     
   </div>
 </template>
@@ -127,7 +127,9 @@ export default {
           userExists = await response.data;
         });
 
-      // Create new user in database if user doeas not yet exist.
+      /**
+       * Create new user in database if user doeas not yet exist.
+       */
       if ((await userExists) == true) {
         console.log("User already exists");
       } else {
@@ -149,7 +151,6 @@ export default {
      * @param {String} newId Id from Google.
      */
     postNewUser: async function(newName, newMail, newId) {
-      console.log("postNewUser: " + newName + " " + newMail + " " + newId);
       try {
         await axios
           .post("http://localhost:3000/errorRouter/user", {

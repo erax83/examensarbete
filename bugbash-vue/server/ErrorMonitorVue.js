@@ -34,10 +34,9 @@ export default class ErrorMonitor {
     return new Promise((resolve) => {
       const script = document.createElement("script");
       script.src = "../node_modules/html2canvas/dist/html2canvas.js";
-      script.onload = resolve; 
+      script.onload = resolve;
       document.head.appendChild(script);
-    })
-    
+    });
   }
 
   /**
