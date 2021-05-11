@@ -185,7 +185,7 @@ export default {
           this.errorOccurrence[0].timeStamp
         ).toLocaleString()} \n` +
         `  ID: ${this.errorOccurrence[0]._id} \n` +
-        // `Stacktrace: ${this.errorOccurrence[0].stack} ` +
+        `  Stacktrace: ${this.errorOccurrence[0].stack} \n` +
         `  Language: ${this.errorOccurrence[0].language} \n` +
         `  Browser Window Width: ${this.errorOccurrence[0].browserWindowWidth} \n` +
         `  Browser Window Height: ${this.errorOccurrence[0].browserWindowHeight} \n`;
@@ -203,7 +203,7 @@ export default {
       this.$router.replace({ name: "errorInfo", params: { id: this.id } });
     },
     /**
-     * 
+     *
      */
     getOccurrencesDates: async function() {
       var errorHashNumber = await this.occurrenceDetails[0].hashNumber;

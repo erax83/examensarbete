@@ -65,7 +65,7 @@ export default class ErrorMonitor {
    */
   logError(error) {
     console.log(
-      "inside logError - Error name: " +
+      "Logging error - Error name: " +
         error.name +
         ", Error message: " +
         error.message
@@ -79,7 +79,6 @@ export default class ErrorMonitor {
    */
   async addError(error, canvas) {
     const errorMessage = error.message;
-    console.log("inside addError ");
 
     const errorData = {
       message: error.message,
