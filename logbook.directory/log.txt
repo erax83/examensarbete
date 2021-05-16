@@ -1,0 +1,240 @@
+2020-10-20 - 2021-02-19
+Sammanfattning:
+
+Arbetet startade med planeringsmöten och genomgång av uppgiften. Enkla skisser har framtagits och diskuterats.
+
+Nuxt användes till en början som ramverk på mitt insiativ. Efter några veckor valde vi dock att börja om 
+från början i Vue. Bland annat för att det tycktes finnas mer support att finna på internet vid behov och 
+det fanns delar av Nuxt som handledaren ställde sig tveksam till. 
+
+En frontend byggdes upp i Vue. En backend skapades med Nodejs och tillhörande Express. Strukturen följer 
+MVC-modellen. Databasen skapades med Mongodb. 
+
+Om arbetet i Vue: 
+I början användes togglefunktioner för att navigera mellan komponenter och props och emit användes för att 
+skicka data mellan componenter. Vuerouter har därefter använts för att navigera mellan componenter i Vue och
+Vuex har använts för statehantering i Vue. Det går att organisera componenter på olika sätt i Vue men jag har 
+tänkt att de componenter som ligger i viewsmappen är sidor med egna URIer och de componenter som ligger i 
+componentsmappen används för specifika ändamål. Axios används i Vue för kontakt med backenddelen.
+
+Jag har fördjupat mina kunskaper i diverse områden, bland annat Mongodb, debugging i chrome dev tools, 
+hur Vue fungerar med tillhörande Vuex, Vuerouter, lifecyclemethods mm. 
+
+2021-02-20 - 2021-03-05
+Sammanfattning:
+
+Under den här perioden bestämdes det att projektet skulle användas som projektarbete: Instruktionerna för
+uppgiften har gåtts igenom. Jag har skrivit och gått igenom en projektplan med handledaren. En projektplan har 
+skrivits och lämnats in till huvudläraren. En Kanban har satts upp i Trello med backlog. Den här loggboken har 
+startats. 
+
+Inloggning via Google har lagts till. Inloggningen fungerar som den ska och data om användaren finns tillgänglig 
+och kan användas i programmet. 
+
+Möjlighet att ta screenshots med hjälp av html2canvas har lagts till. 
+
+2021-03-08
+Lägger till User component.
+
+Försöker ladda upp bild till useravatar.
+
+2021-03-09
+Försöker ladda upp bild till användaravataren. 
+
+Lyckas visa bild i avataren men uppladdningen fungerar inte än. 
+
+Att ladda upp bild till avatar funkar nu. Dock sparas det inte i databasen än. 
+
+Försöka få Google logOut att fungera bättre.
+
+Läser på om ER-diagram i icke-rationella databaser som Mongodb.
+
+2021-03-10
+Lägger till möjlighet att ta bort användarbild.
+
+Flyttar Google Sign In och användaravatar till egen komponent.
+
+Försöker få html2canvas att fungera utanför Vue där error uppstår.
+
+Skissar på ER-diagram.
+
+2021-03-11
+Videomöte med handledaren.
+
+Försöker få html2canvas att fungera från ErrorMonitorView.
+
+2021-03-12
+Försöker lägga till möjighet till kommentarer.
+
+Nu möjligt att lägga till kommentarer till errors-collection i databasen.
+
+2021-03-13
+
+2021-03-14
+Försöker printa ut kommentarer i Vue från databasen.
+
+2021-03-15
+Kommentarer kan nu ses i Vue. 
+
+Användarnamn har lagts till i errorcollection i databasen samt går att se på errordetail-sidan.
+
+2021-03-16
+Google sign in har fått mer styling.
+
+Möte med handledare.
+
+html2canvas kan nu aktiveras när ett fel inträffar. 
+
+Försöker printa canvas i Vue från databasen.
+
+2021-03-17
+Canvas kan nu visas i errordetail-sidan.
+
+Uppdaterar databasen.
+
+Ändringar i google sign in. Inloggning har nu en egen sida och avataren kan ses både på loginsidan
+och i headern.
+
+2021-03-18
+Försöker fixa bug som har med ut och inloggningen att göra.
+
+Försöker få .env att fungera.
+
+Försöker autouppdatera errordetail-sidan.
+
+2021-03-19
+Läser på om debugging.
+
+Påbrjar dropdownmeny.
+
+.env fungerar nu.
+
+2021-03-20
+Fixar bugg vid kommentarsinlägg.
+
+Läser på om cookies, local storage och session storage.
+
+2021-03-21
+Försöker fixa problem relaterat till pagerefresh med localstorage.
+
+Kommentarer blir nu synliga direkt efter att de laggts till. Användaren blir dock utloggad.
+
+Lägger till tilte styling till user page.
+
+2021-03-22
+Försöker förhindra utloggning med vue-persistence och vue-persist.
+
+2021-03-23
+Menyknapp klar.
+
+Gör ER-diagram i Hackolade. 
+
+Uppdaterar menyknappen.
+
+Försöker fixa bugg med användarinitialer som inte längre syns.
+
+2021-03-24
+Bugg fixad. Avataren syns igenom.
+
+Bugg fixad. Namn syns igen när man lägger till en kommentarer.
+
+Läser på om ticketing för Jira och Github.
+
+2021-03-25
+Testar igen att förhindra utloggning vid pagerefresh mad localstorage / sessionstorage.
+
+Möte med handledare. Vi går igenom sägerhet (XSS), ticketsystem med Github och användarhantering.
+
+Läser på om ticketsystem.
+
+Flyttar om lite i detaljvyn och lägger till automatisk githublänk för att lägga till nya issues. 
+
+Läser på om XSS.
+
+2021-03-26
+Skapar användare-collection i databasen med router, model och två metoder i controllern.
+
+Försöker få allt gällande användaren att fungera.
+
+2021-03-27
+Att lägga till användare fungerar nu.
+
+2021-03-28
+Uppdaterar användare och användarsidan.
+
+2021-03-29
+Försöker visa all aktivitet från en användare på användarsidan.
+
+2021-03-30
+Läser på om säkerhet: Om säkerhet i Vue och SQLi och XSS.
+
+Möte med handledare. Vi går bland annat igenom säkerhet och gör en test för att se över
+programmets säkerhet.
+
+Försöker att även skicka med errorinfo när man skapar ett issue.
+
+2021-03-31
+Aktuell errorinformation följer nu med automatiskt när man skapar ett nytt issue. 
+
+2021-04-01
+Planerar för hur UserById ska fungera och byggas upp.
+
+2021-04-02
+En ny UserById-view finns nu där man får tillgång till andra användares mejladdress samt 
+vilka fel de har kommenterat med dessa kommentarer. 
+
+2021-04-03
+UserById-sidan har uppdaterats.
+
+2021-04-04
+Styling.
+
+Fixa diverse buggar.
+
+2021-04-05
+Styling.
+
+Fixa diverse buggar. 
+
+2021-04-06
+Möte med handledaren. Genomgång av vad som gjorts och vad som är rimligt att fixa till. 
+
+Skriva LIA-rapport. 
+
+2021-04-07
+skriva LIA-rapport.
+
+Styling. 
+
+2021-04-08 
+Diverse småändringar.
+
+Försöker skapa länk mellan UserById och ErrorDetailView.
+
+2021-04-12
+Läser på om TDD.
+
+2021-04-13
+Försöker få TDD att fungera. 
+
+2021-04-14
+Snyggar upp kod och lägger till kommentarer.
+
+2021-04-15
+Snyggar upp kod och lägger till kommentarer.
+
+2021-04-16
+Avslutningsmöte med handledare. 
+
+
+Jag har efter det gjort diverse små uppdateringar
+samt försökt fixa några buggar.
+
+
+
+
+
+
+
+
+

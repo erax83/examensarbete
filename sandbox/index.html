@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: black;
+      }
+      h1 {
+        font-family: Arial, Helvetica, sans-serif;
+        color: lightsteelblue;
+      }
+      div {
+        width: 100px;
+        height: 100px;
+        position: relative;
+        animation-name: example;
+        animation-duration: 4s;
+      }
+      img {
+        transform: scaleX(-1);
+      }
+      @keyframes example {
+        0% {
+          left: 0px;
+          top: 0px;
+        }
+        25% {
+          left: 500px;
+          top: 0px;
+        }
+        50% {
+          left: 500px;
+          top: 200px;
+        }
+        75% {
+          left: 0px;
+          top: 500px;
+        }
+        100% {
+          left: 0px;
+          top: 0px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>Super Hero Quest</h1>
+    </header>
+    <button id="btnTest">Play!</button>
+    <div>
+      <img src="pxl.png" alt="pixelpic" width="100" />
+    </div>
+    <script type="module">
+      // Button is connected to an eventlistener that trigger an unworking function.
+      const button = document.getElementById("btnTest");
+
+      button.addEventListener("click", () => {
+        heroMethod();
+      });
+    </script>
+    <script type="module">
+      // This script imports a class from another javascriptfile which listens for errors.
+      import ErrorMonitor from "../bugbash-vue/server/ErrorMonitorVue.js";
+
+      const monitor = (window.monitor = new ErrorMonitor({
+        autoStart: true,
+      }));
+    </script>
+  </body>
+</html>
