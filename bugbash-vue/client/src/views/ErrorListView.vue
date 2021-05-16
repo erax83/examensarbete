@@ -134,17 +134,6 @@ export default {
       return arr;
     },
     /**
-     * 
-     */
-    // selectItem(index) {
-    //   if (this.activeItem == null || this.activeItem != index) {
-    //     this.activeItem = index;
-    //   } else {
-    //     this.activeItem = null;
-    //   }
-    // },
-
-    /**
      * Alter the current occurrence in store.
      */
     moreErrorDetails(errorInfo) {

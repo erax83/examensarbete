@@ -35,11 +35,6 @@ export default {
   },
   computed: {
     /**
-     * Checks if user is logged in or not. Returns boolean.
-     * @returns {Boolean}
-     */
-
-    /**
      * Checks if user is logged in. Returns boolean.
      * @returns {Boolean}
      */

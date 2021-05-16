@@ -41,6 +41,11 @@ const getMonitorError = async (req, res) => {
   }
 };
 
+/**
+ * Returns all occurrences by hashnumber. 
+ * @param {*} req 
+ * @param {*} res 
+ */
 const getOccurrencesByHash = async (req, res) => {
   try {
     const result = await OccurrenceModel.find({
@@ -162,7 +167,7 @@ const getUserById = async (req, res) => {
 };
 
 /**
- * Gets all usercomments related to errortype currently viewed.
+ * Gets usercomment related to errortype currently viewed.
  * @param {*} req
  * @param {*} res
  */
@@ -279,7 +284,6 @@ module.exports = {
   getHashCount,
   getUserCheck,
   getUserActivity,
-  // getParamsPage,
   postUser,
   getUserById,
   postMonitorError,

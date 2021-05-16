@@ -144,9 +144,11 @@ export default {
   mounted() {
     this.getOccurrencesById(this.id);
   },
+  /**
+   * 
+   */
   updated: function() {
     this.getOccurrencesDates();
-    // this.getUserComments();
   },
   computed: {
     /**
@@ -203,7 +205,7 @@ export default {
       this.$router.replace({ name: "errorInfo", params: { id: this.id } });
     },
     /**
-     *
+     * Gets all occurrences with the current hashnumber. 
      */
     getOccurrencesDates: async function() {
       var errorHashNumber = await this.occurrenceDetails[0].hashNumber;
@@ -292,7 +294,7 @@ export default {
             })
             .then((response) => {
               const result = response.data;
-              console.log("inside post, post data: " + result);
+              console.log("Comment posted: " + result);
             });
           this.getUserComments();
           this.$router.push(window.location.pathname);

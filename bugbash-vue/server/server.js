@@ -10,6 +10,7 @@ var corsOptions = {
 };
 server.use(cors(corsOptions));
 
+// Database connection
 const mongoose = require("mongoose");
 mongoose
   .connect(process.env.DATABASE_URL, {
@@ -27,7 +28,6 @@ db.once("open", () => {
 });
 
 server.use(bodyParser.json());
-// ?
 server.use(express.static("public"));
 // Accept form data
 server.use(bodyParser.urlencoded({ extended: true }));

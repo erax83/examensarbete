@@ -42,7 +42,7 @@ export default {
   },
   computed: {
     /**
-     * Check if user is logged in.
+     * Check if user is logged in. If true, the avatar is shown.
      * @return {Boolean} Return Boolean depending on users logg in status.
      */
     signedIn() {
@@ -106,6 +106,12 @@ header.main-header {
   width: 95%;
 }
 
+.about-viewer {
+  max-width: 1024px;
+  align-self: center;
+  width: 95%;
+}
+
 hr {
   margin: 10px 5px 15px 5px;
 }
@@ -153,12 +159,10 @@ a.logo {
   font-size: 1.4em;
 }
 
-/* Avatar */
 .avatar {
   margin-right: 2.7em;
 }
 
-/* Menubutton */
 .dropdown {
   position: relative;
   display: inline-block;
@@ -228,6 +232,10 @@ table {
   }
 
   .user-viewer {
+    margin-left: 10px;
+  }
+
+  .about-viewer {
     margin-left: 10px;
   }
 

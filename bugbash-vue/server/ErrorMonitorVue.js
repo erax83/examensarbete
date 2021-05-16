@@ -40,7 +40,7 @@ export default class ErrorMonitor {
   }
 
   /**
-   *
+   * Calls functions that add the error to the database. 
    * @param {ErrorEvent} errorEvent
    */
   async onError(errorEvent) {
@@ -59,7 +59,6 @@ export default class ErrorMonitor {
 
   /**
    * Log info about error in the console.
-   *
    * @param {error} error
    * @param {Date} errorTimeStamp
    */
@@ -73,8 +72,7 @@ export default class ErrorMonitor {
   }
 
   /**
-   * Add error to database.
-   *
+   * Add occurrence to database.
    * @param {Error} error
    */
   async addError(error, canvas) {
@@ -112,15 +110,14 @@ export default class ErrorMonitor {
     const result = await JSON.parse(responseText);
 
     if (result.success) {
-      console.log("Error logged");
+      console.log("New occurrence posted successfully.");
     } else {
-      console.error("Error logging failed");
+      console.error("Failed to post new occurrence");
     }
   }
 
   /**
    * Add error to database.
-   *
    * @param {Error} error
    */
   async addErrorHash(error) {
@@ -148,9 +145,9 @@ export default class ErrorMonitor {
     const result = await JSON.parse(responseText);
 
     if (result.success) {
-      console.log("Error logged");
+      console.log("New error posted successfully.");
     } else {
-      console.error("Error logging failed");
+      console.error("Failing to post new error.");
     }
   }
 }
