@@ -5,17 +5,21 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
+    // All occurrences displayed in ErrorDetailView
     errors: Array,
-    // allErrors: Array,
+    // All errors and the latest related occurrence. Displayed in the opening page.
     errorsList: Array,
+    // The same as errorsList but allErrorsList is allways the whole list. When the search
+    // field is used errorsList is changed. See onFilterCheange mutation.
     allErrorsList: Array,
     currentMessage: String,
     currentOccurrence: Array,
     // idState: true,
-    // Fliter toogle 
+    // Fliter toogle
     dateState: true,
     messageState: true,
     urlState: true,
+    // Google Login states.
     avatarImage: null,
     userInfo: null,
     signedIn: false,
@@ -79,15 +83,13 @@ export const store = new Vuex.Store({
     },
   },
   getters: {
-    // Tror att detta är occurrences från occurrences collection
     errors: (state) => state.errors,
-    //Mixade errors i ErrorList: från två collections
     errorsList: (state) => state.errorsList,
-    //Ett error från listan i errorsList, från id
+    // One error from errorsList based on id.
     error: (state) => (id) => {
       return state.errorsList.find((err) => err.occurrenceDetails[0]._id == id);
     },
-    //Alla errors då användaren kommenterat
+    // All errors one user has commented on.
     userErrors: (state) => (id) => {
       return state.errorsList.find((err) => err.comments.userId == id);
     },
@@ -105,4 +107,3 @@ export const store = new Vuex.Store({
     completeGoogleUser: (state) => state.completeGoogleUser,
   },
 });
-

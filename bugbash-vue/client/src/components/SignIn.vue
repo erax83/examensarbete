@@ -77,7 +77,7 @@ export default {
         });
 
       /**
-       * Create new user in database if user doeas not yet exist.
+       * Create new user in database if user does not yet exist.
        */
       if ((await userExists) == true) {
         console.log("User already exists");
@@ -88,7 +88,7 @@ export default {
       this.$store.commit("changeUserInfo", googleUser.getBasicProfile());
       this.$store.commit("changeCompleteGoogleUser", googleUser);
       // this.signedInUser = googleUser;
-      this.$store.commit("changeUserInitials", userData.Ue);
+      this.$store.commit("changeUserInitials", userData.Ve);
       // this.$store.commit("changeSignedIn", true);
       this.$store.commit("changeUserAuth", googleUser);
     },
