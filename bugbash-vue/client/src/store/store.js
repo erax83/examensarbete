@@ -11,7 +11,8 @@ export const store = new Vuex.Store({
     allErrorsList: Array,
     currentMessage: String,
     currentOccurrence: Array,
-    idState: true,
+    // idState: true,
+    // Fliter toogle 
     dateState: true,
     messageState: true,
     urlState: true,
@@ -46,9 +47,9 @@ export const store = new Vuex.Store({
         );
       }
     },
-    changeIdToggle(state, idToggle) {
-      state.idState = idToggle;
-    },
+    // changeIdToggle(state, idToggle) {
+    //   state.idState = idToggle;
+    // },
     changeDateToggle(state, dateToggle) {
       state.dateState = dateToggle;
     },
@@ -92,7 +93,7 @@ export const store = new Vuex.Store({
     },
     currentMessage: (state) => state.currentMessage,
     currentOccurrence: (state) => state.currentOccurrence,
-    idState: (state) => state.idState,
+    // idState: (state) => state.idState,
     dateState: (state) => state.dateState,
     messageState: (state) => state.messageState,
     urlState: (state) => state.urlState,

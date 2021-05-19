@@ -51,14 +51,14 @@ export default {
      * @returns {String}
      */
     userName() {
-      return this.$store.getters.completeGoogleUser.getBasicProfile().Ue;
+      return this.$store.getters.completeGoogleUser.getBasicProfile().Ve;
     },
     /**
      * Returns users mail if user is logged in.
      * @returns {String}
      */
     userMail() {
-      return this.$store.getters.completeGoogleUser.getBasicProfile().Rt;
+      return this.$store.getters.completeGoogleUser.getBasicProfile().pu;
     },
     /**
      * Returns users id if user is logged in. Used to link to UserById view.

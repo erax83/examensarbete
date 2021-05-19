@@ -65,8 +65,8 @@ export default {
       let userExists = null;
       let userData = await googleUser.getBasicProfile();
       console.log('userData: ' + JSON.stringify(userData));
-      let currentName = await userData.Ue;
-      let currentMail = await userData.Rt;
+      let currentName = await userData.Ve;
+      let currentMail = await userData.pu;
       let currentId = await userData.getId();
       await axios
         .get("http://localhost:3000/errorRouter/userCheck", {
